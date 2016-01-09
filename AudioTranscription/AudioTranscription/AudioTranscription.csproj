@@ -92,6 +92,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\stave.gif" />
+    <None Include="Resources\tak_etn10c_front.jpg" />
+    <None Include="Resources\v-piano_grand_angle_open_full_gal.jpg" />
+    <None Include="Resources\uku.gif" />
     <Content Include="stave.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
