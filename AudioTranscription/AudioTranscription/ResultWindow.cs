@@ -16,5 +16,10 @@ namespace AudioTranscription
         {
             InitializeComponent();
         }
+
+        private void ResultWindow_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
