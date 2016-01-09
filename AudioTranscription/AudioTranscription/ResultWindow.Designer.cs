@@ -53,7 +53,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.InitialImage = global::AudioTranscription.Properties.Resources.stave;
+         
             this.pictureBox1.Location = new System.Drawing.Point(38, 40);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(704, 50);
