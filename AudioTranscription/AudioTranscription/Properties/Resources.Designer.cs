@@ -63,6 +63,26 @@ namespace AudioTranscription.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Crotchet {
+            get {
+                object obj = ResourceManager.GetObject("Crotchet", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap musical_stave_1_rby {
+            get {
+                object obj = ResourceManager.GetObject("musical-stave-1_rby", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap rcLn4qBAi {
             get {
                 object obj = ResourceManager.GetObject("rcLn4qBAi", resourceCulture);
@@ -76,6 +96,16 @@ namespace AudioTranscription.Properties {
         internal static System.Drawing.Bitmap stave {
             get {
                 object obj = ResourceManager.GetObject("stave", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Stave_lines_1_system_large {
+            get {
+                object obj = ResourceManager.GetObject("Stave lines 1 system large", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
