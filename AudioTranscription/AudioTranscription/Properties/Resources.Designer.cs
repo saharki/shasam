@@ -63,6 +63,16 @@ namespace AudioTranscription.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap rcLn4qBAi {
+            get {
+                object obj = ResourceManager.GetObject("rcLn4qBAi", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap stave {
             get {
                 object obj = ResourceManager.GetObject("stave", resourceCulture);

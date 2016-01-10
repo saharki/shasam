@@ -29,13 +29,21 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.General = new System.Windows.Forms.TabPage();
+            this.checkBtnUku = new System.Windows.Forms.PictureBox();
+            this.checkBtnPiano = new System.Windows.Forms.PictureBox();
+            this.checkBtnGuitar = new System.Windows.Forms.PictureBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.browseBtn = new System.Windows.Forms.Button();
+            this.fileTextBox = new System.Windows.Forms.TextBox();
             this.Settings = new System.Windows.Forms.TabPage();
+            this.resetBtn = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
@@ -46,17 +54,17 @@
             this.label3 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tabControl1.SuspendLayout();
             this.General.SuspendLayout();
-            this.Settings.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.checkBtnUku)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkBtnPiano)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkBtnGuitar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.Settings.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -71,13 +79,16 @@
             // 
             // General
             // 
+            this.General.Controls.Add(this.checkBtnUku);
+            this.General.Controls.Add(this.checkBtnPiano);
+            this.General.Controls.Add(this.checkBtnGuitar);
             this.General.Controls.Add(this.label2);
             this.General.Controls.Add(this.label1);
             this.General.Controls.Add(this.pictureBox3);
             this.General.Controls.Add(this.pictureBox2);
             this.General.Controls.Add(this.pictureBox1);
-            this.General.Controls.Add(this.button1);
-            this.General.Controls.Add(this.textBox1);
+            this.General.Controls.Add(this.browseBtn);
+            this.General.Controls.Add(this.fileTextBox);
             this.General.Location = new System.Drawing.Point(4, 22);
             this.General.Name = "General";
             this.General.Padding = new System.Windows.Forms.Padding(3);
@@ -85,6 +96,40 @@
             this.General.TabIndex = 0;
             this.General.Text = "General";
             this.General.UseVisualStyleBackColor = true;
+            // 
+            // checkBtnUku
+            // 
+            this.checkBtnUku.Image = global::AudioTranscription.Properties.Resources.rcLn4qBAi;
+            this.checkBtnUku.Location = new System.Drawing.Point(469, 113);
+            this.checkBtnUku.Name = "checkBtnUku";
+            this.checkBtnUku.Size = new System.Drawing.Size(21, 17);
+            this.checkBtnUku.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.checkBtnUku.TabIndex = 9;
+            this.checkBtnUku.TabStop = false;
+            this.checkBtnUku.Visible = false;
+            // 
+            // checkBtnPiano
+            // 
+            this.checkBtnPiano.Image = global::AudioTranscription.Properties.Resources.rcLn4qBAi;
+            this.checkBtnPiano.Location = new System.Drawing.Point(305, 113);
+            this.checkBtnPiano.Name = "checkBtnPiano";
+            this.checkBtnPiano.Size = new System.Drawing.Size(21, 17);
+            this.checkBtnPiano.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.checkBtnPiano.TabIndex = 8;
+            this.checkBtnPiano.TabStop = false;
+            this.checkBtnPiano.Visible = false;
+            // 
+            // checkBtnGuitar
+            // 
+            this.checkBtnGuitar.Image = global::AudioTranscription.Properties.Resources.rcLn4qBAi;
+            this.checkBtnGuitar.Location = new System.Drawing.Point(138, 113);
+            this.checkBtnGuitar.Name = "checkBtnGuitar";
+            this.checkBtnGuitar.Size = new System.Drawing.Size(21, 17);
+            this.checkBtnGuitar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.checkBtnGuitar.TabIndex = 7;
+            this.checkBtnGuitar.TabStop = false;
+            this.checkBtnGuitar.Visible = false;
+            this.checkBtnGuitar.Click += new System.EventHandler(this.pictureBox4_Click);
             // 
             // label2
             // 
@@ -104,24 +149,60 @@
             this.label1.TabIndex = 5;
             this.label1.Text = "Choose Instrument";
             // 
-            // button1
+            // pictureBox3
             // 
-            this.button1.Location = new System.Drawing.Point(375, 162);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(118, 20);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Browse";
-            this.button1.UseVisualStyleBackColor = true;
+            this.pictureBox3.Image = global::AudioTranscription.Properties.Resources.uku;
+            this.pictureBox3.Location = new System.Drawing.Point(341, 19);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(149, 112);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox3.TabIndex = 4;
+            this.pictureBox3.TabStop = false;
+            this.pictureBox3.Click += new System.EventHandler(this.pictureBox3_Click);
             // 
-            // textBox1
+            // pictureBox2
             // 
-            this.textBox1.Location = new System.Drawing.Point(11, 162);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(360, 20);
-            this.textBox1.TabIndex = 0;
+            this.pictureBox2.Image = global::AudioTranscription.Properties.Resources.v_piano_grand_angle_open_full_gal;
+            this.pictureBox2.Location = new System.Drawing.Point(177, 19);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(149, 112);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 3;
+            this.pictureBox2.TabStop = false;
+            this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox1.Image = global::AudioTranscription.Properties.Resources.tak_etn10c_front;
+            this.pictureBox1.Location = new System.Drawing.Point(11, 19);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(149, 112);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 2;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
+            // browseBtn
+            // 
+            this.browseBtn.Location = new System.Drawing.Point(375, 162);
+            this.browseBtn.Name = "browseBtn";
+            this.browseBtn.Size = new System.Drawing.Size(118, 20);
+            this.browseBtn.TabIndex = 1;
+            this.browseBtn.Text = "Browse";
+            this.browseBtn.UseVisualStyleBackColor = true;
+            this.browseBtn.Click += new System.EventHandler(this.browseBtn_Click);
+            // 
+            // fileTextBox
+            // 
+            this.fileTextBox.Location = new System.Drawing.Point(11, 162);
+            this.fileTextBox.Name = "fileTextBox";
+            this.fileTextBox.Size = new System.Drawing.Size(360, 20);
+            this.fileTextBox.TabIndex = 0;
             // 
             // Settings
             // 
+            this.Settings.Controls.Add(this.resetBtn);
             this.Settings.Controls.Add(this.groupBox2);
             this.Settings.Controls.Add(this.groupBox1);
             this.Settings.Location = new System.Drawing.Point(4, 22);
@@ -131,6 +212,15 @@
             this.Settings.TabIndex = 1;
             this.Settings.Text = "Settings";
             this.Settings.UseVisualStyleBackColor = true;
+            // 
+            // resetBtn
+            // 
+            this.resetBtn.Location = new System.Drawing.Point(414, 173);
+            this.resetBtn.Name = "resetBtn";
+            this.resetBtn.Size = new System.Drawing.Size(83, 24);
+            this.resetBtn.TabIndex = 5;
+            this.resetBtn.Text = "Reset";
+            this.resetBtn.UseVisualStyleBackColor = true;
             // 
             // groupBox2
             // 
@@ -147,17 +237,21 @@
             // 
             // textBox3
             // 
+            this.textBox3.ForeColor = System.Drawing.SystemColors.GrayText;
             this.textBox3.Location = new System.Drawing.Point(69, 58);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(144, 20);
             this.textBox3.TabIndex = 4;
+            this.textBox3.Text = "30 ms";
             // 
             // textBox2
             // 
+            this.textBox2.ForeColor = System.Drawing.SystemColors.GrayText;
             this.textBox2.Location = new System.Drawing.Point(69, 28);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(144, 20);
             this.textBox2.TabIndex = 3;
+            this.textBox2.Text = "50 ms";
             // 
             // label5
             // 
@@ -191,10 +285,12 @@
             // 
             // textBox4
             // 
+            this.textBox4.ForeColor = System.Drawing.SystemColors.GrayText;
             this.textBox4.Location = new System.Drawing.Point(66, 28);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(145, 20);
             this.textBox4.TabIndex = 1;
+            this.textBox4.Text = "0.5";
             // 
             // label3
             // 
@@ -219,56 +315,31 @@
             // 
             this.toolTip1.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             // 
-            // pictureBox3
-            // 
-            this.pictureBox3.Image = global::AudioTranscription.Properties.Resources.uku;
-            this.pictureBox3.Location = new System.Drawing.Point(341, 19);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(149, 112);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox3.TabIndex = 4;
-            this.pictureBox3.TabStop = false;
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = global::AudioTranscription.Properties.Resources.v_piano_grand_angle_open_full_gal;
-            this.pictureBox2.Location = new System.Drawing.Point(177, 19);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(149, 112);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 3;
-            this.pictureBox2.TabStop = false;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox1.Image = global::AudioTranscription.Properties.Resources.tak_etn10c_front;
-            this.pictureBox1.Location = new System.Drawing.Point(11, 19);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(149, 112);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 2;
-            this.pictureBox1.TabStop = false;
-            // 
             // MainWindow
             // 
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(513, 280);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.tabControl1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "MainWindow";
             this.Text = "Shasam";
             this.Load += new System.EventHandler(this.Shasam_Load);
             this.tabControl1.ResumeLayout(false);
             this.General.ResumeLayout(false);
             this.General.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.checkBtnUku)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkBtnPiano)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkBtnGuitar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.Settings.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -283,8 +354,8 @@
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button browseBtn;
+        private System.Windows.Forms.TextBox fileTextBox;
         private System.Windows.Forms.TabPage Settings;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label5;
@@ -295,6 +366,10 @@
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.PictureBox checkBtnGuitar;
+        private System.Windows.Forms.Button resetBtn;
+        private System.Windows.Forms.PictureBox checkBtnPiano;
+        private System.Windows.Forms.PictureBox checkBtnUku;
     }
 }
 
