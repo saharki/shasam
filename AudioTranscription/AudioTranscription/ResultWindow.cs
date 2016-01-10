@@ -21,5 +21,10 @@ namespace AudioTranscription
         {
 
         }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            AMBox.Visible = false;
+        }
     }
 }

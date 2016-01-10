@@ -123,6 +123,16 @@ namespace AudioTranscription.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap tumblr_nnkphfBghk1u64di7o1_500 {
+            get {
+                object obj = ResourceManager.GetObject("tumblr_nnkphfBghk1u64di7o1_500", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap uku {
             get {
                 object obj = ResourceManager.GetObject("uku", resourceCulture);

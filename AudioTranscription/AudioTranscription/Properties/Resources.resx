@@ -118,14 +118,17 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="Stave lines 1 system large" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Stave lines 1 system large.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="uku" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\uku.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="stave" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\stave.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="uku" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\uku.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Stave lines 1 system large" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Stave lines 1 system large.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Crotchet" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Crotchet.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="rcLn4qBAi" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\rcLn4qBAi.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -139,7 +142,7 @@
   <data name="tak_etn10c_front" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\tak_etn10c_front.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Crotchet" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Crotchet.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="tumblr_nnkphfBghk1u64di7o1_500" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tumblr_nnkphfBghk1u64di7o1_500.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
