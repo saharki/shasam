@@ -34,8 +34,8 @@ namespace AudioTranscription
 
         private void button2_Click_1(object sender, EventArgs e)
         {
-            ResultWindow r = new ResultWindow();
-            r.Show();
+            AMBox.Visible = true;
+            timer1.Enabled = true;
          
         }
 
@@ -73,6 +73,14 @@ namespace AudioTranscription
             {
                 this.fileTextBox.Text = folderBrowserDialog1.FileName;
             }
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            ResultWindow r = new ResultWindow();
+            r.Show();
+            AMBox.Visible = false;
+            timer1.Enabled = false;
         }
     }
 }
