@@ -12,6 +12,7 @@ namespace AudioTranscription
 {
     public partial class MainWindow : Form
     {
+        int choosen = 0;
         public MainWindow()
         {
             InitializeComponent();
@@ -34,9 +35,20 @@ namespace AudioTranscription
 
         private void button2_Click_1(object sender, EventArgs e)
         {
-            AMBox.Visible = true;
-            timer1.Enabled = true;
-         
+            if(choosen==0)
+            {
+                System.Windows.Forms.MessageBox.Show("Please choose instrument.");
+            }
+            else if (fileTextBox.Text.Trim() == "")
+            {
+                System.Windows.Forms.MessageBox.Show("File missing.");
+            }
+            else
+            {
+                AMBox.Visible = true;
+                timer1.Enabled = true;
+            }
+
         }
 
         private void pictureBox4_Click(object sender, EventArgs e)
@@ -49,6 +61,7 @@ namespace AudioTranscription
             checkBtnGuitar.Visible = true;
             checkBtnPiano.Visible = false;
             checkBtnUku.Visible = false;
+            choosen = 1;
         }
 
         private void pictureBox2_Click(object sender, EventArgs e)
@@ -56,6 +69,7 @@ namespace AudioTranscription
             checkBtnGuitar.Visible = false;
             checkBtnPiano.Visible = true;
             checkBtnUku.Visible = false;
+            choosen = 2;
         }
 
         private void pictureBox3_Click(object sender, EventArgs e)
@@ -63,6 +77,7 @@ namespace AudioTranscription
             checkBtnGuitar.Visible = false;
             checkBtnPiano.Visible = false;
             checkBtnUku.Visible = true;
+            choosen = 3;
         }
 
         private void browseBtn_Click(object sender, EventArgs e)

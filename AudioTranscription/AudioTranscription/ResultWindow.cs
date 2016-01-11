@@ -22,6 +22,9 @@ namespace AudioTranscription
 
         }
 
-     
+        private void positionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -124,6 +124,12 @@
   <data name="stave" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\stave.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="2n1dgsp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\2n1dgsp.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="grid" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\grid.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Stave lines 1 system large" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Stave lines 1 system large.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -139,10 +145,13 @@
   <data name="v-piano_grand_angle_open_full_gal" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\v-piano_grand_angle_open_full_gal.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="tumblr_nnkphfBghk1u64di7o1_500" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tumblr_nnkphfBghk1u64di7o1_500.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="tak_etn10c_front" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\tak_etn10c_front.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="tumblr_nnkphfBghk1u64di7o1_500" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\tumblr_nnkphfBghk1u64di7o1_500.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Empty" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Empty.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

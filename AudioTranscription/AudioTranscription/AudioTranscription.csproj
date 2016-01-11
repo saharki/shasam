@@ -100,6 +100,9 @@
     <None Include="Resources\Stave lines 1 system large.png" />
     <None Include="Resources\Crotchet.png" />
     <None Include="Resources\tumblr_nnkphfBghk1u64di7o1_500.gif" />
+    <None Include="Resources\grid.png" />
+    <None Include="Resources\2n1dgsp.png" />
+    <None Include="Resources\Empty.png" />
     <Content Include="stave.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
