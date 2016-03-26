@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Numerics;
+//using StreamFromFileSample;
 
 namespace AudioTranscription
 {
@@ -49,7 +51,25 @@ namespace AudioTranscription
                 timer1.Enabled = true;
             }
 
+            //byte[] toBytes = Encoding.ASCII.GetBytes(@"C:\Users\abzachshan\Source\Repos\shasam\AudioTranscription\AudioTranscription\Resources\Guitar.wav");
+            //System.IO.Stream wavFileStream = new System.IO.MemoryStream(toBytes);
+            //WaveFile wav = WaveFile.Parse(wavFileStream);
+            //for (int i = 0; i < wav.Data.Length; i++)
+            //    Console.WriteLine(wav.Data[i]);
+
+            double[] wavData;
+            double[] nothing;
+            StreamFromFileSample.WaveFile.openWav(@"C:\Users\abzachshan\Source\Repos\shasam\AudioTranscription\AudioTranscription\Resources\Guitar.wav",out wavData,out nothing);
+            //for (int i = 0; i < wavData.Length; i++)
+            //    Console.WriteLine(wavData[i]);
+
+            Complex c1 = new Complex(12, 6);
+            Console.WriteLine(c1.Magnitude);
+
         }
+
+        
+
 
         private void pictureBox4_Click(object sender, EventArgs e)
         {
