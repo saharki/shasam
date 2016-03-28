@@ -59,10 +59,15 @@ namespace AudioTranscription
 
             double[] wavData;
             double[] nothing;
-            StreamFromFileSample.WaveFile.openWav(@"C:\Users\abzachshan\Source\Repos\shasam\AudioTranscription\AudioTranscription\Resources\Guitar.wav",out wavData,out nothing);
+            StreamFromFileSample.WaveFile.openWav(@"F:\Users\Sahar\Source\Repos\shasam\AudioTranscription\AudioTranscription\Resources\Guitar.wav", out wavData,out nothing);
             //for (int i = 0; i < wavData.Length; i++)
             //    Console.WriteLine(wavData[i]);
-
+            double[] window = new double[100];
+            for(int i=0;i<100;i++)
+            {
+                window[i] = 1;
+            }
+            FourierTransform.DFTWithPrint(wavData, 196, 100, window, 1);
             Complex c1 = new Complex(12, 6);
             Console.WriteLine(c1.Magnitude);
 
