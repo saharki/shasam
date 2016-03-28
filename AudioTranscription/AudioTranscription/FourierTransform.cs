@@ -27,11 +27,26 @@ namespace AudioTranscription
                     Complex temp = new Complex(0, 1);
                     temp = (-1) * temp * 2 * Math.PI * t * k / N;
                     temp = Complex.Pow(Math.E, temp);
-                    sums[n] = sums[n] + x[t + N / 2 + n * h] * temp * window[t + N / 2];
-                    draw[n] = (long)sums[n].Magnitude;
-                }   
+                    if (t + N / 2 + n * h < x.Length)
+                    {
+                        sums[n] = sums[n] + x[t + N / 2 + n * h] * temp * window[t + N / 2];
+                    }
+                }
+                draw[n] = (long)(sums[n].Magnitude*1000);
             }
-            histo.DrawHistogram(draw);
+            //histo.DrawHistogram(draw);
+            //histo.Visible = true;
+            //histo.Show();
+            for(int j=0; j < x.Length / h; j++)
+            {
+                  StringBuilder ab = new StringBuilder(draw[j].ToString());
+                  for(int i=0; i< draw[j]; i++)
+                  {
+                      ab.Append("*");
+                  }
+
+                  Console.WriteLine("Window {0} has grade {1} : {2}", j, draw[j], ab.ToString());
+            }
             return sums;
         }
         public static Complex[] DFT(Double []x,double k,int N,double []window,int h)
