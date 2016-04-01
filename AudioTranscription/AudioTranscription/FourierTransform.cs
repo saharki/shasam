@@ -20,10 +20,9 @@ namespace AudioTranscription
             }
             for (int n = 0; n < x.Length / h; n++)//last window may be ignored, in case of incomplete number of windows that can be appllied on the signal.
             {
+                sums[n] = new Complex();
                 for (int t = -N / 2; t < N / 2; t++)
                 {
-                    sums[n] = new Complex();
-
                     Complex temp = new Complex(0, 1);
                     temp = (-1) * temp * 2 * Math.PI * t * k / N;
                     temp = Complex.Pow(Math.E, temp);
@@ -34,12 +33,12 @@ namespace AudioTranscription
                 }
                 draw[n] = (long)(sums[n].Magnitude*1000);
             }
-            //histo.DrawHistogram(draw);
-            //histo.Visible = true;
-            //histo.Show();
-            for(int j=0; j < x.Length / h; j++)
+            histo.DrawHistogram(draw);
+            histo.Visible = true;
+            histo.Show();
+            for (int j=0; j < x.Length / h; j++)
             {
-                  StringBuilder ab = new StringBuilder(draw[j].ToString());
+                  StringBuilder ab = new StringBuilder();
                   for(int i=0; i< draw[j]; i++)
                   {
                       ab.Append("*");
@@ -85,7 +84,8 @@ namespace AudioTranscription
             {
                 result[k] = DFT(x, k, N, window, h);
             }
-            return result;
+            return result;//Need to divide by N (max frequency)? I cant see where that happens
+            
         }
 
      }
