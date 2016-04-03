@@ -113,8 +113,12 @@
     <None Include="Resources\grid.png" />
     <None Include="Resources\2n1dgsp.png" />
     <None Include="Resources\Empty.png" />
-    <Content Include="Resources\Guitar.wav" />
-    <Content Include="Resources\Guitar2.wav" />
+    <Content Include="Resources\Guitar.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Guitar2.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="stave.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
