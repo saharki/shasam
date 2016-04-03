@@ -67,9 +67,7 @@ namespace AudioTranscription
             {
                 window[i] = 1;
             }
-            FourierTransform.DFTWithPrint(wavData, 500, 100, window, 100);
-            Complex c1 = new Complex(12, 6);
-            Console.WriteLine(c1.Magnitude);
+            FourierTransform.Energy(wavData, 100, window, 100,70,200);
 
         }
 

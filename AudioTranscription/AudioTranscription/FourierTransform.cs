@@ -4,14 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Numerics;
-using Histograma;
+
 namespace AudioTranscription
 {
     class FourierTransform
     {
-        public static Complex[] DFTWithPrint(Double[] x, double k, int N, double[] window, int h)
+        
+        public static Complex[] DFTWithPrint(double[] x, double k, int N, double[] window, int h)
         {
-            HistogramaDesenat histo = new HistogramaDesenat();
             Complex[] sums = new Complex[x.Length / h];
             long[] draw = new long[x.Length / h];
             if (x == null || x.Length == 0)
@@ -33,45 +33,49 @@ namespace AudioTranscription
                 }
                 draw[n] = (long)(sums[n].Magnitude*1000);
             }
-            histo.DrawHistogram(draw);
-            histo.Visible = true;
-            histo.Show();
-            for (int j=0; j < x.Length / h; j++)
-            {
-                  StringBuilder ab = new StringBuilder();
-                  for(int i=0; i< draw[j]; i++)
-                  {
-                      ab.Append("*");
-                  }
 
-                  Console.WriteLine("Window {0} has grade {1} : {2}", j, draw[j], ab.ToString());
-            }
+            //for (int j=0; j < x.Length / h; j++)
+            //{
+            //      StringBuilder ab = new StringBuilder();
+            //      for(int i=0; i< draw[j]; i++)
+            //      {
+            //          ab.Append("*");
+            //      }
+
+            //      Console.WriteLine("Window {0} has grade {1} : {2}", j, draw[j], ab.ToString());
+            //}
             return sums;
         }
-        public static Complex[] DFT(Double []x,double k,int N,double []window,int h)
+        public static Complex[] DFT(double[] x, double k, int N, double[] window, int h)
         {
-            Complex []sums= new Complex[x.Length/h];
-            if (x==null|| x.Length==0 )
+            Complex[] sums = new Complex[x.Length / h];
+            long[] draw = new long[x.Length / h];
+            if (x == null || x.Length == 0)
             {
-                return null; 
+                return null;
             }
             for (int n = 0; n < x.Length / h; n++)//last window may be ignored, in case of incomplete number of windows that can be appllied on the signal.
             {
+                sums[n] = new Complex();
                 for (int t = -N / 2; t < N / 2; t++)
                 {
-                    sums[n] = new Complex();
                     Complex temp = new Complex(0, 1);
                     temp = (-1) * temp * 2 * Math.PI * t * k / N;
                     temp = Complex.Pow(Math.E, temp);
-                    sums[n] = sums[n] + x[t + N / 2 + n * h ] * temp * window[t + N / 2];
+                    if (t + N / 2 + n * h < x.Length)
+                    {
+                        sums[n] = sums[n] + x[t + N / 2 + n * h] * temp * window[t + N / 2];
+                    }
                 }
+                draw[n] = (long)(sums[n].Magnitude * 1000);
             }
+
             return sums;
         }
 
-        public static Complex[][] STFT(Double[] x, int N, double[] window, int h,int minFreq,int maxFreq)
+        public static Complex[][] STFT(double[] x, int N, double[] window, int h,int minFreq,int maxFreq)
         {
-            Complex[][] result = new Complex[maxFreq][];
+            Complex[][] result = new Complex[maxFreq+1][];
             if (x == null || x.Length == 0)
             {
                 return null;
@@ -85,8 +89,25 @@ namespace AudioTranscription
                 result[k] = DFT(x, k, N, window, h);
             }
             return result;//Need to divide by N (max frequency)? I cant see where that happens
-            
         }
 
+        public static double[] Energy(double[] x, int N, double[] window, int h, int minFreq, int maxFreq)
+        {
+            if (x == null || x.Length == 0)
+            {
+                return null;
+            }
+            Complex[][] result = STFT(x, N, window, h, minFreq, maxFreq);
+            double[] weightedEnergyMeasure = new double[x.Length / h];
+            for (int n = 0; n < x.Length/h; n++)
+            {
+                for (int k = minFreq; k <= maxFreq; k++)
+                {
+                    weightedEnergyMeasure[n] += k * Math.Pow(result[k][n].Magnitude, 2);
+                }
+                weightedEnergyMeasure[n] /= (maxFreq - minFreq);
+            }
+            return weightedEnergyMeasure;
+        }
      }
 }
