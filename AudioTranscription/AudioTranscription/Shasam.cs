@@ -11,7 +11,7 @@ using System.Numerics;
 //using StreamFromFileSample;
 
 namespace AudioTranscription
-{
+{ 
     public partial class MainWindow : Form
     {
         int choosen = 0;
