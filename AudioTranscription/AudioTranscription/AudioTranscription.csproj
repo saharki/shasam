@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FourierTransform.cs" />
+    <Compile Include="PeakPicking.cs" />
     <Compile Include="ResultWindow.cs">
       <SubType>Form</SubType>
     </Compile>
