@@ -67,8 +67,8 @@ namespace AudioTranscription
             {
                 window[i] = 1;
             }
-            FourierTransform.Energy(wavData, 100, window, 100,70,200);
-
+            FourierTransform.Energy(wavData, 100, window, 100, 0, 500);
+            //FourierTransform.Energy(wavData, 100, window, 100,70,200);
         }
 
         

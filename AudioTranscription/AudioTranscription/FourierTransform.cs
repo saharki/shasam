@@ -9,105 +9,68 @@ namespace AudioTranscription
 {
     class FourierTransform
     {
-        
-        public static Complex[] DFTWithPrint(double[] x, double k, int N, double[] window, int h)
+        public static Complex[] DFT(double[] x, int n, int h, double[] window, int N, int minFreq, int maxFreq)
         {
-            Complex[] sums = new Complex[x.Length / h];
-            long[] draw = new long[x.Length / h];
+            Complex[] fft = new Complex[maxFreq - minFreq + 1];
+            Complex singleFreqCalc;
+            Complex power = new Complex();
             if (x == null || x.Length == 0)
             {
                 return null;
             }
-            for (int n = 0; n < x.Length / h; n++)//last window may be ignored, in case of incomplete number of windows that can be appllied on the signal.
+            for (int k = minFreq; k <= maxFreq; k++)
             {
-                sums[n] = new Complex();
-                for (int t = -N / 2; t < N / 2; t++)
+                singleFreqCalc = new Complex();
+                for (int m = 0; m < N; m++)
                 {
-                    Complex temp = new Complex(0, 1);
-                    temp = (-1) * temp * 2 * Math.PI * t * k / N;
-                    temp = Complex.Pow(Math.E, temp);
-                    if (t + N / 2 + n * h < x.Length)
+                    if ((n * h + m) >= 0 && (n * h + m) < x.Length)
                     {
-                        sums[n] = sums[n] + x[t + N / 2 + n * h] * temp * window[t + N / 2];
+                        power = -2;
+                        power *= Complex.ImaginaryOne;
+                        power *= Math.PI;
+                        power *= k;
+                        power *= ((double)m) / N;
+                        power = Complex.Pow((Complex)Math.E, power);
+                        singleFreqCalc += x[n * h + m] * window[m] * power;
                     }
                 }
-                draw[n] = (long)(sums[n].Magnitude*1000);
+                fft[k - minFreq] = singleFreqCalc;
             }
-
-            //for (int j=0; j < x.Length / h; j++)
-            //{
-            //      StringBuilder ab = new StringBuilder();
-            //      for(int i=0; i< draw[j]; i++)
-            //      {
-            //          ab.Append("*");
-            //      }
-
-            //      Console.WriteLine("Window {0} has grade {1} : {2}", j, draw[j], ab.ToString());
-            //}
-            return sums;
+            return fft;
         }
-        public static Complex[] DFT(double[] x, double k, int N, double[] window, int h)
+
+        public static Complex[][] STFT(double[] x, int h, double[] window, int N, int minFreq, int maxFreq)
         {
-            Complex[] sums = new Complex[x.Length / h];
-            long[] draw = new long[x.Length / h];
+            Complex[][] stft = new Complex[x.Length / h + 1][];
             if (x == null || x.Length == 0)
             {
                 return null;
             }
-            for (int n = 0; n < x.Length / h; n++)//last window may be ignored, in case of incomplete number of windows that can be appllied on the signal.
+            for (int n = 0; n <= x.Length / h; n++)
             {
-                sums[n] = new Complex();
-                for (int t = -N / 2; t < N / 2; t++)
-                {
-                    Complex temp = new Complex(0, 1);
-                    temp = (-1) * temp * 2 * Math.PI * t * k / N;
-                    temp = Complex.Pow(Math.E, temp);
-                    if (t + N / 2 + n * h < x.Length)
-                    {
-                        sums[n] = sums[n] + x[t + N / 2 + n * h] * temp * window[t + N / 2];
-                    }
-                }
-                draw[n] = (long)(sums[n].Magnitude * 1000);
+                stft[n] = DFT(x, n, h, window, N, minFreq, maxFreq);
             }
-
-            return sums;
+            return stft;
         }
 
-        public static Complex[][] STFT(double[] x, int N, double[] window, int h,int minFreq,int maxFreq)
-        {
-            Complex[][] result = new Complex[maxFreq+1][];
-            if (x == null || x.Length == 0)
-            {
-                return null;
-            }
-            for (int k = 0; k < minFreq ; k++)
-            {
-                result[k] = null;
-            }
-            for (int k =minFreq; k <= maxFreq; k ++)
-            {
-                result[k] = DFT(x, k, N, window, h);
-            }
-            return result;//Need to divide by N (max frequency)? I cant see where that happens
-        }
-
-        public static double[] Energy(double[] x, int N, double[] window, int h, int minFreq, int maxFreq)
+        public static double[] Energy(double[] x, int h, double[] window, int N, int minFreq, int maxFreq)
         {
             if (x == null || x.Length == 0)
             {
                 return null;
             }
-            Complex[][] result = STFT(x, N, window, h, minFreq, maxFreq);
-            double[] weightedEnergyMeasure = new double[x.Length / h];
-            for (int n = 0; n < x.Length/h; n++)
+            Complex[][] stft = STFT(x, h, window, N, minFreq, maxFreq);
+            double[] weightedEnergyMeasure = new double[x.Length / h + 1];
+            for (int n = 0; n <= x.Length / h; n++)
             {
                 for (int k = minFreq; k <= maxFreq; k++)
                 {
-                    weightedEnergyMeasure[n] += k * Math.Pow(result[k][n].Magnitude, 2);
+                    weightedEnergyMeasure[n] += k * Math.Pow(stft[n][k].Magnitude, 2);
                 }
-                weightedEnergyMeasure[n] /= (maxFreq - minFreq);
+                weightedEnergyMeasure[n] /= (maxFreq - minFreq + 1);
             }
             return weightedEnergyMeasure;
         }
-     }
+
+    }
 }
