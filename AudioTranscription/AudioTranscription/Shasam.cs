@@ -59,19 +59,31 @@ namespace AudioTranscription
 
             double[] wavData;
             double[] nothing;
-            StreamFromFileSample.WaveFile.openWav("Resources/Guitar2.wav", out wavData,out nothing);
+            StreamFromFileSample.WaveFile.openWav("Resources/Guitar.wav", out wavData,out nothing);
             //for (int i = 0; i < wavData.Length; i++)
             //    Console.WriteLine(wavData[i]);
-            double[] window = new double[100];
-            for(int i=0;i<100;i++)
+
+            int N = 1024;
+            int h = N / 4;
+            int minFreq = 0;
+            int maxFreq = 500;
+            const double sr = 44100; //  Sample rate.
+
+            double[] window = new double[N];
+            for (int i = 0; i < N; i++)
             {
                 window[i] = 1;
             }
-            FourierTransform.Energy(wavData, 100, window, 100, 0, 500);
-            //FourierTransform.Energy(wavData, 100, window, 100,70,200);
+
+            double[] arr = FourierTransform.Energy(wavData, h, window, N, minFreq, maxFreq);
+            Thresholding.FixedThresholdRelativeNormalize(arr, 0.75);
+
+            double q = 0;
+            PitchTracking.PitchDetectionFromIndex(wavData, 11025, ref q, sr, 1024);
+
         }
 
-        
+
 
 
         private void pictureBox4_Click(object sender, EventArgs e)
@@ -119,6 +131,11 @@ namespace AudioTranscription
             r.Show();
             AMBox.Visible = false;
             timer1.Enabled = false;
+        }
+
+        private void AMBox_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

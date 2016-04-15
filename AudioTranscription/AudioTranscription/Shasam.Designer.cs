@@ -331,6 +331,7 @@
             this.AMBox.TabIndex = 3;
             this.AMBox.TabStop = false;
             this.AMBox.Visible = false;
+            this.AMBox.Click += new System.EventHandler(this.AMBox_Click);
             // 
             // timer1
             // 
