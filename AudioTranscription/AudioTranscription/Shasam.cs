@@ -62,7 +62,7 @@ namespace AudioTranscription
             //StreamFromFileSample.WaveFile.openWav("Resources/Guitar2.wav", out wavData,out nothing);
             //for (int i = 0; i < wavData.Length; i++)
             //    Console.WriteLine(wavData[i]);
-            int samplesRate =  StreamFromFileSample.WaveFile.openWav("Resources/Guitar2.wav", out wavData,out nothing, 11025);
+            int samplesRate =  StreamFromFileSample.WaveFile.openWav("Resources/Guitar.wav", out wavData,out nothing, 11025);
             int N = 1024;
             int h = N / 4;
             int minFreq = 0;

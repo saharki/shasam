@@ -67,14 +67,14 @@ namespace AudioTranscription
                 return null;
             }
 
-            //Parallel.For(0, (x.Length / h) + 1, n =>
-            //  {
-            //      stft[n] = DFT(x, n, h, window, N, minFreq, maxFreq);
-            //  });
-            for (int n = 0; n <= x.Length / h; n++)
-            {
-                stft[n] = DFT(x, n, h, window, N, minFreq, maxFreq);
-            }
+            Parallel.For(0, (x.Length / h) + 1, n =>
+              {
+                  stft[n] = DFT(x, n, h, window, N, minFreq, maxFreq);
+              });
+            //for (int n = 0; n <= x.Length / h; n++)
+            //{
+            //    stft[n] = DFT(x, n, h, window, N, minFreq, maxFreq);
+            //}
             return stft;
         }
 
@@ -86,22 +86,22 @@ namespace AudioTranscription
             }
             Complex[][] stft = STFT(x, h, window, N, minFreq, maxFreq);
             double[] weightedEnergyMeasure = new double[x.Length / h + 1];
-            Parallel.For(0, (x.Length / h) + 1, n =>
-            {
-                for (int k = minFreq; k <= maxFreq; k++)
-                {
-                    weightedEnergyMeasure[n] += k * Math.Pow(stft[n][k].Magnitude, 2);
-                }
-                weightedEnergyMeasure[n] /= (maxFreq - minFreq + 1);
-            });
-            //for (int n = 0; n <= x.Length / h; n++)
+            //Parallel.For(0, (x.Length / h) + 1, n =>
             //{
             //    for (int k = minFreq; k <= maxFreq; k++)
             //    {
             //        weightedEnergyMeasure[n] += k * Math.Pow(stft[n][k].Magnitude, 2);
             //    }
             //    weightedEnergyMeasure[n] /= (maxFreq - minFreq + 1);
-            //}
+            //});
+            for (int n = 0; n <= x.Length / h; n++)
+            {
+                for (int k = minFreq; k <= maxFreq; k++)
+                {
+                    weightedEnergyMeasure[n] += k * Math.Pow(stft[n][k].Magnitude, 2);
+                }
+                weightedEnergyMeasure[n] /= (maxFreq - minFreq + 1);
+            }
             return weightedEnergyMeasure;
         }
 
