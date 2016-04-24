@@ -79,7 +79,7 @@ namespace AudioTranscription
             double[] arr = FourierTransform.Energy(wavData, h, window, N, minFreq, maxFreq);
             double[] thresh = Thresholding.FixedThresholdRelativeNormalize(arr, 0.2);
             List<int> peaks = PeakPicking.FindPeaksWithThreshold(thresh, (int)(samplesRate*(double)BPM/60)/h);
-
+            //TODO: create a function that calc the freq between 2 peaks.
             double q = 0;
             PitchTracking.PitchDetectionFromIndex(wavData, 11025, ref q, sr, 1024);
 
