@@ -81,14 +81,14 @@ namespace StreamFromFileSample
                 return -1;
             }
             byte[] wav = File.ReadAllBytes(filename);
-            int samplesrRate = wav[24] + (wav[25] << 8) + (wav[26] << 16) + (wav[27] << 24);
-            if(samplesPerSec>samplesrRate)
+            int samplesRate = wav[24] + (wav[25] << 8) + (wav[26] << 16) + (wav[27] << 24);
+            if(samplesPerSec>samplesRate)
             {
                 right = null;
                 left = null;
                 return -1;
             }
-            jumps = samplesrRate / samplesPerSec;
+            jumps = samplesRate / samplesPerSec;
             // Determine if mono or stereo
             int channels = wav[22];     // Forget byte 23 as 99.999% of WAVs are 1 or 2 channels
 
@@ -131,7 +131,7 @@ namespace StreamFromFileSample
                 
                 i++;
             }
-            return samplesrRate;
+            return samplesRate/jumps;
         }
     }
 }

@@ -62,7 +62,8 @@ namespace AudioTranscription
             //StreamFromFileSample.WaveFile.openWav("Resources/Guitar2.wav", out wavData,out nothing);
             //for (int i = 0; i < wavData.Length; i++)
             //    Console.WriteLine(wavData[i]);
-            int samplesRate =  StreamFromFileSample.WaveFile.openWav("Resources/Guitar.wav", out wavData,out nothing, 11025);
+            int samplesRate =  StreamFromFileSample.WaveFile.openWav("Resources/Guitar.wav", out wavData,out nothing, 22050);
+            int BPM = 80;
             int N = 1024;
             int h = N / 4;
             int minFreq = 0;
@@ -76,7 +77,8 @@ namespace AudioTranscription
             }
 
             double[] arr = FourierTransform.Energy(wavData, h, window, N, minFreq, maxFreq);
-            Thresholding.FixedThresholdRelativeNormalize(arr, 0.75);
+            double[] thresh = Thresholding.FixedThresholdRelativeNormalize(arr, 0.2);
+            List<int> peaks = PeakPicking.FindPeaksWithThreshold(thresh, (int)(samplesRate*(double)BPM/60)/h);
 
             double q = 0;
             PitchTracking.PitchDetectionFromIndex(wavData, 11025, ref q, sr, 1024);

@@ -11,52 +11,38 @@ namespace AudioTranscription
     {
         public static Complex[] DFT(double[] x, int n, int h, double[] window, int N, int minFreq, int maxFreq)
         {
-            Complex[] fft = new Complex[maxFreq - minFreq + 1];
+            Complex[] dft = new Complex[maxFreq - minFreq + 1];
             Complex singleFreqCalc;
             Complex power = new Complex();
+            Complex powerBase = new Complex();
+            Complex powerBaseK = new Complex();
             if (x == null || x.Length == 0)
             {
                 return null;
             }
-            //Parallel.For(minFreq, maxFreq, k =>
-            //  {
-            //      Complex singleFreqCalc = new Complex();
-            //      Complex power = new Complex();
-            //      for (int m = 0; m < N; m++)
-            //      {
-            //          if ((n * h + m) >= 0 && (n * h + m) < x.Length)
-            //          {
-            //              power = -2;
-            //              power *= Complex.ImaginaryOne;
-            //              power *= Math.PI;
-            //              power *= k;
-            //              power *= ((double)m) / N;
-            //              power = Complex.Pow((Complex)Math.E, power);
-            //              singleFreqCalc += x[n * h + m] * window[m] * power;
-            //          }
-            //      }
-            //      fft[k - minFreq] = singleFreqCalc;
-            //  });
+
+            powerBase = -2/(double)N;
+            powerBase *= Complex.ImaginaryOne;
+            powerBase *= Math.PI;
 
             for (int k = minFreq; k <= maxFreq; k++)
             {
                 singleFreqCalc = new Complex();
+                powerBaseK = powerBase * k;
                 for (int m = 0; m < N; m++)
                 {
                     if ((n * h + m) >= 0 && (n * h + m) < x.Length)
                     {
-                        power = -2;
-                        power *= Complex.ImaginaryOne;
-                        power *= Math.PI;
-                        power *= k;
-                        power *= ((double)m) / N;
+
+                        power = powerBaseK;                       
+                        power *= m;
                         power = Complex.Pow((Complex)Math.E, power);
                         singleFreqCalc += x[n * h + m] * window[m] * power;
                     }
                 }
-                fft[k - minFreq] = singleFreqCalc;
+                dft[k - minFreq] = singleFreqCalc;
             }
-            return fft;
+            return dft;
         }
 
         public static Complex[][] STFT(double[] x, int h, double[] window, int N, int minFreq, int maxFreq)
