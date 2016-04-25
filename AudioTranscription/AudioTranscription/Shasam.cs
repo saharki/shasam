@@ -68,7 +68,6 @@ namespace AudioTranscription
             int h = N / 4;
             int minFreq = 0;
             int maxFreq = 500;
-            const double sr = 44100; //  Sample rate.
 
             double[] window = new double[N];
             for (int i = 0; i < N; i++)
@@ -78,10 +77,14 @@ namespace AudioTranscription
 
             double[] arr = FourierTransform.Energy(wavData, h, window, N, minFreq, maxFreq);
             double[] thresh = Thresholding.FixedThresholdRelativeNormalize(arr, 0.2);
-            List<int> peaks = PeakPicking.FindPeaksWithThreshold(thresh, (int)(samplesRate*(double)BPM/60)/h);
-            //TODO: create a function that calc the freq between 2 peaks.
+            List<int> windowPeaks = PeakPicking.FindPeaksWithThreshold(thresh, (int)(samplesRate*(double)BPM/60)/h);
+            List<int> signalPeaks = new List<int>(windowPeaks.Count);
+            for (int i = 0; i < windowPeaks.Count; i++)
+            {
+                signalPeaks.Add(windowPeaks[i] * h + N/2);
+            }
             double q = 0;
-            PitchTracking.PitchDetectionFromIndex(wavData, 11025, ref q, sr, 1024);
+            PitchTracking.PitchDetectionForAllPeaks(wavData, 4096, ref q, samplesRate, signalPeaks);
 
         }
 

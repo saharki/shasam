@@ -228,6 +228,16 @@ namespace AudioTranscription
             return PitchDetection(sub_x, n,sr , ref q);
         }
 
-        //TODO: function which will run PitchDetectionFromIndex for all peaks detected.
+        public static double[] PitchDetectionForAllPeaks(double[] x, int n, ref double q, double sr, List<int> peaks)
+        {
+            double[] freqs = new double[peaks.Count];
+            for(int i=0;i<peaks.Count;i++)
+            {
+                freqs[i] = PitchDetectionFromIndex(x, n, ref q, sr, peaks[i]);
+                q = 0;
+            }
+            return freqs;
+        }
+
     }
 }
