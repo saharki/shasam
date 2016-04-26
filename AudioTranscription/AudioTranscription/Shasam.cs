@@ -49,8 +49,29 @@ namespace AudioTranscription
             {
                 AMBox.Visible = true;
                 timer1.Enabled = true;
+                BackgroundWorker transcribeWorker = new BackgroundWorker();
+                transcribeWorker.DoWork += transcribe;
+                transcribeWorker.RunWorkerAsync();
+                transcribeWorker.ProgressChanged += transcribe_ProgressChanged;
+                transcribeWorker.WorkerReportsProgress = true;
+                transcribeWorker.RunWorkerCompleted += transcribe_Completed;
             }
 
+           
+        }
+        private void transcribe_Completed(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
+        {
+            ResultWindow r = new ResultWindow();
+            r.Show();
+            AMBox.Visible = false;
+        }
+
+        private void transcribe_ProgressChanged(object sender, System.ComponentModel.ProgressChangedEventArgs e)
+        {
+            //progressBar1.Value = e.ProgressPercentage;
+        }
+        private void transcribe(object sender, System.ComponentModel.DoWorkEventArgs e)
+        {
             //byte[] toBytes = Encoding.ASCII.GetBytes(@"C:\Users\abzachshan\Source\Repos\shasam\AudioTranscription\AudioTranscription\Resources\Guitar.wav");
             //System.IO.Stream wavFileStream = new System.IO.MemoryStream(toBytes);
             //WaveFile wav = WaveFile.Parse(wavFileStream);
@@ -87,8 +108,6 @@ namespace AudioTranscription
             PitchTracking.PitchDetectionForAllPeaks(wavData, 4096, ref q, samplesRate, signalPeaks);
 
         }
-
-
 
 
         private void pictureBox4_Click(object sender, EventArgs e)
@@ -132,9 +151,7 @@ namespace AudioTranscription
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            ResultWindow r = new ResultWindow();
-            r.Show();
-            AMBox.Visible = false;
+
             timer1.Enabled = false;
         }
 
