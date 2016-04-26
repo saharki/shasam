@@ -14,6 +14,7 @@ namespace AudioTranscription
 { 
     public partial class MainWindow : Form
     {
+        BackgroundWorker transcribeWorker; 
         int choosen = 0;
         public MainWindow()
         {
@@ -48,8 +49,8 @@ namespace AudioTranscription
             else
             {
                 AMBox.Visible = true;
-                timer1.Enabled = true;
-                BackgroundWorker transcribeWorker = new BackgroundWorker();
+                button2.Enabled = false;
+                transcribeWorker = new BackgroundWorker();
                 transcribeWorker.DoWork += transcribe;
                 transcribeWorker.RunWorkerAsync();
                 transcribeWorker.ProgressChanged += transcribe_ProgressChanged;
@@ -68,7 +69,7 @@ namespace AudioTranscription
 
         private void transcribe_ProgressChanged(object sender, System.ComponentModel.ProgressChangedEventArgs e)
         {
-            //progressBar1.Value = e.ProgressPercentage;
+            progressBar1.Value = e.ProgressPercentage;
         }
         private void transcribe(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
@@ -83,8 +84,8 @@ namespace AudioTranscription
             //StreamFromFileSample.WaveFile.openWav("Resources/Guitar2.wav", out wavData,out nothing);
             //for (int i = 0; i < wavData.Length; i++)
             //    Console.WriteLine(wavData[i]);
-            int samplesRate =  StreamFromFileSample.WaveFile.openWav("Resources/Guitar.wav", out wavData,out nothing, 22050);
-            int BPM = 80;
+            int samplesRate =  StreamFromFileSample.WaveFile.openWav("Resources/littleJon.wav", out wavData,out nothing, 22050);
+            int BPM = 90;
             int N = 1024;
             int h = N / 4;
             int minFreq = 0;
@@ -93,12 +94,15 @@ namespace AudioTranscription
             double[] window = new double[N];
             for (int i = 0; i < N; i++)
             {
-                window[i] = 1;
+                window[i] = HammingWindow(i,N);
             }
 
             double[] arr = FourierTransform.Energy(wavData, h, window, N, minFreq, maxFreq);
-            double[] thresh = Thresholding.FixedThresholdRelativeNormalize(arr, 0.2);
+            transcribeWorker.ReportProgress(80);
+            double[] thresh = Thresholding.FixedThresholdRelativeNormalize(arr, 0.01);
+            transcribeWorker.ReportProgress(83);
             List<int> windowPeaks = PeakPicking.FindPeaksWithThreshold(thresh, (int)(samplesRate*(double)BPM/60)/h);
+            transcribeWorker.ReportProgress(90);
             List<int> signalPeaks = new List<int>(windowPeaks.Count);
             for (int i = 0; i < windowPeaks.Count; i++)
             {
@@ -106,7 +110,7 @@ namespace AudioTranscription
             }
             double q = 0;
             PitchTracking.PitchDetectionForAllPeaks(wavData, 4096, ref q, samplesRate, signalPeaks);
-
+            transcribeWorker.ReportProgress(100);
         }
 
 
@@ -149,15 +153,13 @@ namespace AudioTranscription
             }
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-
-            timer1.Enabled = false;
-        }
-
         private void AMBox_Click(object sender, EventArgs e)
         {
 
+        }
+        private float HammingWindow(int n, int N)
+        {
+            return 0.54f - 0.46f * (float)Math.Cos((2 * Math.PI * n) / (N - 1));
         }
     }
 }

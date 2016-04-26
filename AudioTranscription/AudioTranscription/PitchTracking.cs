@@ -224,8 +224,15 @@ namespace AudioTranscription
         public static double PitchDetectionFromIndex(double[] x, int n, ref double q, double sr, int startIndex)
         {
             double[] sub_x = new double[n];
-            Array.Copy(x, startIndex, sub_x, 0, n);
-            return PitchDetection(sub_x, n,sr , ref q);
+            if (x.Length > startIndex + n)
+            {
+                Array.Copy(x, startIndex, sub_x, 0, n);
+            }
+            else
+            {
+                Array.Copy(x, startIndex, sub_x, 0, x.Length-startIndex);
+            }
+                return PitchDetection(sub_x, n, sr, ref q);
         }
 
         public static double[] PitchDetectionForAllPeaks(double[] x, int n, ref double q, double sr, List<int> peaks)

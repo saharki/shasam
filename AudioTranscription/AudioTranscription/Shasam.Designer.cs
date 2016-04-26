@@ -55,7 +55,7 @@
             this.button2 = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.AMBox = new System.Windows.Forms.PictureBox();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.tabControl1.SuspendLayout();
             this.General.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.checkBtnUku)).BeginInit();
@@ -333,15 +333,19 @@
             this.AMBox.Visible = false;
             this.AMBox.Click += new System.EventHandler(this.AMBox_Click);
             // 
-            // timer1
+            // progressBar1
             // 
-            this.timer1.Interval = 5000;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            this.progressBar1.Location = new System.Drawing.Point(1, 266);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(516, 23);
+            this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
+            this.progressBar1.TabIndex = 4;
             // 
             // MainWindow
             // 
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(513, 280);
+            this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.AMBox);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.tabControl1);
@@ -396,7 +400,7 @@
         private System.Windows.Forms.PictureBox checkBtnPiano;
         private System.Windows.Forms.PictureBox checkBtnUku;
         private System.Windows.Forms.PictureBox AMBox;
-        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.ProgressBar progressBar1;
     }
 }
 
