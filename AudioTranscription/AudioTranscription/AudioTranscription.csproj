@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BPMDetection.cs" />
     <Compile Include="FourierTransform.cs" />
     <Compile Include="PeakPicking.cs" />
     <Compile Include="PitchToNoteConverter.cs" />
@@ -114,6 +115,7 @@
     <None Include="Resources\grid.png" />
     <None Include="Resources\2n1dgsp.png" />
     <None Include="Resources\Empty.png" />
+    <Content Include="Resources\bpmDetect.dll" />
     <Content Include="Resources\Guitar.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
