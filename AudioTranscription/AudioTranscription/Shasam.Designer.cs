@@ -252,7 +252,7 @@
             this.hopSizeTextBox.Name = "hopSizeTextBox";
             this.hopSizeTextBox.Size = new System.Drawing.Size(137, 20);
             this.hopSizeTextBox.TabIndex = 4;
-            this.hopSizeTextBox.Text = "30";
+            this.hopSizeTextBox.Text = "";
             this.hopSizeTextBox.TextChanged += new System.EventHandler(this.hopSizeTextBox_TextChanged);
             // 
             // windowSizeTextBox
@@ -262,7 +262,7 @@
             this.windowSizeTextBox.Name = "windowSizeTextBox";
             this.windowSizeTextBox.Size = new System.Drawing.Size(137, 20);
             this.windowSizeTextBox.TabIndex = 3;
-            this.windowSizeTextBox.Text = "50";
+            this.windowSizeTextBox.Text = "";
             this.windowSizeTextBox.TextChanged += new System.EventHandler(this.windowSizeTextBox_TextChanged);
             // 
             // hopSizeLabel
@@ -312,7 +312,7 @@
             this.BPMTextBox.Name = "BPMTextBox";
             this.BPMTextBox.Size = new System.Drawing.Size(145, 20);
             this.BPMTextBox.TabIndex = 2;
-            this.BPMTextBox.Text = "80";
+            this.BPMTextBox.Text = "";
             this.BPMTextBox.TextChanged += new System.EventHandler(this.BPMTextBox_TextChanged);
             // 
             // thresholdTextBox
@@ -322,7 +322,7 @@
             this.thresholdTextBox.Name = "thresholdTextBox";
             this.thresholdTextBox.Size = new System.Drawing.Size(145, 20);
             this.thresholdTextBox.TabIndex = 1;
-            this.thresholdTextBox.Text = "0.5";
+            this.thresholdTextBox.Text = "";
             this.thresholdTextBox.TextChanged += new System.EventHandler(this.thresholdTextBox_TextChanged);
             // 
             // thresholdLabel
