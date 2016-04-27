@@ -9,10 +9,6 @@ namespace AudioTranscription
 {
     class FourierTransform
     {
-        private float HammingWindow(int n, int N)
-        {
-            return 0.54f - 0.46f * (float)Math.Cos((2 * Math.PI * n) / (N - 1));
-        }
         public static Complex[] DFT(double[] x, int n, int h, double[] window, int N, int minFreq, int maxFreq)
         {
             Complex[] dft = new Complex[maxFreq - minFreq + 1];

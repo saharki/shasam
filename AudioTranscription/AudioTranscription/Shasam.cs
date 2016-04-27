@@ -14,52 +14,28 @@ namespace AudioTranscription
 { 
     public partial class MainWindow : Form
     {
-        BackgroundWorker transcribeWorker; 
-        int choosen = 0;
+        private BackgroundWorker transcribeWorker; 
+
+        private int chosenInstrument = 0;
+        private int windowSizeInMs;
+        private int hopSizeInMs;
+        private float threshold;
+        private int BPM;
+        private string wavFilePath;
+
         public MainWindow()
         {
             InitializeComponent();
+
+            ResetToDefaultSettings();
+
+            transcribeWorker = new BackgroundWorker();
+            transcribeWorker.DoWork += Transcription.Transcribe;
+            transcribeWorker.ProgressChanged += transcribe_ProgressChanged;
+            transcribeWorker.WorkerReportsProgress = true;
+            transcribeWorker.RunWorkerCompleted += transcribe_Completed;
         }
 
-        private void Shasam_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button2_Click_1(object sender, EventArgs e)
-        {
-            if(choosen==0)
-            {
-                System.Windows.Forms.MessageBox.Show("Please choose instrument.");
-            }
-            else if (fileTextBox.Text.Trim() == "")
-            {
-                System.Windows.Forms.MessageBox.Show("File missing.");
-            }
-            else
-            {
-                AMBox.Visible = true;
-                button2.Enabled = false;
-                transcribeWorker = new BackgroundWorker();
-                transcribeWorker.DoWork += transcribe;
-                transcribeWorker.RunWorkerAsync();
-                transcribeWorker.ProgressChanged += transcribe_ProgressChanged;
-                transcribeWorker.WorkerReportsProgress = true;
-                transcribeWorker.RunWorkerCompleted += transcribe_Completed;
-            }
-
-           
-        }
         private void transcribe_Completed(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
         {
             ResultWindow r = new ResultWindow();
@@ -71,52 +47,25 @@ namespace AudioTranscription
         {
             progressBar1.Value = e.ProgressPercentage;
         }
-        private void transcribe(object sender, System.ComponentModel.DoWorkEventArgs e)
+
+        private void ResetToDefaultSettings()
         {
-            //byte[] toBytes = Encoding.ASCII.GetBytes(@"C:\Users\abzachshan\Source\Repos\shasam\AudioTranscription\AudioTranscription\Resources\Guitar.wav");
-            //System.IO.Stream wavFileStream = new System.IO.MemoryStream(toBytes);
-            //WaveFile wav = WaveFile.Parse(wavFileStream);
-            //for (int i = 0; i < wav.Data.Length; i++)
-            //    Console.WriteLine(wav.Data[i]);
+            windowSizeInMs = 40;
+            hopSizeInMs = 10;
+            threshold = (float)0.2;
+            BPM = 80;
 
-            double[] wavData;
-            double[] nothing;
-            //StreamFromFileSample.WaveFile.openWav("Resources/Guitar2.wav", out wavData,out nothing);
-            //for (int i = 0; i < wavData.Length; i++)
-            //    Console.WriteLine(wavData[i]);
-            int samplesRate =  StreamFromFileSample.WaveFile.openWav("Resources/littleJon.wav", out wavData,out nothing, 22050);
-            int BPM = 90;
-            int N = 1024;
-            int h = N / 4;
-            int minFreq = 0;
-            int maxFreq = 500;
+            windowSizeTextBox.Text = windowSizeInMs.ToString();
+            windowSizeTextBox.ForeColor = Color.Gray;
 
-            double[] window = new double[N];
-            for (int i = 0; i < N; i++)
-            {
-                window[i] = HammingWindow(i,N);
-            }
+            hopSizeTextBox.Text = hopSizeInMs.ToString();
+            hopSizeTextBox.ForeColor = Color.Gray;
 
-            double[] arr = FourierTransform.Energy(wavData, h, window, N, minFreq, maxFreq);
-            transcribeWorker.ReportProgress(80);
-            double[] thresh = Thresholding.FixedThresholdRelativeNormalize(arr, 0.01);
-            transcribeWorker.ReportProgress(83);
-            List<int> windowPeaks = PeakPicking.FindPeaksWithThreshold(thresh, (int)(samplesRate*(double)BPM/60)/h);
-            transcribeWorker.ReportProgress(90);
-            List<int> signalPeaks = new List<int>(windowPeaks.Count);
-            for (int i = 0; i < windowPeaks.Count; i++)
-            {
-                signalPeaks.Add(windowPeaks[i] * h + N/2);
-            }
-            double q = 0;
-            PitchTracking.PitchDetectionForAllPeaks(wavData, 4096, ref q, samplesRate, signalPeaks);
-            transcribeWorker.ReportProgress(100);
-        }
+            thresholdTextBox.Text = threshold.ToString();
+            thresholdTextBox.ForeColor = Color.Gray;
 
-
-        private void pictureBox4_Click(object sender, EventArgs e)
-        {
-
+            BPMTextBox.Text = BPM.ToString();
+            BPMTextBox.ForeColor = Color.Gray;
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -124,7 +73,7 @@ namespace AudioTranscription
             checkBtnGuitar.Visible = true;
             checkBtnPiano.Visible = false;
             checkBtnUku.Visible = false;
-            choosen = 1;
+            chosenInstrument = 1;
         }
 
         private void pictureBox2_Click(object sender, EventArgs e)
@@ -132,7 +81,7 @@ namespace AudioTranscription
             checkBtnGuitar.Visible = false;
             checkBtnPiano.Visible = true;
             checkBtnUku.Visible = false;
-            choosen = 2;
+            chosenInstrument = 2;
         }
 
         private void pictureBox3_Click(object sender, EventArgs e)
@@ -140,26 +89,103 @@ namespace AudioTranscription
             checkBtnGuitar.Visible = false;
             checkBtnPiano.Visible = false;
             checkBtnUku.Visible = true;
-            choosen = 3;
+            chosenInstrument = 3;
         }
 
         private void browseBtn_Click(object sender, EventArgs e)
         {
-            OpenFileDialog folderBrowserDialog1 = new OpenFileDialog();
-            folderBrowserDialog1.Filter = "Wav Files(*.wav)|*.wav";
-            if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
+            OpenFileDialog folderBrowserDialog = new OpenFileDialog();
+            folderBrowserDialog.Filter = "Wav Files(*.wav)|*.wav";
+            if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
             {
-                this.fileTextBox.Text = folderBrowserDialog1.FileName;
+                this.fileTextBox.Text = folderBrowserDialog.FileName;
             }
         }
 
-        private void AMBox_Click(object sender, EventArgs e)
+        private void transcribeBtn_Click(object sender, EventArgs e)
         {
+            if (chosenInstrument == 0)
+            {
+                System.Windows.Forms.MessageBox.Show("Please choose instrument.");
+            }
+            else if (fileTextBox.Text.Trim() == "")
+            {
+                System.Windows.Forms.MessageBox.Show("File missing.");
+            }
+            else
+            {
+                AMBox.Visible = true;
+                BtnTranscribe.Enabled = false;
+                Transcription.Initialize(windowSizeInMs, hopSizeInMs, threshold, BPM, wavFilePath, chosenInstrument);
+                transcribeWorker.RunWorkerAsync();
+            }
+        }
 
-        }
-        private float HammingWindow(int n, int N)
+        private void windowSizeTextBox_TextChanged(object sender, EventArgs e)
         {
-            return 0.54f - 0.46f * (float)Math.Cos((2 * Math.PI * n) / (N - 1));
+            try
+            {
+                windowSizeInMs = int.Parse(windowSizeTextBox.Text);
+                windowSizeTextBox.ForeColor = Color.Black;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("An error has occurred: {0}", ex.Message);
+                windowSizeTextBox.ForeColor = Color.Red;
+            }
         }
+
+        private void hopSizeTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                hopSizeInMs = int.Parse(hopSizeTextBox.Text);
+                hopSizeTextBox.ForeColor = Color.Black;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("An error has occurred: {0}", ex.Message);
+                hopSizeTextBox.ForeColor = Color.Red;
+            }
+        }
+
+        private void thresholdTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                threshold = float.Parse(thresholdTextBox.Text);
+                thresholdTextBox.ForeColor = Color.Black;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("An error has occurred: {0}", ex.Message);
+                thresholdTextBox.ForeColor = Color.Red;
+            }
+        }
+
+        private void BPMTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                BPM = int.Parse(BPMTextBox.Text);
+                BPMTextBox.ForeColor = Color.Black;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("An error has occurred: {0}", ex.Message);
+                BPMTextBox.ForeColor = Color.Red;
+            }
+        }
+
+        private void fileTextBox_TextChanged(object sender, EventArgs e)
+        {
+            wavFilePath = fileTextBox.Text;
+        }
+
+        private void resetBtn_Click(object sender, EventArgs e)
+        {
+            ResetToDefaultSettings();
+        }
+
     }
 }

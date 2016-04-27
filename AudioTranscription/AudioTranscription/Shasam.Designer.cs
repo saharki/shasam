@@ -45,17 +45,19 @@
             this.Settings = new System.Windows.Forms.TabPage();
             this.resetBtn = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.hopSizeTextBox = new System.Windows.Forms.TextBox();
+            this.windowSizeTextBox = new System.Windows.Forms.TextBox();
+            this.hopSizeLabel = new System.Windows.Forms.Label();
+            this.windowLabel = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
+            this.BPMLabel = new System.Windows.Forms.Label();
+            this.BPMTextBox = new System.Windows.Forms.TextBox();
+            this.thresholdTextBox = new System.Windows.Forms.TextBox();
+            this.thresholdLabel = new System.Windows.Forms.Label();
+            this.BtnTranscribe = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.AMBox = new System.Windows.Forms.PictureBox();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.AMBox = new System.Windows.Forms.PictureBox();
             this.tabControl1.SuspendLayout();
             this.General.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.checkBtnUku)).BeginInit();
@@ -132,7 +134,6 @@
             this.checkBtnGuitar.TabIndex = 7;
             this.checkBtnGuitar.TabStop = false;
             this.checkBtnGuitar.Visible = false;
-            this.checkBtnGuitar.Click += new System.EventHandler(this.pictureBox4_Click);
             // 
             // label2
             // 
@@ -201,10 +202,12 @@
             // 
             // fileTextBox
             // 
+            this.fileTextBox.Enabled = false;
             this.fileTextBox.Location = new System.Drawing.Point(11, 162);
             this.fileTextBox.Name = "fileTextBox";
             this.fileTextBox.Size = new System.Drawing.Size(360, 20);
             this.fileTextBox.TabIndex = 0;
+            this.fileTextBox.TextChanged += new System.EventHandler(this.fileTextBox_TextChanged);
             // 
             // Settings
             // 
@@ -227,13 +230,14 @@
             this.resetBtn.TabIndex = 5;
             this.resetBtn.Text = "Reset";
             this.resetBtn.UseVisualStyleBackColor = true;
+            this.resetBtn.Click += new System.EventHandler(this.resetBtn_Click);
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.textBox3);
-            this.groupBox2.Controls.Add(this.textBox2);
-            this.groupBox2.Controls.Add(this.label5);
-            this.groupBox2.Controls.Add(this.label4);
+            this.groupBox2.Controls.Add(this.hopSizeTextBox);
+            this.groupBox2.Controls.Add(this.windowSizeTextBox);
+            this.groupBox2.Controls.Add(this.hopSizeLabel);
+            this.groupBox2.Controls.Add(this.windowLabel);
             this.groupBox2.Location = new System.Drawing.Point(11, 6);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(228, 144);
@@ -241,47 +245,50 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "STFT Settings";
             // 
-            // textBox3
+            // hopSizeTextBox
             // 
-            this.textBox3.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.textBox3.Location = new System.Drawing.Point(69, 58);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(144, 20);
-            this.textBox3.TabIndex = 4;
-            this.textBox3.Text = "30 ms";
+            this.hopSizeTextBox.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.hopSizeTextBox.Location = new System.Drawing.Point(85, 58);
+            this.hopSizeTextBox.Name = "hopSizeTextBox";
+            this.hopSizeTextBox.Size = new System.Drawing.Size(137, 20);
+            this.hopSizeTextBox.TabIndex = 4;
+            this.hopSizeTextBox.Text = "30";
+            this.hopSizeTextBox.TextChanged += new System.EventHandler(this.hopSizeTextBox_TextChanged);
             // 
-            // textBox2
+            // windowSizeTextBox
             // 
-            this.textBox2.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.textBox2.Location = new System.Drawing.Point(69, 28);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(144, 20);
-            this.textBox2.TabIndex = 3;
-            this.textBox2.Text = "50 ms";
+            this.windowSizeTextBox.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.windowSizeTextBox.Location = new System.Drawing.Point(85, 28);
+            this.windowSizeTextBox.Name = "windowSizeTextBox";
+            this.windowSizeTextBox.Size = new System.Drawing.Size(137, 20);
+            this.windowSizeTextBox.TabIndex = 3;
+            this.windowSizeTextBox.Text = "50";
+            this.windowSizeTextBox.TextChanged += new System.EventHandler(this.windowSizeTextBox_TextChanged);
             // 
-            // label5
+            // hopSizeLabel
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(10, 58);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(50, 13);
-            this.label5.TabIndex = 2;
-            this.label5.Text = "Hop Size";
-            this.label5.Click += new System.EventHandler(this.label5_Click);
+            this.hopSizeLabel.AutoSize = true;
+            this.hopSizeLabel.Location = new System.Drawing.Point(10, 58);
+            this.hopSizeLabel.Name = "hopSizeLabel";
+            this.hopSizeLabel.Size = new System.Drawing.Size(72, 13);
+            this.hopSizeLabel.TabIndex = 2;
+            this.hopSizeLabel.Text = "Hop Size [ms]";
             // 
-            // label4
+            // windowLabel
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(10, 31);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(46, 13);
-            this.label4.TabIndex = 1;
-            this.label4.Text = "Window";
+            this.windowLabel.AutoSize = true;
+            this.windowLabel.Location = new System.Drawing.Point(10, 31);
+            this.windowLabel.Name = "windowLabel";
+            this.windowLabel.Size = new System.Drawing.Size(68, 13);
+            this.windowLabel.TabIndex = 1;
+            this.windowLabel.Text = "Window [ms]";
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.textBox4);
-            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.BPMLabel);
+            this.groupBox1.Controls.Add(this.BPMTextBox);
+            this.groupBox1.Controls.Add(this.thresholdTextBox);
+            this.groupBox1.Controls.Add(this.thresholdLabel);
             this.groupBox1.Location = new System.Drawing.Point(259, 6);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(217, 144);
@@ -289,71 +296,90 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Detection Settings";
             // 
-            // textBox4
+            // BPMLabel
             // 
-            this.textBox4.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.textBox4.Location = new System.Drawing.Point(66, 28);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(145, 20);
-            this.textBox4.TabIndex = 1;
-            this.textBox4.Text = "0.5";
+            this.BPMLabel.AutoSize = true;
+            this.BPMLabel.Location = new System.Drawing.Point(6, 60);
+            this.BPMLabel.Name = "BPMLabel";
+            this.BPMLabel.Size = new System.Drawing.Size(30, 13);
+            this.BPMLabel.TabIndex = 3;
+            this.BPMLabel.Text = "BPM";
             // 
-            // label3
+            // BPMTextBox
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 31);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(54, 13);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "Threshold";
+            this.BPMTextBox.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.BPMTextBox.Location = new System.Drawing.Point(66, 57);
+            this.BPMTextBox.Name = "BPMTextBox";
+            this.BPMTextBox.Size = new System.Drawing.Size(145, 20);
+            this.BPMTextBox.TabIndex = 2;
+            this.BPMTextBox.Text = "80";
+            this.BPMTextBox.TextChanged += new System.EventHandler(this.BPMTextBox_TextChanged);
             // 
-            // button2
+            // thresholdTextBox
             // 
-            this.button2.Location = new System.Drawing.Point(147, 235);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(180, 35);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "Transcribe";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click_1);
+            this.thresholdTextBox.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.thresholdTextBox.Location = new System.Drawing.Point(66, 28);
+            this.thresholdTextBox.Name = "thresholdTextBox";
+            this.thresholdTextBox.Size = new System.Drawing.Size(145, 20);
+            this.thresholdTextBox.TabIndex = 1;
+            this.thresholdTextBox.Text = "0.5";
+            this.thresholdTextBox.TextChanged += new System.EventHandler(this.thresholdTextBox_TextChanged);
+            // 
+            // thresholdLabel
+            // 
+            this.thresholdLabel.AutoSize = true;
+            this.thresholdLabel.Location = new System.Drawing.Point(6, 31);
+            this.thresholdLabel.Name = "thresholdLabel";
+            this.thresholdLabel.Size = new System.Drawing.Size(54, 13);
+            this.thresholdLabel.TabIndex = 0;
+            this.thresholdLabel.Text = "Threshold";
+            // 
+            // BtnTranscribe
+            // 
+            this.BtnTranscribe.Location = new System.Drawing.Point(167, 235);
+            this.BtnTranscribe.Name = "BtnTranscribe";
+            this.BtnTranscribe.Size = new System.Drawing.Size(180, 35);
+            this.BtnTranscribe.TabIndex = 2;
+            this.BtnTranscribe.Text = "Transcribe";
+            this.BtnTranscribe.UseVisualStyleBackColor = true;
+            this.BtnTranscribe.Click += new System.EventHandler(this.transcribeBtn_Click);
             // 
             // toolTip1
             // 
             this.toolTip1.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             // 
-            // AMBox
-            // 
-            this.AMBox.Image = global::AudioTranscription.Properties.Resources.tumblr_nnkphfBghk1u64di7o1_500;
-            this.AMBox.Location = new System.Drawing.Point(-3, 0);
-            this.AMBox.Name = "AMBox";
-            this.AMBox.Size = new System.Drawing.Size(520, 229);
-            this.AMBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.AMBox.TabIndex = 3;
-            this.AMBox.TabStop = false;
-            this.AMBox.Visible = false;
-            this.AMBox.Click += new System.EventHandler(this.AMBox_Click);
-            // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(1, 266);
+            this.progressBar1.Location = new System.Drawing.Point(3, 276);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(516, 23);
+            this.progressBar1.Size = new System.Drawing.Size(507, 23);
             this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.progressBar1.TabIndex = 4;
+            // 
+            // AMBox
+            // 
+            this.AMBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.AMBox.Image = global::AudioTranscription.Properties.Resources.tumblr_nnkphfBghk1u64di7o1_500;
+            this.AMBox.Location = new System.Drawing.Point(-8, -1);
+            this.AMBox.Name = "AMBox";
+            this.AMBox.Size = new System.Drawing.Size(529, 232);
+            this.AMBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.AMBox.TabIndex = 6;
+            this.AMBox.TabStop = false;
+            this.AMBox.Visible = false;
             // 
             // MainWindow
             // 
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(513, 280);
-            this.Controls.Add(this.progressBar1);
+            this.ClientSize = new System.Drawing.Size(513, 301);
             this.Controls.Add(this.AMBox);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.progressBar1);
+            this.Controls.Add(this.BtnTranscribe);
             this.Controls.Add(this.tabControl1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "MainWindow";
             this.Text = "Shasam";
-            this.Load += new System.EventHandler(this.Shasam_Load);
             this.tabControl1.ResumeLayout(false);
             this.General.ResumeLayout(false);
             this.General.PerformLayout();
@@ -377,7 +403,7 @@
 
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage General;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button BtnTranscribe;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBox3;
@@ -387,20 +413,22 @@
         private System.Windows.Forms.TextBox fileTextBox;
         private System.Windows.Forms.TabPage Settings;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label hopSizeLabel;
+        private System.Windows.Forms.Label windowLabel;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label thresholdLabel;
         private System.Windows.Forms.ToolTip toolTip1;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox hopSizeTextBox;
+        private System.Windows.Forms.TextBox windowSizeTextBox;
+        private System.Windows.Forms.TextBox thresholdTextBox;
         private System.Windows.Forms.PictureBox checkBtnGuitar;
         private System.Windows.Forms.Button resetBtn;
         private System.Windows.Forms.PictureBox checkBtnPiano;
         private System.Windows.Forms.PictureBox checkBtnUku;
-        private System.Windows.Forms.PictureBox AMBox;
         private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.Label BPMLabel;
+        private System.Windows.Forms.TextBox BPMTextBox;
+        private System.Windows.Forms.PictureBox AMBox;
     }
 }
 
