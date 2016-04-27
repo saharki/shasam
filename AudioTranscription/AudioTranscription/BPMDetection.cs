@@ -31,21 +31,21 @@ namespace BPMDetect
             BPMFFT_WINDOWTYPE
         }
 
-        [DllImport("bpmDetect.dll")]
+        [DllImport("DLLs\\bpmDetect.dll")]
         private extern static IntPtr BPM_Create();
-        [DllImport("bpmDetect.dll")]
+        [DllImport("DLLs\\bpmDetect.dll")]
         private extern static void BPM_Destroy(IntPtr bpm);
-        [DllImport("bpmDetect.dll")]
+        [DllImport("DLLs\\bpmDetect.dll")]
         private extern static void BPM_AddSample(IntPtr bpm, float sample);
-        [DllImport("bpmDetect.dll")]
+        [DllImport("DLLs\\bpmDetect.dll")]
         private extern static double BPM_getParameter(IntPtr bpm, BPMParam param);
-        [DllImport("bpmDetect.dll")]
+        [DllImport("DLLs\\bpmDetect.dll")]
         private extern static void BPM_setParameter(IntPtr bpm, BPMParam param, double value);
-        [DllImport("bpmDetect.dll")]
+        [DllImport("DLLs\\bpmDetect.dll")]
         private extern static double BPM_getFFTParameter(IntPtr bpm, BPMFFTParam param);
-        [DllImport("bpmDetect.dll")]
+        [DllImport("DLLs\\bpmDetect.dll")]
         private extern static void BPM_setFFTParameter(IntPtr bpm, BPMFFTParam param, double value);
-        [DllImport("bpmDetect.dll")]
+        [DllImport("DLLs\\bpmDetect.dll")]
         private extern static void BPM_Register(int[] code);
 
         #endregion

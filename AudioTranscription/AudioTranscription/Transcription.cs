@@ -40,12 +40,16 @@ namespace AudioTranscription
             //int N = 1024;
             //int h = N / 4;
             //BPM = 80;
+
+            //************* Automatic BPM detection - START ****************************//
             //BPMDetect.BPMDetection bpmDetector = new BPMDetect.BPMDetection();
             //for (int i = 0; i < wavData.Length; i++)
             //{
             //    bpmDetector.AddSample((float)wavData[i]);
             //}
-            //BPM=(int)bpmDetector.getParameter(0);
+            //BPM = (int)bpmDetector.getParameter(BPMDetect.BPMDetection.BPMParam.BPMFOUNDBPM);
+            //************* Automatic BPM detection - END ****************************//
+
             int N = samplesRate * windowSizeInMs / 1000;
             int h = samplesRate * hopSizeInMs / 1000;
 

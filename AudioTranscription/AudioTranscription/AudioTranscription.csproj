@@ -115,7 +115,9 @@
     <None Include="Resources\grid.png" />
     <None Include="Resources\2n1dgsp.png" />
     <None Include="Resources\Empty.png" />
-    <Content Include="Resources\bpmDetect.dll" />
+    <Content Include="DLLs\bpmDetect.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Guitar.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
