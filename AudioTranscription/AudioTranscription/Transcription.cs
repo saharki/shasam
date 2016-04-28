@@ -78,7 +78,16 @@ namespace AudioTranscription
                 signalPeaks.Add(windowPeaks[i] * h + N / 2);
             }
             double q = 0;
-            PitchTracking.PitchDetectionForAllPeaks(wavData, 4096, ref q, samplesRate, signalPeaks);
+            double [] signalFrequencies = PitchTracking.PitchDetectionForAllPeaks(wavData, 4096, ref q, samplesRate, signalPeaks);
+            int[][] result = new int[2][];
+            result[0] = new int[signalPeaks.Count];
+            result[1] = new int[signalPeaks.Count];
+            for (int i=0;i<signalPeaks.Count;i++)
+            {
+                result[0][ i] = signalPeaks[i];
+                result[1][ i] = (int)Math.Round(signalFrequencies[i], 0);
+            }
+            e.Result = result;
             //transcribeWorker.ReportProgress(100);
         }
 

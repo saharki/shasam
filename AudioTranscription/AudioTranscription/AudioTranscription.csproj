@@ -53,6 +53,22 @@
   <ItemGroup>
     <Compile Include="BPMDetection.cs" />
     <Compile Include="FourierTransform.cs" />
+    <Compile Include="MusicMakerRTM\AssemblyInfo.cs" />
+    <Compile Include="MusicMakerRTM\HalfNote.cs" />
+    <Compile Include="MusicMakerRTM\InputStringForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MusicMakerRTM\MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MusicMakerRTM\Measure.cs" />
+    <Compile Include="MusicMakerRTM\Note.cs" />
+    <Compile Include="MusicMakerRTM\NoteReader.cs" />
+    <Compile Include="MusicMakerRTM\Page.cs" />
+    <Compile Include="MusicMakerRTM\SignatureInputForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MusicMakerRTM\Staff.cs" />
     <Compile Include="PeakPicking.cs" />
     <Compile Include="PitchToNoteConverter.cs" />
     <Compile Include="PitchTracking.cs" />
@@ -73,6 +89,16 @@
     <Compile Include="Thresholding.cs" />
     <Compile Include="Transcription.cs" />
     <Compile Include="WaveFile.cs" />
+    <EmbeddedResource Include="MusicMakerRTM\InputStringForm.resx">
+      <DependentUpon>InputStringForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MusicMakerRTM\licenses.licx" />
+    <EmbeddedResource Include="MusicMakerRTM\MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MusicMakerRTM\SignatureInputForm.resx">
+      <DependentUpon>SignatureInputForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ResultWindow.resx">
       <DependentUpon>ResultWindow.cs</DependentUpon>
     </EmbeddedResource>
@@ -89,6 +115,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="MusicMakerRTM\jb.notes" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -118,6 +145,20 @@
     <Content Include="DLLs\bpmDetect.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="MusicMakerRTM\clef1.bmp">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MusicMakerRTM\clef1.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MusicMakerRTM\clefscreen.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MusicMakerRTM\MusicMaker.csproj" />
+    <Content Include="MusicMakerRTM\MusicMaker.csproj.user" />
+    <Content Include="MusicMakerRTM\MusicMaker.gif" />
+    <Content Include="MusicMakerRTM\MusicMakerProgram.sln" />
+    <Content Include="MusicMakerRTM\UpgradeLog.htm" />
     <Content Include="Resources\Guitar.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -128,6 +169,11 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="stave.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="MusicMakerRTM\Backup\" />
+    <Folder Include="MusicMakerRTM\bin\" />
+    <Folder Include="MusicMakerRTM\obj\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

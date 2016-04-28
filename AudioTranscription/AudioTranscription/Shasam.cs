@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Numerics;
-//using StreamFromFileSample;
+using MusicMaker;
 
 namespace AudioTranscription
 { 
@@ -38,7 +38,13 @@ namespace AudioTranscription
 
         private void transcribe_Completed(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
         {
-            ResultWindow r = new ResultWindow();
+            Form1 r = new Form1();
+            string midiNotes = "";
+            for (int i = 0; i < ((int[][])e.Result)[0].Length; i++)
+            {
+                midiNotes += PitchToNoteConverter.GetNoteName((int)PitchToNoteConverter.PitchToMidiNote((float)((int[][])e.Result)[1][ i]), true, false) + " ";
+            }
+            r.paintByString(midiNotes);
             r.Show();
             AMBox.Visible = false;
         }

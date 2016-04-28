@@ -47,8 +47,8 @@ namespace AudioTranscription
         {
             if (pitch < 20.0f)
                 return 0.0f;
-
-            return (float)(12.0 * Math.Log10(pitch / 55.0) * InverseLog2) + 33.0f;
+            return (float)Math.Round((float)(12 * Math.Log(pitch / 440, 2) + 57));
+            //return (float)(12.0 * Math.Log10(pitch / 55.0) * InverseLog2) + 33.0f;
         }
 
         /// <summary>
