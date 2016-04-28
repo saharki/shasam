@@ -45,6 +45,8 @@ namespace AudioTranscription
                 midiNotes += PitchToNoteConverter.GetNoteName((int)PitchToNoteConverter.PitchToMidiNote((float)((int[][])e.Result)[1][ i]), true, false) + " ";
             }
             r.paintByString(midiNotes);
+            r.ButtomMeasure = 4;
+            r.TopMeasure = 4;
             r.Show();
             AMBox.Visible = false;
         }
