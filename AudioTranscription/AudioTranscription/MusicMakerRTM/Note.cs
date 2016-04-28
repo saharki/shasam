@@ -89,8 +89,8 @@ namespace MusicMaker
 			 HasLine = true;
 		 }
 		 n = Staff.kBarSpacing * 5 - (n * Staff.kBarSpacing)/2;
-		 Position.X = Form1.CurrentStaffPosition  + kClefOffset;
-		 Position.Y = n + Form1.CurrentStaffIndex * Staff.kStaffSpacing  + Staff.kOffset;
+		 Position.X = MusicMakerSheet.CurrentStaffPosition  + kClefOffset;
+		 Position.Y = n + MusicMakerSheet.CurrentStaffIndex * Staff.kStaffSpacing  + Staff.kOffset;
 		 return n;
 		}
 

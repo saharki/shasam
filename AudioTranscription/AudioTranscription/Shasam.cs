@@ -38,7 +38,7 @@ namespace AudioTranscription
 
         private void transcribe_Completed(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
         {
-            Form1 r = new Form1();
+            MusicMakerSheet r = new MusicMakerSheet();
             string midiNotes = "";
             for (int i = 0; i < ((int[][])e.Result)[0].Length; i++)
             {

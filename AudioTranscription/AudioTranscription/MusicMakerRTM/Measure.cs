@@ -24,8 +24,8 @@ namespace MusicMaker
 
 		public void CalcPosition()
 		{
- 		 XPosition = Form1.CurrentStaffPosition + Note.kClefOffset;
-		 YPosition = Form1.CurrentStaffIndex * Staff.kStaffSpacing  + Staff.kOffset;
+ 		 XPosition = MusicMakerSheet.CurrentStaffPosition + Note.kClefOffset;
+		 YPosition = MusicMakerSheet.CurrentStaffIndex * Staff.kStaffSpacing  + Staff.kOffset;
 		}
 
         public Measure()

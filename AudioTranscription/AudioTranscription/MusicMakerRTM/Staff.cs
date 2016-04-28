@@ -60,8 +60,8 @@ namespace MusicMaker
 
 		protected void DrawSignature(Graphics g, int staffIndex)
 		{
-			g.DrawString(Form1.TopSignature.ToString(), SignatureFont, Brushes.Black, kSignatureOffset, kOffset + staffIndex * kStaffSpacing - 3,  new StringFormat());
-			g.DrawString(Form1.BottomSignature.ToString(), SignatureFont, Brushes.Black, kSignatureOffset, kOffset + staffIndex * kStaffSpacing + SignatureFont.Size - 3,  new StringFormat());
+			g.DrawString(MusicMakerSheet.TopSignature.ToString(), SignatureFont, Brushes.Black, kSignatureOffset, kOffset + staffIndex * kStaffSpacing - 3,  new StringFormat());
+			g.DrawString(MusicMakerSheet.BottomSignature.ToString(), SignatureFont, Brushes.Black, kSignatureOffset, kOffset + staffIndex * kStaffSpacing + SignatureFont.Size - 3,  new StringFormat());
 		}
 
 

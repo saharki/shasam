@@ -18,7 +18,7 @@ namespace MusicMaker
 	/// <summary>
 	/// Summary description for Form1.
 	/// </summary>
-	public class Form1 : System.Windows.Forms.Form
+	public class MusicMakerSheet : System.Windows.Forms.Form
 	{
 		private System.Windows.Forms.MainMenu mainMenu1;
 		private System.Windows.Forms.MenuItem menuItem1;
@@ -49,7 +49,7 @@ namespace MusicMaker
 		/// </summary>
 		private System.ComponentModel.Container components = null;
 
-		public Form1()
+		public MusicMakerSheet()
 		{
 			//
 			// Required for Windows Form Designer support
@@ -87,7 +87,7 @@ namespace MusicMaker
                 ((Staff)(((Page)Pages[CurrentPageIndex]).Staffs[CurrentStaffIndex])).AddMeasure(aMeasure);
                 CurrentMeasureIndex++;
                 aMeasure.CalcPosition();
-                Form1.CurrentStaffPosition += Note.kNoteSpacing; // add an extra space for the measure
+                MusicMakerSheet.CurrentStaffPosition += Note.kNoteSpacing; // add an extra space for the measure
                 if (CurrentStaffPosition > Staff.kStaffInPixels - Note.kNoteSpacing * 7)
                 {
                     CurrentStaffIndex++;
@@ -139,7 +139,7 @@ namespace MusicMaker
         /// </summary>
         private void InitializeComponent()
 		{
-			System.Resources.ResourceManager resources = new System.Resources.ResourceManager(typeof(Form1));
+			System.Resources.ResourceManager resources = new System.Resources.ResourceManager(typeof(MusicMakerSheet));
 			this.mainMenu1 = new System.Windows.Forms.MainMenu();
 			this.menuItem1 = new System.Windows.Forms.MenuItem();
 			this.OpenMenu = new System.Windows.Forms.MenuItem();
@@ -307,7 +307,7 @@ namespace MusicMaker
 								((Staff)(((Page)Pages[CurrentPageIndex]).Staffs[CurrentStaffIndex])).AddMeasure(aMeasure);
 								CurrentMeasureIndex++;
 								aMeasure.CalcPosition();
-								Form1.CurrentStaffPosition += Note.kNoteSpacing; // add an extra space for the measure
+								MusicMakerSheet.CurrentStaffPosition += Note.kNoteSpacing; // add an extra space for the measure
 								if (CurrentStaffPosition > Staff.kStaffInPixels - Note.kNoteSpacing * 7)
 								{
 									CurrentStaffIndex++;

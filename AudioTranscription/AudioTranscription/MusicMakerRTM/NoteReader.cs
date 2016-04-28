@@ -30,7 +30,7 @@ namespace MusicMaker
 				aNote.Fill(noteStrings[i]);
 				aNote.CalcPosition();
 				aMeasure.AddNote(aNote);
-				Form1.CurrentStaffPosition += Note.kNoteSpacing;
+				MusicMakerSheet.CurrentStaffPosition += Note.kNoteSpacing;
 			}
 
 			return aMeasure;
