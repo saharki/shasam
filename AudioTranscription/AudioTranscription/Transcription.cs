@@ -15,13 +15,13 @@ namespace AudioTranscription
         private static float threshold;
         private static int BPM;
         private static string wavFilePath;
-
+        private static bool bpmAutoDetect;
         public Transcription()
         {
 
         }
 
-        public static void Initialize(int windowSize, int hopSize, float thresh, int _BPM, string wavFile, int chosen)
+        public static void Initialize(int windowSize, int hopSize, float thresh, int _BPM, string wavFile, bool bpmAutoDetection, int chosen)
         {
             windowSizeInMs = windowSize;
             hopSizeInMs = hopSize;
@@ -29,6 +29,7 @@ namespace AudioTranscription
             BPM = _BPM;
             wavFilePath = wavFile;
             chosenInstrument = chosen;
+            bpmAutoDetect = bpmAutoDetection;
         }
         public static void Transcribe(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
@@ -42,12 +43,15 @@ namespace AudioTranscription
             //BPM = 80;
 
             //************* Automatic BPM detection - START ****************************//
-            //BPMDetect.BPMDetection bpmDetector = new BPMDetect.BPMDetection();
-            //for (int i = 0; i < wavData.Length; i++)
-            //{
-            //    bpmDetector.AddSample((float)wavData[i]);
-            //}
-            //BPM = (int)bpmDetector.getParameter(BPMDetect.BPMDetection.BPMParam.BPMFOUNDBPM);
+            if (bpmAutoDetect)
+            {
+                BPMDetect.BPMDetection bpmDetector = new BPMDetect.BPMDetection();
+                for (int i = 0; i < wavData.Length; i++)
+                {
+                    bpmDetector.AddSample((float)wavData[i]);
+                }
+                BPM = (int)bpmDetector.getParameter(BPMDetect.BPMDetection.BPMParam.BPMFOUNDBPM);
+            }
             //************* Automatic BPM detection - END ****************************//
 
             int N = samplesRate * windowSizeInMs / 1000;

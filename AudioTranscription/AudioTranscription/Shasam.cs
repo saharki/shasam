@@ -116,7 +116,7 @@ namespace AudioTranscription
             {
                 AMBox.Visible = true;
                 BtnTranscribe.Enabled = false;
-                Transcription.Initialize(windowSizeInMs, hopSizeInMs, threshold, BPM, wavFilePath, chosenInstrument);
+                Transcription.Initialize(windowSizeInMs, hopSizeInMs, threshold, BPM, wavFilePath,bpmAutoDetectionCheckBox.Checked, chosenInstrument);
                 transcribeWorker.RunWorkerAsync();
             }
         }
@@ -187,5 +187,9 @@ namespace AudioTranscription
             ResetToDefaultSettings();
         }
 
+        private void bpmAutoDetectionCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            BPMTextBox.Enabled = (bpmAutoDetectionCheckBox.Checked) ? false : true;
+        }
     }
 }

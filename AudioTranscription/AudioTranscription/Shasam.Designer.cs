@@ -58,6 +58,7 @@
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.AMBox = new System.Windows.Forms.PictureBox();
+            this.bpmAutoDetectionCheckBox = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.General.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.checkBtnUku)).BeginInit();
@@ -252,7 +253,6 @@
             this.hopSizeTextBox.Name = "hopSizeTextBox";
             this.hopSizeTextBox.Size = new System.Drawing.Size(137, 20);
             this.hopSizeTextBox.TabIndex = 4;
-            this.hopSizeTextBox.Text = "";
             this.hopSizeTextBox.TextChanged += new System.EventHandler(this.hopSizeTextBox_TextChanged);
             // 
             // windowSizeTextBox
@@ -262,7 +262,6 @@
             this.windowSizeTextBox.Name = "windowSizeTextBox";
             this.windowSizeTextBox.Size = new System.Drawing.Size(137, 20);
             this.windowSizeTextBox.TabIndex = 3;
-            this.windowSizeTextBox.Text = "";
             this.windowSizeTextBox.TextChanged += new System.EventHandler(this.windowSizeTextBox_TextChanged);
             // 
             // hopSizeLabel
@@ -285,6 +284,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.bpmAutoDetectionCheckBox);
             this.groupBox1.Controls.Add(this.BPMLabel);
             this.groupBox1.Controls.Add(this.BPMTextBox);
             this.groupBox1.Controls.Add(this.thresholdTextBox);
@@ -310,9 +310,8 @@
             this.BPMTextBox.ForeColor = System.Drawing.SystemColors.GrayText;
             this.BPMTextBox.Location = new System.Drawing.Point(66, 57);
             this.BPMTextBox.Name = "BPMTextBox";
-            this.BPMTextBox.Size = new System.Drawing.Size(145, 20);
+            this.BPMTextBox.Size = new System.Drawing.Size(144, 20);
             this.BPMTextBox.TabIndex = 2;
-            this.BPMTextBox.Text = "";
             this.BPMTextBox.TextChanged += new System.EventHandler(this.BPMTextBox_TextChanged);
             // 
             // thresholdTextBox
@@ -322,7 +321,6 @@
             this.thresholdTextBox.Name = "thresholdTextBox";
             this.thresholdTextBox.Size = new System.Drawing.Size(145, 20);
             this.thresholdTextBox.TabIndex = 1;
-            this.thresholdTextBox.Text = "";
             this.thresholdTextBox.TextChanged += new System.EventHandler(this.thresholdTextBox_TextChanged);
             // 
             // thresholdLabel
@@ -360,13 +358,24 @@
             // 
             this.AMBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.AMBox.Image = global::AudioTranscription.Properties.Resources.tumblr_nnkphfBghk1u64di7o1_500;
-            this.AMBox.Location = new System.Drawing.Point(-8, -1);
+            this.AMBox.Location = new System.Drawing.Point(-9, 0);
             this.AMBox.Name = "AMBox";
             this.AMBox.Size = new System.Drawing.Size(529, 232);
             this.AMBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.AMBox.TabIndex = 6;
             this.AMBox.TabStop = false;
             this.AMBox.Visible = false;
+            // 
+            // bpmAutoDetectionCheckBox
+            // 
+            this.bpmAutoDetectionCheckBox.AutoSize = true;
+            this.bpmAutoDetectionCheckBox.Location = new System.Drawing.Point(66, 83);
+            this.bpmAutoDetectionCheckBox.Name = "bpmAutoDetectionCheckBox";
+            this.bpmAutoDetectionCheckBox.Size = new System.Drawing.Size(83, 17);
+            this.bpmAutoDetectionCheckBox.TabIndex = 4;
+            this.bpmAutoDetectionCheckBox.Text = "Auto Detect";
+            this.bpmAutoDetectionCheckBox.UseVisualStyleBackColor = true;
+            this.bpmAutoDetectionCheckBox.CheckedChanged += new System.EventHandler(this.bpmAutoDetectionCheckBox_CheckedChanged);
             // 
             // MainWindow
             // 
@@ -429,6 +438,7 @@
         private System.Windows.Forms.Label BPMLabel;
         private System.Windows.Forms.TextBox BPMTextBox;
         private System.Windows.Forms.PictureBox AMBox;
+        private System.Windows.Forms.CheckBox bpmAutoDetectionCheckBox;
     }
 }
 
