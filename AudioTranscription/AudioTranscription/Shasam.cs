@@ -44,6 +44,7 @@ namespace AudioTranscription
             {
                 midiNotes += PitchToNoteConverter.GetNoteName((int)PitchToNoteConverter.PitchToMidiNote((float)((int[][])e.Result)[1][ i]), true, false) + " ";
             }
+            midiNotes = midiNotes.Substring(0, midiNotes.Length - 1); // remove last " "
             r.paintByString(midiNotes);
             r.ButtomMeasure = 4;
             r.TopMeasure = 4;
