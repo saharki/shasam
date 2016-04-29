@@ -70,7 +70,7 @@ namespace AudioTranscription
             //transcribeWorker.ReportProgress(80);
             double[] thresholdedEnergyArray = Thresholding.FixedThresholdRelativeNormalize(energyArray, threshold);
             //transcribeWorker.ReportProgress(83);
-            List<int> windowPeaks = PeakPicking.FindPeaksWithThreshold(thresholdedEnergyArray, (int)(samplesRate * (double)BPM / 60) / h);
+            List<int> windowPeaks = PeakPicking.FindPeaksWithThreshold(thresholdedEnergyArray, (int)((samplesRate*0.9) * (double)BPM / 60) / h);
             //transcribeWorker.ReportProgress(90);
             List<int> signalPeaks = new List<int>(windowPeaks.Count);
             for (int i = 0; i < windowPeaks.Count; i++)
