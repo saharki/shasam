@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -67,11 +68,11 @@ namespace AudioTranscription
             }
 
             double[] energyArray = FourierTransform.Energy(wavData, h, window, N, minFreq, maxFreq);
-            //transcribeWorker.ReportProgress(80);
+            (sender as BackgroundWorker).ReportProgress(80);
             double[] thresholdedEnergyArray = Thresholding.FixedThresholdRelativeNormalize(energyArray, threshold);
-            //transcribeWorker.ReportProgress(83);
+            (sender as BackgroundWorker).ReportProgress(83);
             List<int> windowPeaks = PeakPicking.FindPeaksWithThreshold(thresholdedEnergyArray, (int)((samplesRate*0.9) * (double)BPM / 60) / h);
-            //transcribeWorker.ReportProgress(90);
+            (sender as BackgroundWorker).ReportProgress(90);
             List<int> signalPeaks = new List<int>(windowPeaks.Count);
             for (int i = 0; i < windowPeaks.Count; i++)
             {
@@ -79,21 +80,87 @@ namespace AudioTranscription
             }
             double q = 0;
             double [] signalFrequencies = PitchTracking.PitchDetectionForAllPeaks(wavData, 4096, ref q, samplesRate, signalPeaks);
-            int[][] result = new int[2][];
-            result[0] = new int[signalPeaks.Count];
-            result[1] = new int[signalPeaks.Count];
+
+            float[][] result = new float[3][];
+            result[0] = new float[signalPeaks.Count]; //Peak location
+            result[1] = new float[signalPeaks.Count]; //Peak frequency
+            result[2] = new float[signalPeaks.Count]; //Peak duration
+
             for (int i=0;i<signalPeaks.Count;i++)
             {
-                result[0][ i] = signalPeaks[i];
+                result[0][ i] = signalPeaks[i]; 
                 result[1][ i] = (int)Math.Round(signalFrequencies[i], 0);
+                if (i != signalPeaks.Count - 1)
+                    result[2][i] = SamplesToDurationUsingBPM(signalPeaks[i + 1] - signalPeaks[i], samplesRate);
+                else
+                    result[2][i] = SamplesToDurationUsingBPM(wavData.Length - signalPeaks[i], samplesRate);
             }
+
             e.Result = result;
-            //transcribeWorker.ReportProgress(100);
+            (sender as BackgroundWorker).ReportProgress(100);
         }
 
         private static float HammingWindow(int n, int N)
         {
             return 0.54f - 0.46f * (float)Math.Cos((2 * Math.PI * n) / (N - 1));
+        }
+
+        private static float SamplesToDurationUsingBPM(int durationInSamples, int samplesRate)
+        {
+            List<float> distances = new List<float>(6);
+
+            float quarterInSamples = ((float)60 / BPM) * samplesRate;
+            float eighthInSamples = (float)0.5 * quarterInSamples;
+            float sixteenthInSamples = (float)0.25 * quarterInSamples;
+            float halfInSamples = 2 * quarterInSamples;
+            float threeQuarterInSamples = 3 * quarterInSamples;
+            float wholeInSamples = 4 * quarterInSamples;
+
+            float distanceFromQuarter = Math.Abs(durationInSamples - quarterInSamples);
+            float distanceFromEighth = Math.Abs(durationInSamples - eighthInSamples);
+            float distanceFromSixteenth = Math.Abs(durationInSamples - sixteenthInSamples);
+            float distanceFromHalf = Math.Abs(durationInSamples - halfInSamples);
+            float distanceFromThreeQuarters = Math.Abs(durationInSamples - threeQuarterInSamples);
+            float distanceFromWhole = Math.Abs(durationInSamples - wholeInSamples);
+
+            distances.Add(distanceFromSixteenth);
+            distances.Add(distanceFromEighth);
+            distances.Add(distanceFromQuarter);
+            distances.Add(distanceFromHalf);
+            distances.Add(distanceFromThreeQuarters);
+            distances.Add(distanceFromWhole);
+
+            int index = distances.IndexOf(distances.Min());
+            if (index == 0)
+                return (float)1 / 16;
+            if (index == 1)
+                return (float)1 / 8;
+            if (index == 2)
+                return (float)1 / 4;
+            if (index == 3)
+                return (float)1 / 2;
+            if (index == 4)
+                return (float)3 / 4;
+            if (index == 5)
+                return 1;
+
+            return 0;
+        }
+
+        public static string DurationLetter(float durationFraq)
+        {
+            if (durationFraq == (float)1 / 16)
+                return "x";
+            if (durationFraq == (float)1 / 8)
+                return "e";
+            if (durationFraq == (float)1 / 2)
+                return "a";
+            if (durationFraq == (float)3 / 4)
+                return "t";
+            if (durationFraq == 1)
+                return "w";
+
+            return "";  //default is quarter;
         }
     }
 }

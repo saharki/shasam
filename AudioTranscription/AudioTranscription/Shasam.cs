@@ -40,14 +40,34 @@ namespace AudioTranscription
         {
             MusicMakerSheet r = new MusicMakerSheet();
             string midiNotes = "";
-            for (int i = 0; i < ((int[][])e.Result)[0].Length; i++)
-            {
-                midiNotes += PitchToNoteConverter.GetNoteName((int)PitchToNoteConverter.PitchToMidiNote((float)((int[][])e.Result)[1][ i]), true, false) + " ";
-            }
-            midiNotes = midiNotes.Trim(); //midiNotes.Substring(0, midiNotes.Length - 1); // remove last " "
-            r.paintByString(midiNotes);
+
             r.ButtomMeasure = 4;
             r.TopMeasure = 4;
+
+            float durationLine = (float)r.TopMeasure / r.ButtomMeasure;
+            float durationCount = 0;
+
+            int newLine = 1;
+
+            for (int i = 0; i < ((float[][])e.Result)[0].Length; i++)
+            {
+                midiNotes += PitchToNoteConverter.GetNoteName((int)PitchToNoteConverter.PitchToMidiNote((float)((float[][])e.Result)[1][ i]), true, false);
+                midiNotes += Transcription.DurationLetter(((float[][])e.Result)[2][i]);
+                durationCount += ((float[][])e.Result)[2][i];
+                if (durationCount < durationLine)
+                    midiNotes += " ";
+                else
+                {
+                    if (newLine % 5 == 0)
+                        midiNotes += "\n";
+                    else
+                        midiNotes += "/";
+                    newLine++;
+                    durationCount = 0;
+                }
+            }
+            midiNotes = midiNotes.Trim(); // remove last " "
+            r.paintByString(midiNotes);
             r.Show();
             AMBox.Visible = false;
         }
