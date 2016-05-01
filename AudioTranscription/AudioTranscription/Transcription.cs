@@ -71,7 +71,7 @@ namespace AudioTranscription
             (sender as BackgroundWorker).ReportProgress(80);
             double[] thresholdedEnergyArray = Thresholding.FixedThresholdRelativeNormalize(energyArray, threshold);
             (sender as BackgroundWorker).ReportProgress(83);
-            List<int> windowPeaks = PeakPicking.FindPeaksWithThreshold(thresholdedEnergyArray, (int)((samplesRate*0.9) * (double)BPM / 60) / h);
+            List<int> windowPeaks = PeakPicking.FindPeaksWithThreshold(thresholdedEnergyArray, (int)((samplesRate) * (double)60/BPM/4 ) / h);
             (sender as BackgroundWorker).ReportProgress(90);
             List<int> signalPeaks = new List<int>(windowPeaks.Count);
             for (int i = 0; i < windowPeaks.Count; i++)
