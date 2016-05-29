@@ -43,7 +43,7 @@ namespace AudioTranscription
             return dft;
         }
 
-        public static Complex[][] STFT(double[] x, int h, double[] window, int N, int minFreq, int maxFreq, object sender)
+        public static Complex[][] STFT(double[] x, int h, double[] window, int N, int minFreq, int maxFreq)
         {
             Complex[][] stft = new Complex[x.Length / h + 1][];
             if (x == null || x.Length == 0)
@@ -54,19 +54,20 @@ namespace AudioTranscription
             Parallel.For(0, (x.Length / h) + 1, n =>
               {
                   stft[n] = DFT(x, n, h, window, N, minFreq, maxFreq);
-                  (sender as BackgroundWorker).ReportProgress((int)((((double)(++numOfCompletedThreads)) / ((x.Length / h) + 1)) * 100));
+                  
+                 Transcription.completedThreadsPercentage= (int)((((double)(++numOfCompletedThreads)) / ((x.Length / h) + 1)) * 100);
 
               });
             return stft;
         }
 
-        public static double[] Energy(double[] x, int h, double[] window, int N, int minFreq, int maxFreq, object sender)
+        public static double[] Energy(double[] x, int h, double[] window, int N, int minFreq, int maxFreq)
         {
             if (x == null || x.Length == 0)
             {
                 return null;
             }
-            Complex[][] stft = STFT(x, h, window, N, minFreq, maxFreq, sender);
+            Complex[][] stft = STFT(x, h, window, N, minFreq, maxFreq);
             double[] weightedEnergyMeasure = new double[x.Length / h + 1];
             for (int n = 0; n <= x.Length / h; n++)
             {

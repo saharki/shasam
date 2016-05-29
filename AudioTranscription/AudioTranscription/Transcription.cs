@@ -15,12 +15,25 @@ namespace AudioTranscription
         private static int BPM;
         private static string wavFilePath;
         private static bool bpmAutoDetect;
+        private static int completedThreads;
+        public static int completedThreadsPercentage
+        {
+            get { return completedThreads; }
+            set
+            {
+                completedThreads = value;
+                if (CompletedThreadsHandler != null) CompletedThreadsHandler(value);
+            }
+        }
+
+        public delegate void valueChanged(int completedThreads );
+        private static valueChanged CompletedThreadsHandler;
         public Transcription()
         {
 
         }
 
-        public static void Initialize(int windowSize, int hopSize, float thresh, int _BPM, string wavFile, bool bpmAutoDetection, Instrument chosen)
+        public static void Initialize(int windowSize, int hopSize, float thresh, int _BPM, string wavFile, bool bpmAutoDetection, Instrument chosen,valueChanged CompletedThreadsH)
         {
             windowSizeInMs = windowSize;
             hopSizeInMs = hopSize;
@@ -29,6 +42,9 @@ namespace AudioTranscription
             wavFilePath = wavFile;
             chosenInstrument = chosen;
             bpmAutoDetect = bpmAutoDetection;
+            completedThreads = 0;
+            CompletedThreadsHandler = CompletedThreadsH;
+
         }
         public static void Transcribe(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
@@ -56,7 +72,7 @@ namespace AudioTranscription
             int N = samplesRate * windowSizeInMs / 1000;
             int h = samplesRate * hopSizeInMs / 1000;
 
-            int minFreq = 50;
+            int minFreq = 0;
             int maxFreq = 500;
 
             double[] window = new double[N];
@@ -65,7 +81,7 @@ namespace AudioTranscription
                 window[i] = HammingWindow(i, N);
             }
 
-            double[] energyArray = FourierTransform.Energy(wavData, h, window, N, minFreq, maxFreq, sender);
+            double[] energyArray = FourierTransform.Energy(wavData, h, window, N, minFreq, maxFreq);
             double[] thresholdedEnergyArray = Thresholding.FixedThresholdRelativeNormalize(energyArray, threshold);
             List<int> windowPeaks = PeakPicking.FindPeaksWithThreshold(thresholdedEnergyArray, (int)((samplesRate) * (double)60/BPM/4 ) / h);
 

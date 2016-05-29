@@ -140,9 +140,14 @@ namespace AudioTranscription
             {
                 AMBox.Visible = true;
                 BtnTranscribe.Enabled = false;
-                Transcription.Initialize(windowSizeInMs, hopSizeInMs, threshold, BPM, wavFilePath,bpmAutoDetectionCheckBox.Checked, chosenInstrument);
+                Transcription.Initialize(windowSizeInMs, hopSizeInMs, threshold, BPM, wavFilePath,bpmAutoDetectionCheckBox.Checked, chosenInstrument,CompletedThreadsHandler);
                 transcribeWorker.RunWorkerAsync();
             }
+        }
+
+        private void CompletedThreadsHandler(int completedThreads)
+        {
+            transcribeWorker.ReportProgress(completedThreads);
         }
 
         private void windowSizeTextBox_TextChanged(object sender, EventArgs e)
