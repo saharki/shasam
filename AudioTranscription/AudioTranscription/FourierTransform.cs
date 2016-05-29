@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel;
 using System.Numerics;
+using System.Threading.Tasks;
 
 namespace AudioTranscription
 {
@@ -45,41 +43,31 @@ namespace AudioTranscription
             return dft;
         }
 
-        public static Complex[][] STFT(double[] x, int h, double[] window, int N, int minFreq, int maxFreq)
+        public static Complex[][] STFT(double[] x, int h, double[] window, int N, int minFreq, int maxFreq, object sender)
         {
             Complex[][] stft = new Complex[x.Length / h + 1][];
             if (x == null || x.Length == 0)
             {
                 return null;
             }
-
+            int numOfCompletedThreads = 0;
             Parallel.For(0, (x.Length / h) + 1, n =>
               {
                   stft[n] = DFT(x, n, h, window, N, minFreq, maxFreq);
+                  (sender as BackgroundWorker).ReportProgress((int)((((double)(++numOfCompletedThreads)) / ((x.Length / h) + 1)) * 100));
+
               });
-            //for (int n = 0; n <= x.Length / h; n++)
-            //{
-            //    stft[n] = DFT(x, n, h, window, N, minFreq, maxFreq);
-            //}
             return stft;
         }
 
-        public static double[] Energy(double[] x, int h, double[] window, int N, int minFreq, int maxFreq)
+        public static double[] Energy(double[] x, int h, double[] window, int N, int minFreq, int maxFreq, object sender)
         {
             if (x == null || x.Length == 0)
             {
                 return null;
             }
-            Complex[][] stft = STFT(x, h, window, N, minFreq, maxFreq);
+            Complex[][] stft = STFT(x, h, window, N, minFreq, maxFreq, sender);
             double[] weightedEnergyMeasure = new double[x.Length / h + 1];
-            //Parallel.For(0, (x.Length / h) + 1, n =>
-            //{
-            //    for (int k = minFreq; k <= maxFreq; k++)
-            //    {
-            //        weightedEnergyMeasure[n] += k * Math.Pow(stft[n][k].Magnitude, 2);
-            //    }
-            //    weightedEnergyMeasure[n] /= (maxFreq - minFreq + 1);
-            //});
             for (int n = 0; n <= x.Length / h; n++)
             {
                 for (int k = minFreq; k <= maxFreq; k++)

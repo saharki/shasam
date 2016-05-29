@@ -1,0 +1,1 @@
+﻿enum Instrument { GUITAR = 1, PIANO, UKULELE};

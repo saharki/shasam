@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="BPMDetection.cs" />
     <Compile Include="FourierTransform.cs" />
+    <Compile Include="IntrumentsEnum.cs" />
     <Compile Include="MusicMakerRTM\AssemblyInfo.cs" />
     <Compile Include="MusicMakerRTM\HalfNote.cs" />
     <Compile Include="MusicMakerRTM\InputStringForm.cs">

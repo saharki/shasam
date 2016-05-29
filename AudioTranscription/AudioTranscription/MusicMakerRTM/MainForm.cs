@@ -88,11 +88,11 @@ namespace MusicMaker
                 CurrentMeasureIndex++;
                 aMeasure.CalcPosition();
                 MusicMakerSheet.CurrentStaffPosition += Note.kNoteSpacing; // add an extra space for the measure
-                if (CurrentStaffPosition > Staff.kStaffInPixels - Note.kNoteSpacing * 7)
-                {
+                //if (CurrentStaffPosition > Staff.kStaffInPixels - Note.kNoteSpacing * 7)
+                //{
                     CurrentStaffIndex++;
                     CurrentStaffPosition = 0;
-                }
+                //}
             }
         }
 

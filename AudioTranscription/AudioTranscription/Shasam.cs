@@ -1,22 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using MusicMaker;
+using System;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Numerics;
-using MusicMaker;
 
 namespace AudioTranscription
-{ 
+{
     public partial class MainWindow : Form
     {
         private BackgroundWorker transcribeWorker; 
 
-        private int chosenInstrument = 0;
+        private Instrument chosenInstrument = 0;
         private int windowSizeInMs;
         private int hopSizeInMs;
         private float threshold;
@@ -39,35 +33,36 @@ namespace AudioTranscription
         private void transcribe_Completed(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
         {
             MusicMakerSheet r = new MusicMakerSheet();
-            string midiNotes = "";
+
+            string[] midiNotes = new string[((float[][])e.Result)[0].Length];
+            int[] noteOctaves = new int[((float[][])e.Result)[0].Length];
+            string outputNotes = "";
 
             r.ButtomMeasure = 4;
             r.TopMeasure = 4;
 
-            float durationLine = (float)r.TopMeasure / r.ButtomMeasure;
-            float durationCount = 0;
-
-            int newLine = 1;
+            const int numOfNotesInLine = 30;
 
             for (int i = 0; i < ((float[][])e.Result)[0].Length; i++)
             {
-                midiNotes += PitchToNoteConverter.GetNoteName((int)PitchToNoteConverter.PitchToMidiNote((float)((float[][])e.Result)[1][ i]), true, false);
-                midiNotes += Transcription.DurationLetter(((float[][])e.Result)[2][i]);
-                durationCount += ((float[][])e.Result)[2][i];
-                if (durationCount < durationLine)
-                    midiNotes += " ";
-                else
+                midiNotes[i] = PitchToNoteConverter.GetNoteName((int)PitchToNoteConverter.PitchToMidiNote((float)((float[][])e.Result)[1][i]), true, false, out noteOctaves[i]);
+                midiNotes[i] += Transcription.OctaveLetter(noteOctaves[i]);
+                midiNotes[i] += Transcription.DurationLetter(((float[][])e.Result)[2][i]);
+            }
+            for(int i = 0; i < midiNotes.Length; i++)
+            {
+                outputNotes += midiNotes[i];
+                outputNotes += " ";
+                if (i % numOfNotesInLine == 0 && i != 0)
                 {
-                    if (newLine % 5 == 0)
-                        midiNotes += "\n";
-                    else
-                        midiNotes += "/";
-                    newLine++;
-                    durationCount = 0;
+                    outputNotes = outputNotes.Trim(); // remove last " "
+                    r.paintByString(outputNotes);
+                    outputNotes = "";
                 }
             }
-            midiNotes = midiNotes.Trim(); // remove last " "
-            r.paintByString(midiNotes);
+            outputNotes = outputNotes.Trim(); // remove last " "
+            r.paintByString(outputNotes);
+
             r.Show();
             AMBox.Visible = false;
         }
@@ -102,7 +97,7 @@ namespace AudioTranscription
             checkBtnGuitar.Visible = true;
             checkBtnPiano.Visible = false;
             checkBtnUku.Visible = false;
-            chosenInstrument = 1;
+            chosenInstrument = Instrument.GUITAR;
         }
 
         private void pictureBox2_Click(object sender, EventArgs e)
@@ -110,7 +105,7 @@ namespace AudioTranscription
             checkBtnGuitar.Visible = false;
             checkBtnPiano.Visible = true;
             checkBtnUku.Visible = false;
-            chosenInstrument = 2;
+            chosenInstrument = Instrument.PIANO;
         }
 
         private void pictureBox3_Click(object sender, EventArgs e)
@@ -118,7 +113,7 @@ namespace AudioTranscription
             checkBtnGuitar.Visible = false;
             checkBtnPiano.Visible = false;
             checkBtnUku.Visible = true;
-            chosenInstrument = 3;
+            chosenInstrument = Instrument.UKULELE;
         }
 
         private void browseBtn_Click(object sender, EventArgs e)
@@ -154,8 +149,12 @@ namespace AudioTranscription
         {
             try
             {
+                
                 windowSizeInMs = int.Parse(windowSizeTextBox.Text);
                 windowSizeTextBox.ForeColor = Color.Black;
+                //***********************************//
+                //(sender as TextBox).ForeColor = Color.Black;
+                //***********************************//
             }
             catch (Exception ex)
             {

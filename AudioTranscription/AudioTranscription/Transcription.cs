@@ -2,14 +2,12 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AudioTranscription
 {
     class Transcription
     {
-        private static int chosenInstrument = 0;
+        private static Instrument chosenInstrument = 0;
 
         private static int windowSizeInMs;
         private static int hopSizeInMs;
@@ -22,7 +20,7 @@ namespace AudioTranscription
 
         }
 
-        public static void Initialize(int windowSize, int hopSize, float thresh, int _BPM, string wavFile, bool bpmAutoDetection, int chosen)
+        public static void Initialize(int windowSize, int hopSize, float thresh, int _BPM, string wavFile, bool bpmAutoDetection, Instrument chosen)
         {
             windowSizeInMs = windowSize;
             hopSizeInMs = hopSize;
@@ -58,7 +56,7 @@ namespace AudioTranscription
             int N = samplesRate * windowSizeInMs / 1000;
             int h = samplesRate * hopSizeInMs / 1000;
 
-            int minFreq = 0;
+            int minFreq = 50;
             int maxFreq = 500;
 
             double[] window = new double[N];
@@ -67,12 +65,10 @@ namespace AudioTranscription
                 window[i] = HammingWindow(i, N);
             }
 
-            double[] energyArray = FourierTransform.Energy(wavData, h, window, N, minFreq, maxFreq);
-            (sender as BackgroundWorker).ReportProgress(80);
+            double[] energyArray = FourierTransform.Energy(wavData, h, window, N, minFreq, maxFreq, sender);
             double[] thresholdedEnergyArray = Thresholding.FixedThresholdRelativeNormalize(energyArray, threshold);
-            (sender as BackgroundWorker).ReportProgress(83);
             List<int> windowPeaks = PeakPicking.FindPeaksWithThreshold(thresholdedEnergyArray, (int)((samplesRate) * (double)60/BPM/4 ) / h);
-            (sender as BackgroundWorker).ReportProgress(90);
+
             List<int> signalPeaks = new List<int>(windowPeaks.Count);
             for (int i = 0; i < windowPeaks.Count; i++)
             {
@@ -161,6 +157,41 @@ namespace AudioTranscription
                 return "w";
 
             return "";  //default is quarter;
+        }
+
+
+        internal static string OctaveLetter(int octave) // m: default octace, l: lower octave, h: higher octave.
+        {
+            switch((int)chosenInstrument)
+            {
+                case (int)Instrument.GUITAR:
+                    if (octave == 2)
+                        return "l";
+                    else if (octave == 3)
+                        return "m";
+                    else if (octave == 4)
+                        return "h";
+                    break;
+                case (int)Instrument.PIANO:
+                    if (octave == 2)
+                        return "l";
+                    else if (octave == 3)
+                        return "m";
+                    else if (octave == 4)
+                        return "h";
+                    break;
+                case (int)Instrument.UKULELE:
+                    if (octave == 3)
+                        return "l";
+                    else if (octave == 4)
+                        return "m";
+                    else if (octave == 5)
+                        return "h";
+                    break;
+                default:
+                    return "m";
+            }
+            return "m";
         }
     }
 }

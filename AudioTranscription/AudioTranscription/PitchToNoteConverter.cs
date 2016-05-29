@@ -72,14 +72,16 @@ namespace AudioTranscription
         /// <param name="sharps"></param>
         /// <param name="showOctave"></param>
         /// <returns></returns>
-        public static string GetNoteName(int note, bool sharps, bool showOctave)
+        public static string GetNoteName(int note, bool sharps, bool showOctave, out int outOctave)
         {
+            outOctave = -1;
             if (note < kMinMidiNote || note > kMaxMidiNote)
                 return null;
 
             note -= kMinMidiNote;
 
             int octave = (note + 9) / 12;
+            outOctave = octave;
             note = note % 12;
             string noteText = null;
 
@@ -90,7 +92,7 @@ namespace AudioTranscription
                     break;
 
                 case 1:
-                    noteText = sharps ? "A#" : "Bb";
+                    noteText = sharps ? "As" : "Bf";
                     break;
 
                 case 2:
@@ -102,7 +104,7 @@ namespace AudioTranscription
                     break;
 
                 case 4:
-                    noteText = sharps ? "C#" : "Db";
+                    noteText = sharps ? "Cs" : "Df";
                     break;
 
                 case 5:
@@ -110,7 +112,7 @@ namespace AudioTranscription
                     break;
 
                 case 6:
-                    noteText = sharps ? "D#" : "Eb";
+                    noteText = sharps ? "Ds" : "Ef";
                     break;
 
                 case 7:
@@ -122,7 +124,7 @@ namespace AudioTranscription
                     break;
 
                 case 9:
-                    noteText = sharps ? "F#" : "Gb";
+                    noteText = sharps ? "Fs" : "Gf";
                     break;
 
                 case 10:
@@ -130,7 +132,7 @@ namespace AudioTranscription
                     break;
 
                 case 11:
-                    noteText = sharps ? "G#" : "Ab";
+                    noteText = sharps ? "Gs" : "Af";
                     break;
             }
 
