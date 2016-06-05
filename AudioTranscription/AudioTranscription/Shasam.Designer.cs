@@ -50,6 +50,7 @@
             this.hopSizeLabel = new System.Windows.Forms.Label();
             this.windowLabel = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.bpmAutoDetectionCheckBox = new System.Windows.Forms.CheckBox();
             this.BPMLabel = new System.Windows.Forms.Label();
             this.BPMTextBox = new System.Windows.Forms.TextBox();
             this.thresholdTextBox = new System.Windows.Forms.TextBox();
@@ -58,7 +59,8 @@
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.AMBox = new System.Windows.Forms.PictureBox();
-            this.bpmAutoDetectionCheckBox = new System.Windows.Forms.CheckBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.isFlatCheckBox = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.General.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.checkBtnUku)).BeginInit();
@@ -71,6 +73,7 @@
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.AMBox)).BeginInit();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -85,6 +88,7 @@
             // 
             // General
             // 
+            this.General.Controls.Add(this.AMBox);
             this.General.Controls.Add(this.checkBtnUku);
             this.General.Controls.Add(this.checkBtnPiano);
             this.General.Controls.Add(this.checkBtnGuitar);
@@ -212,6 +216,7 @@
             // 
             // Settings
             // 
+            this.Settings.Controls.Add(this.groupBox3);
             this.Settings.Controls.Add(this.resetBtn);
             this.Settings.Controls.Add(this.groupBox2);
             this.Settings.Controls.Add(this.groupBox1);
@@ -241,7 +246,7 @@
             this.groupBox2.Controls.Add(this.windowLabel);
             this.groupBox2.Location = new System.Drawing.Point(11, 6);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(228, 144);
+            this.groupBox2.Size = new System.Drawing.Size(228, 100);
             this.groupBox2.TabIndex = 4;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "STFT Settings";
@@ -295,6 +300,17 @@
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Detection Settings";
+            // 
+            // bpmAutoDetectionCheckBox
+            // 
+            this.bpmAutoDetectionCheckBox.AutoSize = true;
+            this.bpmAutoDetectionCheckBox.Location = new System.Drawing.Point(66, 83);
+            this.bpmAutoDetectionCheckBox.Name = "bpmAutoDetectionCheckBox";
+            this.bpmAutoDetectionCheckBox.Size = new System.Drawing.Size(83, 17);
+            this.bpmAutoDetectionCheckBox.TabIndex = 4;
+            this.bpmAutoDetectionCheckBox.Text = "Auto Detect";
+            this.bpmAutoDetectionCheckBox.UseVisualStyleBackColor = true;
+            this.bpmAutoDetectionCheckBox.CheckedChanged += new System.EventHandler(this.bpmAutoDetectionCheckBox_CheckedChanged);
             // 
             // BPMLabel
             // 
@@ -358,7 +374,7 @@
             // 
             this.AMBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.AMBox.Image = global::AudioTranscription.Properties.Resources.tumblr_nnkphfBghk1u64di7o1_500;
-            this.AMBox.Location = new System.Drawing.Point(-9, 0);
+            this.AMBox.Location = new System.Drawing.Point(112, 0);
             this.AMBox.Name = "AMBox";
             this.AMBox.Size = new System.Drawing.Size(529, 232);
             this.AMBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -366,22 +382,31 @@
             this.AMBox.TabStop = false;
             this.AMBox.Visible = false;
             // 
-            // bpmAutoDetectionCheckBox
+            // groupBox3
             // 
-            this.bpmAutoDetectionCheckBox.AutoSize = true;
-            this.bpmAutoDetectionCheckBox.Location = new System.Drawing.Point(66, 83);
-            this.bpmAutoDetectionCheckBox.Name = "bpmAutoDetectionCheckBox";
-            this.bpmAutoDetectionCheckBox.Size = new System.Drawing.Size(83, 17);
-            this.bpmAutoDetectionCheckBox.TabIndex = 4;
-            this.bpmAutoDetectionCheckBox.Text = "Auto Detect";
-            this.bpmAutoDetectionCheckBox.UseVisualStyleBackColor = true;
-            this.bpmAutoDetectionCheckBox.CheckedChanged += new System.EventHandler(this.bpmAutoDetectionCheckBox_CheckedChanged);
+            this.groupBox3.Controls.Add(this.isFlatCheckBox);
+            this.groupBox3.Location = new System.Drawing.Point(11, 112);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(228, 38);
+            this.groupBox3.TabIndex = 6;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Notes Settings";
+            this.groupBox3.Enter += new System.EventHandler(this.groupBox3_Enter);
+            // 
+            // isFlatCheckBox
+            // 
+            this.isFlatCheckBox.AutoSize = true;
+            this.isFlatCheckBox.Location = new System.Drawing.Point(13, 15);
+            this.isFlatCheckBox.Name = "isFlatCheckBox";
+            this.isFlatCheckBox.Size = new System.Drawing.Size(54, 17);
+            this.isFlatCheckBox.TabIndex = 0;
+            this.isFlatCheckBox.Text = "Flats?";
+            this.isFlatCheckBox.UseVisualStyleBackColor = true;
             // 
             // MainWindow
             // 
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(513, 301);
-            this.Controls.Add(this.AMBox);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.BtnTranscribe);
             this.Controls.Add(this.tabControl1);
@@ -404,6 +429,8 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.AMBox)).EndInit();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -439,6 +466,8 @@
         private System.Windows.Forms.TextBox BPMTextBox;
         private System.Windows.Forms.PictureBox AMBox;
         private System.Windows.Forms.CheckBox bpmAutoDetectionCheckBox;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.CheckBox isFlatCheckBox;
     }
 }
 

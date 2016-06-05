@@ -224,5 +224,10 @@ namespace AudioTranscription
         {
             BPMTextBox.Enabled = (bpmAutoDetectionCheckBox.Checked) ? false : true;
         }
+
+        private void groupBox3_Enter(object sender, EventArgs e)
+        {
+
+        }
     }
 }
