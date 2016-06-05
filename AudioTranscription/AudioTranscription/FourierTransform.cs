@@ -102,8 +102,12 @@ namespace AudioTranscription
             }
             Complex[][] stft = STFT_fft(x, h, window, N, minFreq, maxFreq);
             double[] weightedEnergyMeasure = new double[x.Length / h + 1];
-            for (int n = 0; n <= x.Length / h -10 ; n++)
+            for (int n = 0; n <= x.Length / h ; n++)
             {
+                if(stft[n] == null)
+                {
+                    continue;
+                }
                 for (int k = minFreq; k <= maxFreq; k++)
                 {
                     weightedEnergyMeasure[n] += k * Math.Pow(stft[n][k].Magnitude, 2);
