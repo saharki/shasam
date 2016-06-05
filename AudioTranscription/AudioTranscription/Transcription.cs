@@ -16,6 +16,7 @@ namespace AudioTranscription
         private static string wavFilePath;
         private static bool bpmAutoDetect;
         private static int completedThreads;
+        private static bool isDFT;
         public static int completedThreadsPercentage
         {
             get { return completedThreads; }
@@ -33,7 +34,7 @@ namespace AudioTranscription
 
         }
 
-        public static void Initialize(int windowSize, int hopSize, float thresh, int _BPM, string wavFile, bool bpmAutoDetection, Instrument chosen,valueChanged CompletedThreadsH)
+        public static void Initialize(int windowSize, int hopSize, float thresh, int _BPM, string wavFile, bool bpmAutoDetection, Instrument chosen,valueChanged CompletedThreadsH,bool DFT)
         {
             windowSizeInMs = windowSize;
             hopSizeInMs = hopSize;
@@ -44,7 +45,7 @@ namespace AudioTranscription
             bpmAutoDetect = bpmAutoDetection;
             completedThreads = 0;
             CompletedThreadsHandler = CompletedThreadsH;
-
+            isDFT = DFT;
         }
         public static void Transcribe(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
@@ -81,8 +82,16 @@ namespace AudioTranscription
             {
                 window[i] = HammingWindow(i, N);
             }
+            double[] energyArray;
+            if (isDFT)
+            {
+                energyArray = FourierTransform.Energy(wavData, h, window, N, minFreq, maxFreq);
+            }
+            else
+            {
+                energyArray = FourierTransform.EnergyFFT(wavData, h, window, N, minFreq, maxFreq);
+            }
 
-            double[] energyArray = FourierTransform.Energy(wavData, h, window, N, minFreq, maxFreq);
             double[] thresholdedEnergyArray = Thresholding.FixedThresholdRelativeNormalize(energyArray, threshold);
             List<int> windowPeaks = PeakPicking.FindPeaksWithThreshold(thresholdedEnergyArray, (int)((samplesRate) * (double)60/BPM/4 ) / h);
 

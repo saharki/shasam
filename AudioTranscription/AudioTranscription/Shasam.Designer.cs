@@ -61,6 +61,7 @@
             this.AMBox = new System.Windows.Forms.PictureBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.isFlatCheckBox = new System.Windows.Forms.CheckBox();
+            this.isDFTCheckBox = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.General.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.checkBtnUku)).BeginInit();
@@ -240,13 +241,14 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.isDFTCheckBox);
             this.groupBox2.Controls.Add(this.hopSizeTextBox);
             this.groupBox2.Controls.Add(this.windowSizeTextBox);
             this.groupBox2.Controls.Add(this.hopSizeLabel);
             this.groupBox2.Controls.Add(this.windowLabel);
             this.groupBox2.Location = new System.Drawing.Point(11, 6);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(228, 100);
+            this.groupBox2.Size = new System.Drawing.Size(228, 115);
             this.groupBox2.TabIndex = 4;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "STFT Settings";
@@ -385,7 +387,7 @@
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.isFlatCheckBox);
-            this.groupBox3.Location = new System.Drawing.Point(11, 112);
+            this.groupBox3.Location = new System.Drawing.Point(11, 127);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(228, 38);
             this.groupBox3.TabIndex = 6;
@@ -402,6 +404,17 @@
             this.isFlatCheckBox.TabIndex = 0;
             this.isFlatCheckBox.Text = "Flats?";
             this.isFlatCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // isDFTCheckBox
+            // 
+            this.isDFTCheckBox.AutoSize = true;
+            this.isDFTCheckBox.Location = new System.Drawing.Point(13, 83);
+            this.isDFTCheckBox.Name = "isDFTCheckBox";
+            this.isDFTCheckBox.Size = new System.Drawing.Size(75, 17);
+            this.isDFTCheckBox.TabIndex = 5;
+            this.isDFTCheckBox.Text = "Use DFT?";
+            this.isDFTCheckBox.UseVisualStyleBackColor = true;
+            this.isDFTCheckBox.CheckedChanged += new System.EventHandler(this.isDFTCheckBox_CheckedChanged);
             // 
             // MainWindow
             // 
@@ -468,6 +481,7 @@
         private System.Windows.Forms.CheckBox bpmAutoDetectionCheckBox;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.CheckBox isFlatCheckBox;
+        private System.Windows.Forms.CheckBox isDFTCheckBox;
     }
 }
 

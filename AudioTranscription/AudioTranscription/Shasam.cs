@@ -16,7 +16,7 @@ namespace AudioTranscription
         private float threshold;
         private int BPM;
         private string wavFilePath;
-
+        private bool isDFT;
         public MainWindow()
         {
             InitializeComponent();
@@ -90,6 +90,9 @@ namespace AudioTranscription
 
             BPMTextBox.Text = BPM.ToString();
             BPMTextBox.ForeColor = Color.Gray;
+
+            isDFTCheckBox.Checked =  false;
+            isDFT = false;
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -140,7 +143,7 @@ namespace AudioTranscription
             {
                 AMBox.Visible = true;
                 BtnTranscribe.Enabled = false;
-                Transcription.Initialize(windowSizeInMs, hopSizeInMs, threshold, BPM, wavFilePath,bpmAutoDetectionCheckBox.Checked, chosenInstrument,CompletedThreadsHandler);
+                Transcription.Initialize(windowSizeInMs, hopSizeInMs, threshold, BPM, wavFilePath,bpmAutoDetectionCheckBox.Checked, chosenInstrument,CompletedThreadsHandler,isDFT);
                 transcribeWorker.RunWorkerAsync();
             }
         }
@@ -228,6 +231,11 @@ namespace AudioTranscription
         private void groupBox3_Enter(object sender, EventArgs e)
         {
 
+        }
+
+        private void isDFTCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            isDFT = isDFTCheckBox.Checked;
         }
     }
 }

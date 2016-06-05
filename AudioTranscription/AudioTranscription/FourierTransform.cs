@@ -93,8 +93,31 @@ namespace AudioTranscription
 
             return stft;
         }
-
         public static double[] Energy(double[] x, int h, double[] window, int N, int minFreq, int maxFreq)
+        {
+            if (x == null || x.Length == 0)
+            {
+                return null;
+            }
+            Complex[][] stft = STFT(x, h, window, N, minFreq, maxFreq);
+            double[] weightedEnergyMeasure = new double[x.Length / h + 1];
+            for (int n = 0; n <= x.Length / h; n++)
+            {
+                if (stft[n] == null)
+                {
+                    weightedEnergyMeasure[n] = 0;
+                    continue;
+                }
+                for (int k = minFreq; k <= maxFreq; k++)
+                {
+                    weightedEnergyMeasure[n] += k * Math.Pow(stft[n][k].Magnitude, 2);
+                }
+                weightedEnergyMeasure[n] /= (maxFreq - minFreq + 1);
+            }
+            return weightedEnergyMeasure;
+        }
+
+        public static double[] EnergyFFT(double[] x, int h, double[] window, int N, int minFreq, int maxFreq)
         {
             if (x == null || x.Length == 0)
             {
@@ -106,6 +129,7 @@ namespace AudioTranscription
             {
                 if(stft[n] == null)
                 {
+                    weightedEnergyMeasure[n] = 0;
                     continue;
                 }
                 for (int k = minFreq; k <= maxFreq; k++)
