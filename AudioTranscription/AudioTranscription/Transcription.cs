@@ -51,8 +51,9 @@ namespace AudioTranscription
             double[] wavData;
             double[] nothing;
 
-            int samplesRate = StreamFromFileSample.WaveFile.openWav(wavFilePath, out wavData, out nothing, 22050);
-
+            //int samplesRate = StreamFromFileSample.WaveFile.openWav(wavFilePath, out wavData, out nothing, 22050);
+            int samplesRate = 44100;
+            StreamFromFileSample.WaveFile.openWav(wavFilePath, out wavData, out nothing);
             //int N = 1024;
             //int h = N / 4;
             //BPM = 80;
@@ -180,6 +181,7 @@ namespace AudioTranscription
         {
             switch((int)chosenInstrument)
             {
+                case (int)Instrument.PIANO:
                 case (int)Instrument.GUITAR:
                     if (octave == 2)
                         return "l";
@@ -188,20 +190,12 @@ namespace AudioTranscription
                     else if (octave == 4)
                         return "h";
                     break;
-                case (int)Instrument.PIANO:
+                case (int)Instrument.UKULELE:
                     if (octave == 2)
                         return "l";
                     else if (octave == 3)
                         return "m";
                     else if (octave == 4)
-                        return "h";
-                    break;
-                case (int)Instrument.UKULELE:
-                    if (octave == 3)
-                        return "l";
-                    else if (octave == 4)
-                        return "m";
-                    else if (octave == 5)
                         return "h";
                     break;
                 default:

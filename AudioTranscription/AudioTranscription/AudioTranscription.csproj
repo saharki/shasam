@@ -34,6 +34,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AForge.Math, Version=2.2.5.0, Culture=neutral, PublicKeyToken=abba2e25397ee8c9, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>DLLs\AForge.Math.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Xna.Framework">
       <HintPath>..\..\..\..\..\Desktop\Microsoft.Xna.Framework.dll</HintPath>
     </Reference>
@@ -143,6 +147,12 @@
     <None Include="Resources\grid.png" />
     <None Include="Resources\2n1dgsp.png" />
     <None Include="Resources\Empty.png" />
+    <Content Include="DLLs\AForge.Math.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DLLs\AForge.Math.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="DLLs\bpmDetect.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
