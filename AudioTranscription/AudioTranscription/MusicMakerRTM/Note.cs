@@ -187,14 +187,14 @@ namespace MusicMaker
 
 			if (TheChromatic == Chromatic.Flat)
 			{
-				g.DrawString("b", new Font("Arial", 6), Brushes.Black, 
-					Position.X + (kXRadius + 3), Position.Y - kYRadius*7, new StringFormat());
+				g.DrawString("b", new Font("Arial", 10), Brushes.Black, 
+					Position.X + (kXRadius - 10), Position.Y - kYRadius*7, new StringFormat());
 			}
 
 			if (TheChromatic == Chromatic.Sharp)
 			{
-				g.DrawString("#", new Font("Arial", 6), Brushes.Black, 
-					Position.X + (kXRadius + 3), Position.Y - kYRadius*7, new StringFormat());
+				g.DrawString("#", new Font("Arial", 10), Brushes.Black, 
+					Position.X + (kXRadius -10), Position.Y - kYRadius*7, new StringFormat());
 			}
 		}
 

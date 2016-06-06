@@ -17,6 +17,7 @@ namespace AudioTranscription
         private int BPM;
         private string wavFilePath;
         private bool isDFT;
+        private bool isFlat;
         public MainWindow()
         {
             InitializeComponent();
@@ -45,7 +46,7 @@ namespace AudioTranscription
 
             for (int i = 0; i < ((float[][])e.Result)[0].Length; i++)
             {
-                midiNotes[i] = PitchToNoteConverter.GetNoteName((int)PitchToNoteConverter.PitchToMidiNote((float)((float[][])e.Result)[1][i]), true, false, out noteOctaves[i]);
+                midiNotes[i] = PitchToNoteConverter.GetNoteName((int)PitchToNoteConverter.PitchToMidiNote((float)((float[][])e.Result)[1][i]), !isFlat, false, out noteOctaves[i]);
                 midiNotes[i] += Transcription.OctaveLetter(noteOctaves[i]);
                 midiNotes[i] += Transcription.DurationLetter(((float[][])e.Result)[2][i]);
             }
@@ -93,6 +94,9 @@ namespace AudioTranscription
 
             isDFTCheckBox.Checked =  false;
             isDFT = false;
+
+            isFlatCheckBox.Checked = false;
+            isFlat = false;
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -236,6 +240,11 @@ namespace AudioTranscription
         private void isDFTCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             isDFT = isDFTCheckBox.Checked;
+        }
+
+        private void isFlatCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            isFlat = isFlatCheckBox.Checked;
         }
     }
 }
