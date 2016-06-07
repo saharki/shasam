@@ -64,7 +64,7 @@ namespace MusicMaker
 		public Pitch ThePitch = Pitch.C;
 		public Octave TheOctave = Octave.middle;
         public bool octaveOutOfRange = false;
-        public String octaveOutOfRangeOffset = null;
+        public String octaveOutOfRangeOffset = "";
 
         public Note()
         {

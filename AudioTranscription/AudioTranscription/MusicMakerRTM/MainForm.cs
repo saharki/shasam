@@ -84,6 +84,14 @@ namespace MusicMaker
             for (int i = 0; i < theMeasures.Length; i++)
             {
                 Measure aMeasure = TheNoteReader.CalculateMeasure(theMeasures[i]);
+                if(CurrentStaffIndex == ((Page)Pages[CurrentPageIndex]).Staffs.Count)
+                {
+                    int count = ((Page)Pages[CurrentPageIndex]).Staffs.Count;
+                    for (int j = 0; j < count; j++)
+                    {
+                        ((Page)Pages[CurrentPageIndex]).AddStaff(new Staff());
+                    }
+                }
                 ((Staff)(((Page)Pages[CurrentPageIndex]).Staffs[CurrentStaffIndex])).AddMeasure(aMeasure);
                 CurrentMeasureIndex++;
                 aMeasure.CalcPosition();

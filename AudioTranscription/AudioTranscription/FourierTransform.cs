@@ -7,6 +7,7 @@ namespace AudioTranscription
 {
     class FourierTransform
     {
+        // DFT o
         public static Complex[] DFT(double[] x, int n, int h, double[] window, int N, int minFreq, int maxFreq)
         {
             Complex[] dft = new Complex[maxFreq - minFreq + 1];
@@ -82,6 +83,12 @@ namespace AudioTranscription
                 { continue; }
                 AForge.Math.Complex[] partial_c_data = new AForge.Math.Complex[N];
                 Array.Copy(c_data, n*h, partial_c_data, 0, N);
+                //Apply window
+                //for (int i = 0; i < partial_c_data.Length; i++)
+                //{
+                //    partial_c_data[i] *= window[i];
+                //}
+
                 AForge.Math.FourierTransform.FFT(partial_c_data, AForge.Math.FourierTransform.Direction.Forward);
                 stft[n] = new Complex[N];
                 for (int i = 0; i < N; i++)
