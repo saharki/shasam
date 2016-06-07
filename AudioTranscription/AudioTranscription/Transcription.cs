@@ -192,13 +192,6 @@ namespace AudioTranscription
             {
                 case (int)Instrument.PIANO:
                 case (int)Instrument.GUITAR:
-                    if (octave == 2)
-                        return "l";
-                    else if (octave == 3)
-                        return "m";
-                    else if (octave == 4)
-                        return "h";
-                    break;
                 case (int)Instrument.UKULELE:
                     if (octave == 2)
                         return "l";
@@ -206,7 +199,10 @@ namespace AudioTranscription
                         return "m";
                     else if (octave == 4)
                         return "h";
+                    else
+                        return (octave - 3).ToString("+#;-#");
                     break;
+                
                 default:
                     return "m";
             }

@@ -18,7 +18,7 @@ namespace MusicMaker
 		protected const int kYRadius = 3;
 		protected const int kStem = 15;
 		protected bool HasLine = false;
-		public const int kNoteSpacing = 20;
+		public const int kNoteSpacing = 22;
 		public const int kClefOffset = 50;
 
 		public enum Chromatic
@@ -63,7 +63,9 @@ namespace MusicMaker
 		public Timing TheTiming = Timing.quarter;
 		public Pitch ThePitch = Pitch.C;
 		public Octave TheOctave = Octave.middle;
-		
+        public bool octaveOutOfRange = false;
+        public String octaveOutOfRangeOffset = null;
+
         public Note()
         {
             // 
@@ -196,7 +198,13 @@ namespace MusicMaker
 				g.DrawString("#", new Font("Arial", 10), Brushes.Black, 
 					Position.X + (kXRadius -10), Position.Y - kYRadius*7, new StringFormat());
 			}
-		}
+            if (octaveOutOfRange)
+            {
+                g.DrawString(octaveOutOfRangeOffset, new Font("Arial", 8), Brushes.Black,
+                Position.X + (kXRadius + 1), Position.Y - kYRadius * 7+10, new StringFormat());
+            }
+
+        }
 
 		/// <summary>
 		/// Pitch: range from A-G
@@ -228,8 +236,19 @@ namespace MusicMaker
 			{
 				TheOctave = Octave.high;
 			}
-		 
-		}
+            if (NoteInfo.IndexOf('+') != -1)
+            {
+                TheOctave = Octave.middle;
+                octaveOutOfRange = true;
+                octaveOutOfRangeOffset = NoteInfo.Substring(NoteInfo.IndexOf('+'), 2);
+            }
+            if (NoteInfo.IndexOf('-') != -1)
+            {
+                TheOctave = Octave.middle;
+                octaveOutOfRange = true;
+                octaveOutOfRangeOffset = NoteInfo.Substring(NoteInfo.IndexOf('-'), 2);
+            }
+        }
 
 		public void FillPitch (string NoteInfo) 
 		{

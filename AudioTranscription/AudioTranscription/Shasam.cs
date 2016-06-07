@@ -42,7 +42,7 @@ namespace AudioTranscription
             r.ButtomMeasure = 4;
             r.TopMeasure = 4;
 
-            const int numOfNotesInLine = 30;
+            const int numOfNotesInLine = 29;
 
             for (int i = 0; i < ((float[][])e.Result)[0].Length; i++)
             {
