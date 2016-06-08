@@ -18,6 +18,12 @@ namespace AudioTranscription
         private string wavFilePath;
         private bool isDFT;
         private bool isFlat;
+
+        private bool isWindowValid;
+        private bool isHopValid;
+        private bool isThresholdValid;
+        private bool isBPMValid;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -97,7 +103,12 @@ namespace AudioTranscription
 
             isFlatCheckBox.Checked = false;
             isFlat = false;
-        }
+
+            isWindowValid=true;
+            isHopValid = true;
+            isThresholdValid = true;
+            isBPMValid = true;
+    }
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
@@ -143,12 +154,16 @@ namespace AudioTranscription
             {
                 System.Windows.Forms.MessageBox.Show("File missing.");
             }
-            else
+            else if(isBPMValid && isWindowValid && isHopValid && isThresholdValid)
             {
                 AMBox.Visible = true;
                 BtnTranscribe.Enabled = false;
                 Transcription.Initialize(windowSizeInMs, hopSizeInMs, threshold, BPM, wavFilePath,bpmAutoDetectionCheckBox.Checked, chosenInstrument,CompletedThreadsHandler,isDFT);
                 transcribeWorker.RunWorkerAsync();
+            }
+            else
+            {
+                System.Windows.Forms.MessageBox.Show("Some of the parameters are inavlid.\nPlease change them and try again.");
             }
         }
 
@@ -164,6 +179,9 @@ namespace AudioTranscription
                 
                 windowSizeInMs = int.Parse(windowSizeTextBox.Text);
                 windowSizeTextBox.ForeColor = Color.Black;
+                if (windowSizeInMs <= 0)
+                    throw new Exception();
+                isWindowValid = true;
                 //***********************************//
                 //(sender as TextBox).ForeColor = Color.Black;
                 //***********************************//
@@ -172,6 +190,7 @@ namespace AudioTranscription
             {
                 Console.WriteLine("An error has occurred: {0}", ex.Message);
                 windowSizeTextBox.ForeColor = Color.Red;
+                isWindowValid = false;
             }
         }
 
@@ -180,12 +199,16 @@ namespace AudioTranscription
             try
             {
                 hopSizeInMs = int.Parse(hopSizeTextBox.Text);
+                if (hopSizeInMs <= 0)
+                    throw new Exception();
                 hopSizeTextBox.ForeColor = Color.Black;
+                isHopValid = true;
             }
             catch (Exception ex)
             {
                 Console.WriteLine("An error has occurred: {0}", ex.Message);
                 hopSizeTextBox.ForeColor = Color.Red;
+                isHopValid = false;
             }
         }
 
@@ -194,12 +217,16 @@ namespace AudioTranscription
             try
             {
                 threshold = float.Parse(thresholdTextBox.Text);
+                if (threshold <= 0 || threshold > 1)
+                    throw new Exception();
                 thresholdTextBox.ForeColor = Color.Black;
+                isThresholdValid = true;
             }
             catch (Exception ex)
             {
                 Console.WriteLine("An error has occurred: {0}", ex.Message);
                 thresholdTextBox.ForeColor = Color.Red;
+                isThresholdValid = false;
             }
         }
 
@@ -208,12 +235,16 @@ namespace AudioTranscription
             try
             {
                 BPM = int.Parse(BPMTextBox.Text);
+                if (BPM <= 0)
+                    throw new Exception();
                 BPMTextBox.ForeColor = Color.Black;
+                isBPMValid = true;
             }
             catch (Exception ex)
             {
                 Console.WriteLine("An error has occurred: {0}", ex.Message);
                 BPMTextBox.ForeColor = Color.Red;
+                isBPMValid = false;
             }
         }
 
