@@ -31,7 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.General = new System.Windows.Forms.TabPage();
-            this.AMBox = new System.Windows.Forms.PictureBox();
             this.checkBtnUku = new System.Windows.Forms.PictureBox();
             this.checkBtnPiano = new System.Windows.Forms.PictureBox();
             this.checkBtnGuitar = new System.Windows.Forms.PictureBox();
@@ -61,9 +60,9 @@
             this.BtnTranscribe = new System.Windows.Forms.Button();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.helpProvider1 = new System.Windows.Forms.HelpProvider();
+            this.AMBox = new System.Windows.Forms.PictureBox();
             this.tabControl1.SuspendLayout();
             this.General.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.AMBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkBtnUku)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkBtnPiano)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkBtnGuitar)).BeginInit();
@@ -74,6 +73,7 @@
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.AMBox)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -88,7 +88,6 @@
             // 
             // General
             // 
-            this.General.Controls.Add(this.AMBox);
             this.General.Controls.Add(this.checkBtnUku);
             this.General.Controls.Add(this.checkBtnPiano);
             this.General.Controls.Add(this.checkBtnGuitar);
@@ -106,18 +105,6 @@
             this.General.TabIndex = 0;
             this.General.Text = "General";
             this.General.UseVisualStyleBackColor = true;
-            // 
-            // AMBox
-            // 
-            this.AMBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.AMBox.Image = global::AudioTranscription.Properties.Resources.tumblr_nnkphfBghk1u64di7o1_500;
-            this.AMBox.Location = new System.Drawing.Point(-9, -22);
-            this.AMBox.Name = "AMBox";
-            this.AMBox.Size = new System.Drawing.Size(529, 232);
-            this.AMBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.AMBox.TabIndex = 6;
-            this.AMBox.TabStop = false;
-            this.AMBox.Visible = false;
             // 
             // checkBtnUku
             // 
@@ -256,9 +243,9 @@
             this.isFlatCheckBox.AutoSize = true;
             this.isFlatCheckBox.Location = new System.Drawing.Point(13, 15);
             this.isFlatCheckBox.Name = "isFlatCheckBox";
-            this.isFlatCheckBox.Size = new System.Drawing.Size(54, 17);
+            this.isFlatCheckBox.Size = new System.Drawing.Size(158, 17);
             this.isFlatCheckBox.TabIndex = 0;
-            this.isFlatCheckBox.Text = "Flats?";
+            this.isFlatCheckBox.Text = "Show flats instead of sharps";
             this.isFlatCheckBox.UseVisualStyleBackColor = true;
             this.isFlatCheckBox.CheckedChanged += new System.EventHandler(this.isFlatCheckBox_CheckedChanged);
             // 
@@ -291,9 +278,9 @@
             this.isDFTCheckBox.AutoSize = true;
             this.isDFTCheckBox.Location = new System.Drawing.Point(13, 83);
             this.isDFTCheckBox.Name = "isDFTCheckBox";
-            this.isDFTCheckBox.Size = new System.Drawing.Size(75, 17);
+            this.isDFTCheckBox.Size = new System.Drawing.Size(140, 17);
             this.isDFTCheckBox.TabIndex = 5;
-            this.isDFTCheckBox.Text = "Use DFT?";
+            this.isDFTCheckBox.Text = "Use DFT instead of FFT";
             this.isDFTCheckBox.UseVisualStyleBackColor = true;
             this.isDFTCheckBox.CheckedChanged += new System.EventHandler(this.isDFTCheckBox_CheckedChanged);
             // 
@@ -412,10 +399,23 @@
             this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.progressBar1.TabIndex = 4;
             // 
+            // AMBox
+            // 
+            this.AMBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.AMBox.Image = global::AudioTranscription.Properties.Resources.tumblr_nnkphfBghk1u64di7o1_500;
+            this.AMBox.Location = new System.Drawing.Point(-8, -1);
+            this.AMBox.Name = "AMBox";
+            this.AMBox.Size = new System.Drawing.Size(529, 232);
+            this.AMBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.AMBox.TabIndex = 7;
+            this.AMBox.TabStop = false;
+            this.AMBox.Visible = false;
+            // 
             // MainWindow
             // 
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(513, 301);
+            this.Controls.Add(this.AMBox);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.BtnTranscribe);
             this.Controls.Add(this.tabControl1);
@@ -426,7 +426,6 @@
             this.tabControl1.ResumeLayout(false);
             this.General.ResumeLayout(false);
             this.General.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.AMBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkBtnUku)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkBtnPiano)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkBtnGuitar)).EndInit();
@@ -440,6 +439,7 @@
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.AMBox)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -472,12 +472,12 @@
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Label BPMLabel;
         private System.Windows.Forms.TextBox BPMTextBox;
-        private System.Windows.Forms.PictureBox AMBox;
         private System.Windows.Forms.CheckBox bpmAutoDetectionCheckBox;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.CheckBox isFlatCheckBox;
         private System.Windows.Forms.CheckBox isDFTCheckBox;
         private System.Windows.Forms.HelpProvider helpProvider1;
+        private System.Windows.Forms.PictureBox AMBox;
     }
 }
 

@@ -43,13 +43,9 @@ namespace MusicMaker
 		private System.Windows.Forms.MenuItem PrintPreviewMenu;
 		private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
 		private System.Drawing.Printing.PrintDocument printDocument1;
+        private IContainer components;
 
-		/// <summary>
-		/// Required designer variable.
-		/// </summary>
-		private System.ComponentModel.Container components = null;
-
-		public MusicMakerSheet()
+        public MusicMakerSheet()
 		{
 			//
 			// Required for Windows Form Designer support
@@ -147,115 +143,115 @@ namespace MusicMaker
         /// </summary>
         private void InitializeComponent()
 		{
-			System.Resources.ResourceManager resources = new System.Resources.ResourceManager(typeof(MusicMakerSheet));
-			this.mainMenu1 = new System.Windows.Forms.MainMenu();
-			this.menuItem1 = new System.Windows.Forms.MenuItem();
-			this.OpenMenu = new System.Windows.Forms.MenuItem();
-			this.PrintMenu = new System.Windows.Forms.MenuItem();
-			this.PrintPreviewMenu = new System.Windows.Forms.MenuItem();
-			this.ExitMenu = new System.Windows.Forms.MenuItem();
-			this.menuItem6 = new System.Windows.Forms.MenuItem();
-			this.SongTitleMenu = new System.Windows.Forms.MenuItem();
-			this.menuItem8 = new System.Windows.Forms.MenuItem();
-			this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-			this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
-			this.printDocument1 = new System.Drawing.Printing.PrintDocument();
-			// 
-			// mainMenu1
-			// 
-			this.mainMenu1.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-																					  this.menuItem1,
-																					  this.menuItem6});
-			// 
-			// menuItem1
-			// 
-			this.menuItem1.Index = 0;
-			this.menuItem1.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-																					  this.OpenMenu,
-																					  this.PrintMenu,
-																					  this.PrintPreviewMenu,
-																					  this.ExitMenu});
-			this.menuItem1.Text = "File";
-			// 
-			// OpenMenu
-			// 
-			this.OpenMenu.Index = 0;
-			this.OpenMenu.Text = "Open...";
-			this.OpenMenu.Click += new System.EventHandler(this.OpenMenu_Click);
-			// 
-			// PrintMenu
-			// 
-			this.PrintMenu.Index = 1;
-			this.PrintMenu.Text = "Print...";
-			this.PrintMenu.Click += new System.EventHandler(this.PrintMenu_Click);
-			// 
-			// PrintPreviewMenu
-			// 
-			this.PrintPreviewMenu.Index = 2;
-			this.PrintPreviewMenu.Text = "Print Preview...";
-			this.PrintPreviewMenu.Click += new System.EventHandler(this.PrintPreviewMenu_Click);
-			// 
-			// ExitMenu
-			// 
-			this.ExitMenu.Index = 3;
-			this.ExitMenu.Text = "Exit";
-			this.ExitMenu.Click += new System.EventHandler(this.ExitMenu_Click);
-			// 
-			// menuItem6
-			// 
-			this.menuItem6.Index = 1;
-			this.menuItem6.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-																					  this.SongTitleMenu,
-																					  this.menuItem8});
-			this.menuItem6.Text = "Format";
-			// 
-			// SongTitleMenu
-			// 
-			this.SongTitleMenu.Index = 0;
-			this.SongTitleMenu.Text = "Song Title";
-			this.SongTitleMenu.Click += new System.EventHandler(this.SongTitleMenu_Click);
-			// 
-			// menuItem8
-			// 
-			this.menuItem8.Index = 1;
-			this.menuItem8.Text = "Measure...";
-			this.menuItem8.Click += new System.EventHandler(this.menuItem8_Click);
-			// 
-			// openFileDialog1
-			// 
-			this.openFileDialog1.DefaultExt = "*.notes";
-			this.openFileDialog1.Filter = "*.notes (Music) | *.* (All Files) ||";
-			this.openFileDialog1.Title = "Open Music File";
-			this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
-			// 
-			// printPreviewDialog1
-			// 
-			this.printPreviewDialog1.AutoScrollMargin = new System.Drawing.Size(0, 0);
-			this.printPreviewDialog1.AutoScrollMinSize = new System.Drawing.Size(0, 0);
-			this.printPreviewDialog1.ClientSize = new System.Drawing.Size(400, 300);
-			this.printPreviewDialog1.Document = this.printDocument1;
-			this.printPreviewDialog1.Enabled = true;
-			this.printPreviewDialog1.Icon = ((System.Drawing.Icon)(resources.GetObject("printPreviewDialog1.Icon")));
-			this.printPreviewDialog1.Location = new System.Drawing.Point(264, 14);
-			this.printPreviewDialog1.MaximumSize = new System.Drawing.Size(0, 0);
-			this.printPreviewDialog1.Name = "printPreviewDialog1";
-			this.printPreviewDialog1.Opacity = 1;
-			this.printPreviewDialog1.TransparencyKey = System.Drawing.Color.Empty;
-			this.printPreviewDialog1.Visible = false;
-			// 
-			// printDocument1
-			// 
-			this.printDocument1.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocument1_PrintPage);
-			// 
-			// Form1
-			// 
-			this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
-			this.ClientSize = new System.Drawing.Size(704, 265);
-			this.Menu = this.mainMenu1;
-			this.Name = "Form1";
-			this.Text = "Form1";
-			this.Load += new System.EventHandler(this.Form1_Load);
-			this.Paint += new System.Windows.Forms.PaintEventHandler(this.OnPaint);
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MusicMakerSheet));
+            this.mainMenu1 = new System.Windows.Forms.MainMenu(this.components);
+            this.menuItem1 = new System.Windows.Forms.MenuItem();
+            this.OpenMenu = new System.Windows.Forms.MenuItem();
+            this.PrintMenu = new System.Windows.Forms.MenuItem();
+            this.PrintPreviewMenu = new System.Windows.Forms.MenuItem();
+            this.ExitMenu = new System.Windows.Forms.MenuItem();
+            this.menuItem6 = new System.Windows.Forms.MenuItem();
+            this.SongTitleMenu = new System.Windows.Forms.MenuItem();
+            this.menuItem8 = new System.Windows.Forms.MenuItem();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
+            this.printDocument1 = new System.Drawing.Printing.PrintDocument();
+            this.SuspendLayout();
+            // 
+            // mainMenu1
+            // 
+            this.mainMenu1.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+            this.menuItem1,
+            this.menuItem6});
+            // 
+            // menuItem1
+            // 
+            this.menuItem1.Index = 0;
+            this.menuItem1.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+            this.OpenMenu,
+            this.PrintMenu,
+            this.PrintPreviewMenu,
+            this.ExitMenu});
+            this.menuItem1.Text = "File";
+            // 
+            // OpenMenu
+            // 
+            this.OpenMenu.Index = 0;
+            this.OpenMenu.Text = "Open...";
+            this.OpenMenu.Click += new System.EventHandler(this.OpenMenu_Click);
+            // 
+            // PrintMenu
+            // 
+            this.PrintMenu.Index = 1;
+            this.PrintMenu.Text = "Print...";
+            this.PrintMenu.Click += new System.EventHandler(this.PrintMenu_Click);
+            // 
+            // PrintPreviewMenu
+            // 
+            this.PrintPreviewMenu.Index = 2;
+            this.PrintPreviewMenu.Text = "Print Preview...";
+            this.PrintPreviewMenu.Click += new System.EventHandler(this.PrintPreviewMenu_Click);
+            // 
+            // ExitMenu
+            // 
+            this.ExitMenu.Index = 3;
+            this.ExitMenu.Text = "Exit";
+            this.ExitMenu.Click += new System.EventHandler(this.ExitMenu_Click);
+            // 
+            // menuItem6
+            // 
+            this.menuItem6.Index = 1;
+            this.menuItem6.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+            this.SongTitleMenu,
+            this.menuItem8});
+            this.menuItem6.Text = "Format";
+            // 
+            // SongTitleMenu
+            // 
+            this.SongTitleMenu.Index = 0;
+            this.SongTitleMenu.Text = "Song Title";
+            this.SongTitleMenu.Click += new System.EventHandler(this.SongTitleMenu_Click);
+            // 
+            // menuItem8
+            // 
+            this.menuItem8.Index = 1;
+            this.menuItem8.Text = "Measure...";
+            this.menuItem8.Click += new System.EventHandler(this.menuItem8_Click);
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.DefaultExt = "*.notes";
+            this.openFileDialog1.Filter = "*.notes (Music) | *.* (All Files) ||";
+            this.openFileDialog1.Title = "Open Music File";
+            this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
+            // 
+            // printPreviewDialog1
+            // 
+            this.printPreviewDialog1.AutoScrollMargin = new System.Drawing.Size(0, 0);
+            this.printPreviewDialog1.AutoScrollMinSize = new System.Drawing.Size(0, 0);
+            this.printPreviewDialog1.ClientSize = new System.Drawing.Size(400, 300);
+            this.printPreviewDialog1.Document = this.printDocument1;
+            this.printPreviewDialog1.Enabled = true;
+            this.printPreviewDialog1.Icon = ((System.Drawing.Icon)(resources.GetObject("printPreviewDialog1.Icon")));
+            this.printPreviewDialog1.Name = "printPreviewDialog1";
+            this.printPreviewDialog1.Visible = false;
+            // 
+            // printDocument1
+            // 
+            this.printDocument1.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocument1_PrintPage);
+            // 
+            // MusicMakerSheet
+            // 
+            this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
+            this.ClientSize = new System.Drawing.Size(704, 244);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Menu = this.mainMenu1;
+            this.Name = "MusicMakerSheet";
+            this.Text = "Shasam";
+            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.OnPaint);
+            this.ResumeLayout(false);
 
 		}
 		#endregion

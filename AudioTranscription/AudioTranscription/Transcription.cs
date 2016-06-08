@@ -89,6 +89,7 @@ namespace AudioTranscription
             }
             else
             {
+                N = nearestPowOf2(N);
                 energyArray = FourierTransform.EnergyFFT(wavData, h, window, N, minFreq, maxFreq);
             }
 
@@ -207,6 +208,20 @@ namespace AudioTranscription
                     return "m";
             }
             return "m";
+        }
+
+        private static int nearestPowOf2(int num)
+        {
+            int n = num > 0 ? num - 1 : 0;
+
+            n |= n >> 1;
+            n |= n >> 2;
+            n |= n >> 4;
+            n |= n >> 8;
+            n |= n >> 16;
+            n++;
+
+            return n;
         }
     }
 }
