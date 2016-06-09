@@ -53,8 +53,7 @@ namespace AudioTranscription
             double[] nothing;
 
             //int samplesRate = StreamFromFileSample.WaveFile.openWav(wavFilePath, out wavData, out nothing, 22050);
-            int samplesRate = 44100;
-            StreamFromFileSample.WaveFile.openWav(wavFilePath, out wavData, out nothing);
+            int samplesRate = StreamFromFileSample.WaveFile.openWav(wavFilePath, out wavData, out nothing);
             //int N = 1024;
             //int h = N / 4;
             //BPM = 80;
@@ -201,7 +200,7 @@ namespace AudioTranscription
                     else if (octave == 4)
                         return "h";
                     else
-                        return (octave - 3).ToString("+#;-#");
+                        return (octave - 3).ToString("+#;-#").Trim();
                     break;
                 
                 default:

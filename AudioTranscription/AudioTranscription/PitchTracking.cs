@@ -118,7 +118,7 @@ namespace AudioTranscription
             double left = nac[bestP - 1];
             double right = nac[bestP + 1];
 
-            Debug.Assert(2 * mid - left - right > 0.0);
+            //Debug.Assert(2 * mid - left - right > 0.0);
 
             double shift = 0.5 * (right - left) / (2 * mid - left - right);
 
@@ -227,12 +227,10 @@ namespace AudioTranscription
             if (x.Length > startIndex + n)
             {
                 Array.Copy(x, startIndex, sub_x, 0, n);
+                return PitchDetection(sub_x, n, sr, ref q);
             }
             else
-            {
-                Array.Copy(x, startIndex, sub_x, 0, x.Length-startIndex);
-            }
-                return PitchDetection(sub_x, n, sr, ref q);
+                return -1;   
         }
 
         public static double[] PitchDetectionForAllPeaks(double[] x, int n, ref double q, double sr, List<int> peaks)

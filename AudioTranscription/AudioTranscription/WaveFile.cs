@@ -27,10 +27,10 @@ namespace StreamFromFileSample
         }
 
         // Returns left and right double arrays. 'right' will be null if sound is mono.
-        public static void openWav(string filename, out double[] left, out double[] right)
+        public static int openWav(string filename, out double[] left, out double[] right)
         {
             byte[] wav = File.ReadAllBytes(filename);
-
+            int samplesRate = wav[24] + (wav[25] << 8) + (wav[26] << 16) + (wav[27] << 24);
             // Determine if mono or stereo
             int channels = wav[22];     // Forget byte 23 as 99.999% of WAVs are 1 or 2 channels
 
@@ -68,6 +68,8 @@ namespace StreamFromFileSample
                 }
                 i++;
             }
+
+            return samplesRate;
         }
 
         // Returns left and right double arrays. 'right' will be null if sound is mono.

@@ -55,12 +55,22 @@ namespace AudioTranscription
                 midiNotes[i] = PitchToNoteConverter.GetNoteName((int)PitchToNoteConverter.PitchToMidiNote((float)((float[][])e.Result)[1][i]), !isFlat, false, out noteOctaves[i]);
                 midiNotes[i] += Transcription.OctaveLetter(noteOctaves[i]);
                 midiNotes[i] += Transcription.DurationLetter(((float[][])e.Result)[2][i]);
+
+                if ((float)((float[][])e.Result)[1][i] <= 0)
+                    midiNotes[i] = "";
+
             }
+            int count = 0;
             for(int i = 0; i < midiNotes.Length; i++)
             {
+                if((float)((float[][])e.Result)[1][i] <= 0)
+                {
+                    continue;
+                }
                 outputNotes += midiNotes[i];
                 outputNotes += " ";
-                if (i % numOfNotesInLine == 0 && i != 0)
+                count++;
+                if (count % numOfNotesInLine == 0 && count != 0)
                 {
                     outputNotes = outputNotes.Trim(); // remove last " "
                     r.paintByString(outputNotes);
