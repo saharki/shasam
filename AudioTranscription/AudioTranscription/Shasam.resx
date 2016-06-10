@@ -120,6 +120,28 @@
   <metadata name="helpProvider1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>12, 9</value>
   </metadata>
+  <data name="helpTextBox.Text" xml:space="preserve">
+    <value>STFT Settings
+
+Window: Increasing the window size may give us better frequency resolution, but poor time resolution (the detection of the onset between windows will be more accurate, but locating the onset in time will be less accurate). 
+                 Decreasing the window size will have the opposite effect – worse frequency resolution, but better time resolution. 
+Hop Size: Increasing the hop size may reduce the amount of detected onsets/
+                  Decreasing the hop size may detect more onsets.
+Use DFT instead of FFT: Use DFT algorithm instead of FFT.
+
+
+Detection Settings
+
+Threshold: increasing the threshold may reduce the amount of detected notes and vice versa. 
+BPM: Beats Per Minute.
+Auto Detect: Auto detection of the BPM.
+
+Display Settings
+Show flats instead of sharps: Show flats instead of sharps in the result window.
+
+Made By Sahar &amp; Shan. 
+Ort Braude College of Engineering.</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

@@ -43,6 +43,7 @@ namespace MusicMaker
 		private System.Windows.Forms.MenuItem PrintPreviewMenu;
 		private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
 		private System.Drawing.Printing.PrintDocument printDocument1;
+        private VScrollBar vScrollBar1;
         private IContainer components;
 
         public MusicMakerSheet()
@@ -157,6 +158,7 @@ namespace MusicMaker
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
             this.printDocument1 = new System.Drawing.Printing.PrintDocument();
+            this.vScrollBar1 = new System.Windows.Forms.VScrollBar();
             this.SuspendLayout();
             // 
             // mainMenu1
@@ -241,10 +243,18 @@ namespace MusicMaker
             // 
             this.printDocument1.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocument1_PrintPage);
             // 
+            // vScrollBar1
+            // 
+            this.vScrollBar1.Location = new System.Drawing.Point(687, -5);
+            this.vScrollBar1.Name = "vScrollBar1";
+            this.vScrollBar1.Size = new System.Drawing.Size(19, 248);
+            this.vScrollBar1.TabIndex = 0;
+            // 
             // MusicMakerSheet
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
             this.ClientSize = new System.Drawing.Size(704, 244);
+            this.Controls.Add(this.vScrollBar1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Menu = this.mainMenu1;
             this.Name = "MusicMakerSheet";
