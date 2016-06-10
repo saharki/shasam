@@ -91,6 +91,13 @@ namespace AudioTranscription
                 N = nearestPowOf2(N);
                 h = nearestPowOf2(h);
                 energyArray = FourierTransform.EnergyFFT(wavData, h, window, N, minFreq, maxFreq);
+
+                //********//
+                System.IO.File.WriteAllLines(
+                    @"C:\Users\abzachshan\Documents\MATLAB\guitar.txt" // <<== Put the file name here
+                    , energyArray.Select(d => d.ToString()).ToArray()
+);
+                //********//
             }
 
             double[] thresholdedEnergyArray = Thresholding.FixedThresholdRelativeNormalize(energyArray, threshold);
