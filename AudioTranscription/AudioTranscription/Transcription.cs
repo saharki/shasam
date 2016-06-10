@@ -94,7 +94,7 @@ namespace AudioTranscription
 
                 //********//
                 //System.IO.File.WriteAllLines(
-                //    @"F:\Dropbox (Personal)\Final project - Music Trascription\Results\" + wavFilePath.Substring(wavFilePath.LastIndexOf('\\') + 1) + "- Energy - "+ windowSizeInMs.ToString()+ " "+ hopSizeInMs.ToString() + ".txt" // <<== Put the file name here
+                //    @"F:\Dropbox (Personal)\Final project - Music Trascription\Results\" + wavFilePath.Substring(wavFilePath.LastIndexOf('\\') + 1) + "- Energy - " + windowSizeInMs.ToString() + " " + hopSizeInMs.ToString() + ".txt" // <<== Put the file name here
                 //    , energyArray.Select(d => d.ToString()).ToArray());
                 //********//
             }
