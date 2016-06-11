@@ -89,7 +89,7 @@ namespace AudioTranscription
             else
             {
                 N = nearestPowOf2(N);
-                h = nearestPowOf2(h);
+                //h = nearestPowOf2(h);
                 energyArray = FourierTransform.EnergyFFT(wavData, h, window, N, minFreq, maxFreq);
 
                 //********//

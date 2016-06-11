@@ -101,7 +101,7 @@
             // 
             this.AMBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.AMBox.Image = global::AudioTranscription.Properties.Resources.tumblr_nnkphfBghk1u64di7o1_500;
-            this.AMBox.Location = new System.Drawing.Point(-8, 243);
+            this.AMBox.Location = new System.Drawing.Point(-8, -1);
             this.AMBox.Name = "AMBox";
             this.AMBox.Size = new System.Drawing.Size(529, 232);
             this.AMBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
