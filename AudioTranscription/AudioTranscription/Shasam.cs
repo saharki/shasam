@@ -40,9 +40,9 @@ namespace AudioTranscription
         private void transcribe_Completed(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
         {
             MusicMakerSheet r = new MusicMakerSheet();
-
-            string[] midiNotes = new string[((float[][])e.Result)[0].Length];
-            int[] noteOctaves = new int[((float[][])e.Result)[0].Length];
+            TrasncriptionResult result = ((TrasncriptionResult)e.Result);
+            string[] midiNotes = new string[result.Notes.Length];
+            int[] noteOctaves = new int[result.Notes.Length];
             string outputNotes = "";
 
             r.ButtomMeasure = 4;
@@ -50,20 +50,20 @@ namespace AudioTranscription
 
             const int numOfNotesInLine = 29;
 
-            for (int i = 0; i < ((float[][])e.Result)[0].Length; i++)
+            for (int i = 0; i < result.Notes.Length; i++)
             {
-                midiNotes[i] = PitchToNoteConverter.GetNoteName((int)PitchToNoteConverter.PitchToMidiNote((float)((float[][])e.Result)[1][i]), !isFlat, false, out noteOctaves[i]);
+                midiNotes[i] = PitchToNoteConverter.GetNoteName((int)PitchToNoteConverter.PitchToMidiNote(result.Notes[i].Frequency), !isFlat, false, out noteOctaves[i]);
                 midiNotes[i] += Transcription.OctaveLetter(noteOctaves[i]);
-                midiNotes[i] += Transcription.DurationLetter(((float[][])e.Result)[2][i]);
+                midiNotes[i] += Transcription.DurationLetter(result.Notes[i].Duration);
 
-                if ((float)((float[][])e.Result)[1][i] <= 0)
+                if (result.Notes[i].Frequency <= 0)
                     midiNotes[i] = "";
 
             }
             int count = 0;
             for(int i = 0; i < midiNotes.Length; i++)
             {
-                if((float)((float[][])e.Result)[1][i] <= 0)
+                if(result.Notes[i].Frequency <= 0)
                 {
                     continue;
                 }
@@ -82,6 +82,8 @@ namespace AudioTranscription
 
             r.Show();
             AMBox.Visible = false;
+            if(bpmAutoDetectionCheckBox.Checked)
+                System.Windows.Forms.MessageBox.Show("BPM detected = "+result.BPM);
         }
 
         private void transcribe_ProgressChanged(object sender, System.ComponentModel.ProgressChangedEventArgs e)

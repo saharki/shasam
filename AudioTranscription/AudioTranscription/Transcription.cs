@@ -110,19 +110,19 @@ namespace AudioTranscription
             double q = 0;
             double [] signalFrequencies = PitchTracking.PitchDetectionForAllPeaks(wavData, 4096, ref q, samplesRate, signalPeaks);
 
-            float[][] result = new float[3][];
-            result[0] = new float[signalPeaks.Count]; //Peak location
-            result[1] = new float[signalPeaks.Count]; //Peak frequency
-            result[2] = new float[signalPeaks.Count]; //Peak duration
+            TrasncriptionResult result = new TrasncriptionResult(signalPeaks.Count, BPM);
+           // result[0] = new float[signalPeaks.Count]; //Peak location
+           // result[1] = new float[signalPeaks.Count]; //Peak frequency
+           // result[2] = new float[signalPeaks.Count]; //Peak duration
 
             for (int i=0;i<signalPeaks.Count;i++)
             {
-                result[0][ i] = signalPeaks[i]; 
-                result[1][ i] = (int)Math.Round(signalFrequencies[i], 0);
+                result.Notes[i].Position = signalPeaks[i];
+                result.Notes[i].Frequency = (int)Math.Round(signalFrequencies[i], 0);
                 if (i != signalPeaks.Count - 1)
-                    result[2][i] = SamplesToDurationUsingBPM(signalPeaks[i + 1] - signalPeaks[i], samplesRate);
+                    result.Notes[i].Duration = SamplesToDurationUsingBPM(signalPeaks[i + 1] - signalPeaks[i], samplesRate);
                 else
-                    result[2][i] = SamplesToDurationUsingBPM(wavData.Length - signalPeaks[i], samplesRate);
+                    result.Notes[i].Duration = SamplesToDurationUsingBPM(wavData.Length - signalPeaks[i], samplesRate);
             }
 
             e.Result = result;
@@ -197,8 +197,17 @@ namespace AudioTranscription
         {
             switch((int)chosenInstrument)
             {
-                case (int)Instrument.PIANO:
                 case (int)Instrument.GUITAR:
+                    if (octave == 1)
+                        return "l";
+                    else if (octave == 2)
+                        return "m";
+                    else if (octave == 3)
+                        return "h";
+                    else
+                        return (octave - 2).ToString("+#;-#").Trim();
+                    break;
+                case (int)Instrument.PIANO:
                 case (int)Instrument.UKULELE:
                     if (octave == 2)
                         return "l";

@@ -74,6 +74,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MusicMakerRTM\Staff.cs" />
+    <Compile Include="Note.cs" />
     <Compile Include="PeakPicking.cs" />
     <Compile Include="PitchToNoteConverter.cs" />
     <Compile Include="PitchTracking.cs" />
@@ -93,6 +94,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Thresholding.cs" />
     <Compile Include="Transcription.cs" />
+    <Compile Include="TrasncriptionResult.cs" />
     <Compile Include="WaveFile.cs" />
     <EmbeddedResource Include="MusicMakerRTM\InputStringForm.resx">
       <DependentUpon>InputStringForm.cs</DependentUpon>
