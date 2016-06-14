@@ -84,6 +84,9 @@ namespace AudioTranscription
             AMBox.Visible = false;
             if(bpmAutoDetectionCheckBox.Checked)
                 System.Windows.Forms.MessageBox.Show("BPM detected = "+result.BPM);
+
+            BtnTranscribe.Enabled = true;
+            progressBar1.Value = 0;
         }
 
         private void transcribe_ProgressChanged(object sender, System.ComponentModel.ProgressChangedEventArgs e)

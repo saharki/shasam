@@ -51,7 +51,15 @@ namespace MusicMaker
 			// Required for Windows Form Designer support
 			//
 			InitializeComponent();
-			Pages.Add(new Page());
+
+
+          CurrentStaffIndex = 0;
+         CurrentMeasureIndex = 0;
+         CurrentPageIndex = 0;
+         CurrentStaffPosition = 0;
+        TopSignature = 8;
+       BottomSignature = 4;
+        Pages.Add(new Page());
 			//
 			// TODO: Add any constructor code after InitializeComponent call
 			//
