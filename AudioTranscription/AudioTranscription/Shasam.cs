@@ -86,12 +86,12 @@ namespace AudioTranscription
                 System.Windows.Forms.MessageBox.Show("BPM detected = "+result.BPM);
 
             BtnTranscribe.Enabled = true;
-            progressBar1.Value = 0;
+            progressBar.Value = 0;
         }
 
         private void transcribe_ProgressChanged(object sender, System.ComponentModel.ProgressChangedEventArgs e)
         {
-            progressBar1.Value = e.ProgressPercentage;
+            progressBar.Value = e.ProgressPercentage;
         }
 
         private void ResetToDefaultSettings()
@@ -279,10 +279,6 @@ namespace AudioTranscription
             BPMTextBox.Enabled = (bpmAutoDetectionCheckBox.Checked) ? false : true;
         }
 
-        private void groupBox3_Enter(object sender, EventArgs e)
-        {
-
-        }
 
         private void isDFTCheckBox_CheckedChanged(object sender, EventArgs e)
         {

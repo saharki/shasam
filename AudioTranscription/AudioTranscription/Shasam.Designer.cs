@@ -30,10 +30,10 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
             this.BtnTranscribe = new System.Windows.Forms.Button();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.helpProvider1 = new System.Windows.Forms.HelpProvider();
+            this.progressBar = new System.Windows.Forms.ProgressBar();
+            this.helpProvider = new System.Windows.Forms.HelpProvider();
             this.AMBox = new System.Windows.Forms.PictureBox();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPage = new System.Windows.Forms.TabPage();
             this.helpTextBox = new System.Windows.Forms.RichTextBox();
             this.Settings = new System.Windows.Forms.TabPage();
             this.notesSettingsGroupBox = new System.Windows.Forms.GroupBox();
@@ -62,9 +62,9 @@
             this.guitarPictureBox = new System.Windows.Forms.PictureBox();
             this.browseBtn = new System.Windows.Forms.Button();
             this.fileTextBox = new System.Windows.Forms.TextBox();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabControl = new System.Windows.Forms.TabControl();
             ((System.ComponentModel.ISupportInitialize)(this.AMBox)).BeginInit();
-            this.tabPage1.SuspendLayout();
+            this.tabPage.SuspendLayout();
             this.Settings.SuspendLayout();
             this.notesSettingsGroupBox.SuspendLayout();
             this.STFTSettingsGroupBox.SuspendLayout();
@@ -76,7 +76,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.ukulelePictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pianoPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.guitarPictureBox)).BeginInit();
-            this.tabControl1.SuspendLayout();
+            this.tabControl.SuspendLayout();
             this.SuspendLayout();
             // 
             // BtnTranscribe
@@ -91,11 +91,11 @@
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(3, 276);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(507, 23);
-            this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
-            this.progressBar1.TabIndex = 4;
+            this.progressBar.Location = new System.Drawing.Point(3, 276);
+            this.progressBar.Name = "progressBar1";
+            this.progressBar.Size = new System.Drawing.Size(507, 23);
+            this.progressBar.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
+            this.progressBar.TabIndex = 4;
             // 
             // AMBox
             // 
@@ -111,14 +111,14 @@
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.helpTextBox);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(503, 203);
-            this.tabPage1.TabIndex = 2;
-            this.tabPage1.Text = "Help";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.tabPage.Controls.Add(this.helpTextBox);
+            this.tabPage.Location = new System.Drawing.Point(4, 22);
+            this.tabPage.Name = "tabPage1";
+            this.tabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage.Size = new System.Drawing.Size(503, 203);
+            this.tabPage.TabIndex = 2;
+            this.tabPage.Text = "Help";
+            this.tabPage.UseVisualStyleBackColor = true;
             // 
             // helpTextBox
             // 
@@ -153,7 +153,6 @@
             this.notesSettingsGroupBox.TabIndex = 6;
             this.notesSettingsGroupBox.TabStop = false;
             this.notesSettingsGroupBox.Text = "Notes Settings";
-            this.notesSettingsGroupBox.Enter += new System.EventHandler(this.groupBox3_Enter);
             // 
             // isFlatCheckBox
             // 
@@ -427,29 +426,29 @@
             // 
             // tabControl1
             // 
-            this.tabControl1.Controls.Add(this.General);
-            this.tabControl1.Controls.Add(this.Settings);
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Location = new System.Drawing.Point(-3, 0);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(511, 229);
-            this.tabControl1.TabIndex = 1;
+            this.tabControl.Controls.Add(this.General);
+            this.tabControl.Controls.Add(this.Settings);
+            this.tabControl.Controls.Add(this.tabPage);
+            this.tabControl.Location = new System.Drawing.Point(-3, 0);
+            this.tabControl.Name = "tabControl1";
+            this.tabControl.SelectedIndex = 0;
+            this.tabControl.Size = new System.Drawing.Size(511, 229);
+            this.tabControl.TabIndex = 1;
             // 
             // MainWindow
             // 
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(513, 301);
             this.Controls.Add(this.AMBox);
-            this.Controls.Add(this.progressBar1);
+            this.Controls.Add(this.progressBar);
             this.Controls.Add(this.BtnTranscribe);
-            this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.tabControl);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "MainWindow";
             this.Text = "Shasam";
             ((System.ComponentModel.ISupportInitialize)(this.AMBox)).EndInit();
-            this.tabPage1.ResumeLayout(false);
+            this.tabPage.ResumeLayout(false);
             this.Settings.ResumeLayout(false);
             this.notesSettingsGroupBox.ResumeLayout(false);
             this.notesSettingsGroupBox.PerformLayout();
@@ -465,17 +464,17 @@
             ((System.ComponentModel.ISupportInitialize)(this.ukulelePictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pianoPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.guitarPictureBox)).EndInit();
-            this.tabControl1.ResumeLayout(false);
+            this.tabControl.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
         private System.Windows.Forms.Button BtnTranscribe;
-        private System.Windows.Forms.ProgressBar progressBar1;
-        private System.Windows.Forms.HelpProvider helpProvider1;
+        private System.Windows.Forms.ProgressBar progressBar;
+        private System.Windows.Forms.HelpProvider helpProvider;
         private System.Windows.Forms.PictureBox AMBox;
-        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage;
         private System.Windows.Forms.RichTextBox helpTextBox;
         private System.Windows.Forms.TabPage Settings;
         private System.Windows.Forms.GroupBox notesSettingsGroupBox;
@@ -504,7 +503,7 @@
         private System.Windows.Forms.PictureBox guitarPictureBox;
         private System.Windows.Forms.Button browseBtn;
         private System.Windows.Forms.TextBox fileTextBox;
-        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabControl tabControl;
     }
 }
 
