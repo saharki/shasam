@@ -82,11 +82,11 @@ namespace AudioTranscription
                 { continue; }
                 AForge.Math.Complex[] partial_c_data = new AForge.Math.Complex[N];
                 Array.Copy(c_data, n*h, partial_c_data, 0, N);
-                //Apply window
-                for (int i = 0; i < partial_c_data.Length; i++)
-                {
-                    partial_c_data[i] *= window[i];
-                }
+                ////Apply window
+                //for (int i = 0; i < partial_c_data.Length; i++)
+                //{
+                //    partial_c_data[i] *= window[i];
+                //}
 
                 AForge.Math.FourierTransform.FFT(partial_c_data, AForge.Math.FourierTransform.Direction.Forward);
                 stft[n] = new Complex[N];
