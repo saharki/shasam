@@ -103,11 +103,9 @@ namespace AudioTranscription
                 }
                 energyArray = FourierTransform.EnergyFFT(wavData, h, window, N, minFreq, maxFreq); //Energy using FFT.
 
-                //****   Export detection function to file   ****//
-                //System.IO.File.WriteAllLines(
-                //    @"F:\Dropbox (Personal)\Final project - Music Trascription\Results\" + wavFilePath.Substring(wavFilePath.LastIndexOf('\\') + 1) + "- Energy - " + windowSizeInMs.ToString() + " " + hopSizeInMs.ToString() + ".txt" // <<== Put the file name here
-                //    , energyArray.Select(d => d.ToString()).ToArray());
-                //***********************************************//
+                //****   Export detection function to file - for research purposes   ****//
+                //detectionFunctionToFile(energyArray,hopSizeInMs,windowSizeInMs); 
+                
             }
 
             double[] thresholdedEnergyArray = Thresholding.FixedThresholdRelativeNormalize(energyArray, threshold); //Fixed thresholding
@@ -135,6 +133,13 @@ namespace AudioTranscription
 
             e.Result = result;
             (sender as BackgroundWorker).ReportProgress(100);
+        }
+        //Print detection function to file.
+        private static void detectionFunctionToFile(double[] energyArray, int hopSizeInMs, int windowSizeInMs)
+        {
+            System.IO.File.WriteAllLines(
+                   wavFilePath.Substring(wavFilePath.LastIndexOf('\\') + 1) + "- Energy - " + windowSizeInMs.ToString() + " " + hopSizeInMs.ToString() + ".txt" // <<== Put the file name here
+                   , energyArray.Select(d => d.ToString()).ToArray());
         }
 
         private static float HammingWindow(int n, int N)
