@@ -8,6 +8,8 @@ namespace AudioTranscription
 {
     class Thresholding
     {
+
+        //Fixed threshold with absolute value.
         public static double[] FixedThreshold( double[] arr, double threshold)
         {
             double[] result = new double[arr.Length];
@@ -20,7 +22,7 @@ namespace AudioTranscription
             }
             return result;
         }
-
+        //Fixed threshold with relative value.
         public static double[] FixedThresholdRelative(double[] arr, double threshold)
         {
             double relativeThreshold = arr.Max() * threshold;
@@ -35,6 +37,7 @@ namespace AudioTranscription
             return result;
         }
         
+        //Fixed threshold with relative value. Threshold value must be >0 and <=1.
         public static double[] FixedThresholdRelativeNormalize(double[] arr, double threshold)
         {
             double max = arr.Max();

@@ -73,6 +73,7 @@ namespace StreamFromFileSample
         }
 
         // Returns left and right double arrays. 'right' will be null if sound is mono.
+        //Performs down-sampling.
         public static int openWav(string filename, out double[] left, out double[] right, int samplesPerSec) //only mono
         {
             int jumps;

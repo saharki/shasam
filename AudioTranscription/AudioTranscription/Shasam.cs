@@ -125,7 +125,7 @@ namespace AudioTranscription
             isBPMValid = true;
     }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
+        private void guitarPictureBox_Click(object sender, EventArgs e)
         {
             checkBtnGuitar.Visible = true;
             checkBtnPiano.Visible = false;
@@ -133,7 +133,7 @@ namespace AudioTranscription
             chosenInstrument = Instrument.GUITAR;
         }
 
-        private void pictureBox2_Click(object sender, EventArgs e)
+        private void pianoPictureBox_Click(object sender, EventArgs e)
         {
             checkBtnGuitar.Visible = false;
             checkBtnPiano.Visible = true;
@@ -141,7 +141,7 @@ namespace AudioTranscription
             chosenInstrument = Instrument.PIANO;
         }
 
-        private void pictureBox3_Click(object sender, EventArgs e)
+        private void ukulelePictureBox_Click(object sender, EventArgs e)
         {
             checkBtnGuitar.Visible = false;
             checkBtnPiano.Visible = false;

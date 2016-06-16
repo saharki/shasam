@@ -36,16 +36,16 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.helpTextBox = new System.Windows.Forms.RichTextBox();
             this.Settings = new System.Windows.Forms.TabPage();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.notesSettingsGroupBox = new System.Windows.Forms.GroupBox();
             this.isFlatCheckBox = new System.Windows.Forms.CheckBox();
             this.resetBtn = new System.Windows.Forms.Button();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.STFTSettingsGroupBox = new System.Windows.Forms.GroupBox();
             this.isDFTCheckBox = new System.Windows.Forms.CheckBox();
             this.hopSizeTextBox = new System.Windows.Forms.TextBox();
             this.windowSizeTextBox = new System.Windows.Forms.TextBox();
             this.hopSizeLabel = new System.Windows.Forms.Label();
             this.windowLabel = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.detetcionSettingsGroupBox = new System.Windows.Forms.GroupBox();
             this.bpmAutoDetectionCheckBox = new System.Windows.Forms.CheckBox();
             this.BPMLabel = new System.Windows.Forms.Label();
             this.BPMTextBox = new System.Windows.Forms.TextBox();
@@ -55,27 +55,27 @@
             this.checkBtnUku = new System.Windows.Forms.PictureBox();
             this.checkBtnPiano = new System.Windows.Forms.PictureBox();
             this.checkBtnGuitar = new System.Windows.Forms.PictureBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.chooseFileLabel = new System.Windows.Forms.Label();
+            this.chooseInstrumentLabel = new System.Windows.Forms.Label();
+            this.ukulelePictureBox = new System.Windows.Forms.PictureBox();
+            this.pianoPictureBox = new System.Windows.Forms.PictureBox();
+            this.guitarPictureBox = new System.Windows.Forms.PictureBox();
             this.browseBtn = new System.Windows.Forms.Button();
             this.fileTextBox = new System.Windows.Forms.TextBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             ((System.ComponentModel.ISupportInitialize)(this.AMBox)).BeginInit();
             this.tabPage1.SuspendLayout();
             this.Settings.SuspendLayout();
-            this.groupBox3.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            this.notesSettingsGroupBox.SuspendLayout();
+            this.STFTSettingsGroupBox.SuspendLayout();
+            this.detetcionSettingsGroupBox.SuspendLayout();
             this.General.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.checkBtnUku)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkBtnPiano)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkBtnGuitar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ukulelePictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pianoPictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.guitarPictureBox)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -132,10 +132,10 @@
             // 
             // Settings
             // 
-            this.Settings.Controls.Add(this.groupBox3);
+            this.Settings.Controls.Add(this.notesSettingsGroupBox);
             this.Settings.Controls.Add(this.resetBtn);
-            this.Settings.Controls.Add(this.groupBox2);
-            this.Settings.Controls.Add(this.groupBox1);
+            this.Settings.Controls.Add(this.STFTSettingsGroupBox);
+            this.Settings.Controls.Add(this.detetcionSettingsGroupBox);
             this.Settings.Location = new System.Drawing.Point(4, 22);
             this.Settings.Name = "Settings";
             this.Settings.Padding = new System.Windows.Forms.Padding(3);
@@ -144,16 +144,16 @@
             this.Settings.Text = "Settings";
             this.Settings.UseVisualStyleBackColor = true;
             // 
-            // groupBox3
+            // notesSettingsGroupBox
             // 
-            this.groupBox3.Controls.Add(this.isFlatCheckBox);
-            this.groupBox3.Location = new System.Drawing.Point(11, 127);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(228, 38);
-            this.groupBox3.TabIndex = 6;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Notes Settings";
-            this.groupBox3.Enter += new System.EventHandler(this.groupBox3_Enter);
+            this.notesSettingsGroupBox.Controls.Add(this.isFlatCheckBox);
+            this.notesSettingsGroupBox.Location = new System.Drawing.Point(11, 127);
+            this.notesSettingsGroupBox.Name = "notesSettingsGroupBox";
+            this.notesSettingsGroupBox.Size = new System.Drawing.Size(228, 38);
+            this.notesSettingsGroupBox.TabIndex = 6;
+            this.notesSettingsGroupBox.TabStop = false;
+            this.notesSettingsGroupBox.Text = "Notes Settings";
+            this.notesSettingsGroupBox.Enter += new System.EventHandler(this.groupBox3_Enter);
             // 
             // isFlatCheckBox
             // 
@@ -176,19 +176,19 @@
             this.resetBtn.UseVisualStyleBackColor = true;
             this.resetBtn.Click += new System.EventHandler(this.resetBtn_Click);
             // 
-            // groupBox2
+            // STFTSettingsGroupBox
             // 
-            this.groupBox2.Controls.Add(this.isDFTCheckBox);
-            this.groupBox2.Controls.Add(this.hopSizeTextBox);
-            this.groupBox2.Controls.Add(this.windowSizeTextBox);
-            this.groupBox2.Controls.Add(this.hopSizeLabel);
-            this.groupBox2.Controls.Add(this.windowLabel);
-            this.groupBox2.Location = new System.Drawing.Point(11, 6);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(228, 115);
-            this.groupBox2.TabIndex = 4;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "STFT Settings";
+            this.STFTSettingsGroupBox.Controls.Add(this.isDFTCheckBox);
+            this.STFTSettingsGroupBox.Controls.Add(this.hopSizeTextBox);
+            this.STFTSettingsGroupBox.Controls.Add(this.windowSizeTextBox);
+            this.STFTSettingsGroupBox.Controls.Add(this.hopSizeLabel);
+            this.STFTSettingsGroupBox.Controls.Add(this.windowLabel);
+            this.STFTSettingsGroupBox.Location = new System.Drawing.Point(11, 6);
+            this.STFTSettingsGroupBox.Name = "STFTSettingsGroupBox";
+            this.STFTSettingsGroupBox.Size = new System.Drawing.Size(228, 115);
+            this.STFTSettingsGroupBox.TabIndex = 4;
+            this.STFTSettingsGroupBox.TabStop = false;
+            this.STFTSettingsGroupBox.Text = "STFT Settings";
             // 
             // isDFTCheckBox
             // 
@@ -237,19 +237,19 @@
             this.windowLabel.TabIndex = 1;
             this.windowLabel.Text = "Window [ms]";
             // 
-            // groupBox1
+            // detetcionSettingsGroupBox
             // 
-            this.groupBox1.Controls.Add(this.bpmAutoDetectionCheckBox);
-            this.groupBox1.Controls.Add(this.BPMLabel);
-            this.groupBox1.Controls.Add(this.BPMTextBox);
-            this.groupBox1.Controls.Add(this.thresholdTextBox);
-            this.groupBox1.Controls.Add(this.thresholdLabel);
-            this.groupBox1.Location = new System.Drawing.Point(259, 6);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(217, 115);
-            this.groupBox1.TabIndex = 3;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Detection Settings";
+            this.detetcionSettingsGroupBox.Controls.Add(this.bpmAutoDetectionCheckBox);
+            this.detetcionSettingsGroupBox.Controls.Add(this.BPMLabel);
+            this.detetcionSettingsGroupBox.Controls.Add(this.BPMTextBox);
+            this.detetcionSettingsGroupBox.Controls.Add(this.thresholdTextBox);
+            this.detetcionSettingsGroupBox.Controls.Add(this.thresholdLabel);
+            this.detetcionSettingsGroupBox.Location = new System.Drawing.Point(259, 6);
+            this.detetcionSettingsGroupBox.Name = "detetcionSettingsGroupBox";
+            this.detetcionSettingsGroupBox.Size = new System.Drawing.Size(217, 115);
+            this.detetcionSettingsGroupBox.TabIndex = 3;
+            this.detetcionSettingsGroupBox.TabStop = false;
+            this.detetcionSettingsGroupBox.Text = "Detection Settings";
             // 
             // bpmAutoDetectionCheckBox
             // 
@@ -303,11 +303,11 @@
             this.General.Controls.Add(this.checkBtnUku);
             this.General.Controls.Add(this.checkBtnPiano);
             this.General.Controls.Add(this.checkBtnGuitar);
-            this.General.Controls.Add(this.label2);
-            this.General.Controls.Add(this.label1);
-            this.General.Controls.Add(this.pictureBox3);
-            this.General.Controls.Add(this.pictureBox2);
-            this.General.Controls.Add(this.pictureBox1);
+            this.General.Controls.Add(this.chooseFileLabel);
+            this.General.Controls.Add(this.chooseInstrumentLabel);
+            this.General.Controls.Add(this.ukulelePictureBox);
+            this.General.Controls.Add(this.pianoPictureBox);
+            this.General.Controls.Add(this.guitarPictureBox);
             this.General.Controls.Add(this.browseBtn);
             this.General.Controls.Add(this.fileTextBox);
             this.General.Location = new System.Drawing.Point(4, 22);
@@ -351,60 +351,60 @@
             this.checkBtnGuitar.TabStop = false;
             this.checkBtnGuitar.Visible = false;
             // 
-            // label2
+            // chooseFileLabel
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(11, 146);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(62, 13);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "Choose File";
+            this.chooseFileLabel.AutoSize = true;
+            this.chooseFileLabel.Location = new System.Drawing.Point(11, 146);
+            this.chooseFileLabel.Name = "chooseFileLabel";
+            this.chooseFileLabel.Size = new System.Drawing.Size(62, 13);
+            this.chooseFileLabel.TabIndex = 6;
+            this.chooseFileLabel.Text = "Choose File";
             // 
-            // label1
+            // chooseInstrumentLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(11, 3);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(95, 13);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "Choose Instrument";
+            this.chooseInstrumentLabel.AutoSize = true;
+            this.chooseInstrumentLabel.Location = new System.Drawing.Point(11, 3);
+            this.chooseInstrumentLabel.Name = "chooseInstrumentLabel";
+            this.chooseInstrumentLabel.Size = new System.Drawing.Size(95, 13);
+            this.chooseInstrumentLabel.TabIndex = 5;
+            this.chooseInstrumentLabel.Text = "Choose Instrument";
             // 
-            // pictureBox3
+            // ukulelePictureBox
             // 
-            this.pictureBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox3.Image = global::AudioTranscription.Properties.Resources.uku;
-            this.pictureBox3.Location = new System.Drawing.Point(341, 19);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(149, 112);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox3.TabIndex = 4;
-            this.pictureBox3.TabStop = false;
-            this.pictureBox3.Click += new System.EventHandler(this.pictureBox3_Click);
+            this.ukulelePictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.ukulelePictureBox.Image = global::AudioTranscription.Properties.Resources.uku;
+            this.ukulelePictureBox.Location = new System.Drawing.Point(341, 19);
+            this.ukulelePictureBox.Name = "ukulelePictureBox";
+            this.ukulelePictureBox.Size = new System.Drawing.Size(149, 112);
+            this.ukulelePictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.ukulelePictureBox.TabIndex = 4;
+            this.ukulelePictureBox.TabStop = false;
+            this.ukulelePictureBox.Click += new System.EventHandler(this.ukulelePictureBox_Click);
             // 
-            // pictureBox2
+            // pianoPictureBox
             // 
-            this.pictureBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox2.Image = global::AudioTranscription.Properties.Resources.v_piano_grand_angle_open_full_gal;
-            this.pictureBox2.Location = new System.Drawing.Point(177, 19);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(149, 112);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 3;
-            this.pictureBox2.TabStop = false;
-            this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
+            this.pianoPictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pianoPictureBox.Image = global::AudioTranscription.Properties.Resources.v_piano_grand_angle_open_full_gal;
+            this.pianoPictureBox.Location = new System.Drawing.Point(177, 19);
+            this.pianoPictureBox.Name = "pianoPictureBox";
+            this.pianoPictureBox.Size = new System.Drawing.Size(149, 112);
+            this.pianoPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pianoPictureBox.TabIndex = 3;
+            this.pianoPictureBox.TabStop = false;
+            this.pianoPictureBox.Click += new System.EventHandler(this.pianoPictureBox_Click);
             // 
-            // pictureBox1
+            // guitarPictureBox
             // 
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox1.Image = global::AudioTranscription.Properties.Resources.tak_etn10c_front;
-            this.pictureBox1.Location = new System.Drawing.Point(11, 19);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(149, 112);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 2;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            this.guitarPictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.guitarPictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.guitarPictureBox.Image = global::AudioTranscription.Properties.Resources.tak_etn10c_front;
+            this.guitarPictureBox.Location = new System.Drawing.Point(11, 19);
+            this.guitarPictureBox.Name = "guitarPictureBox";
+            this.guitarPictureBox.Size = new System.Drawing.Size(149, 112);
+            this.guitarPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.guitarPictureBox.TabIndex = 2;
+            this.guitarPictureBox.TabStop = false;
+            this.guitarPictureBox.Click += new System.EventHandler(this.guitarPictureBox_Click);
             // 
             // browseBtn
             // 
@@ -451,20 +451,20 @@
             ((System.ComponentModel.ISupportInitialize)(this.AMBox)).EndInit();
             this.tabPage1.ResumeLayout(false);
             this.Settings.ResumeLayout(false);
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.notesSettingsGroupBox.ResumeLayout(false);
+            this.notesSettingsGroupBox.PerformLayout();
+            this.STFTSettingsGroupBox.ResumeLayout(false);
+            this.STFTSettingsGroupBox.PerformLayout();
+            this.detetcionSettingsGroupBox.ResumeLayout(false);
+            this.detetcionSettingsGroupBox.PerformLayout();
             this.General.ResumeLayout(false);
             this.General.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.checkBtnUku)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkBtnPiano)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkBtnGuitar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ukulelePictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pianoPictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.guitarPictureBox)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -478,16 +478,16 @@
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.RichTextBox helpTextBox;
         private System.Windows.Forms.TabPage Settings;
-        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.GroupBox notesSettingsGroupBox;
         private System.Windows.Forms.CheckBox isFlatCheckBox;
         private System.Windows.Forms.Button resetBtn;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox STFTSettingsGroupBox;
         private System.Windows.Forms.CheckBox isDFTCheckBox;
         private System.Windows.Forms.TextBox hopSizeTextBox;
         private System.Windows.Forms.TextBox windowSizeTextBox;
         private System.Windows.Forms.Label hopSizeLabel;
         private System.Windows.Forms.Label windowLabel;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox detetcionSettingsGroupBox;
         private System.Windows.Forms.CheckBox bpmAutoDetectionCheckBox;
         private System.Windows.Forms.Label BPMLabel;
         private System.Windows.Forms.TextBox BPMTextBox;
@@ -497,11 +497,11 @@
         private System.Windows.Forms.PictureBox checkBtnUku;
         private System.Windows.Forms.PictureBox checkBtnPiano;
         private System.Windows.Forms.PictureBox checkBtnGuitar;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label chooseFileLabel;
+        private System.Windows.Forms.Label chooseInstrumentLabel;
+        private System.Windows.Forms.PictureBox ukulelePictureBox;
+        private System.Windows.Forms.PictureBox pianoPictureBox;
+        private System.Windows.Forms.PictureBox guitarPictureBox;
         private System.Windows.Forms.Button browseBtn;
         private System.Windows.Forms.TextBox fileTextBox;
         private System.Windows.Forms.TabControl tabControl1;

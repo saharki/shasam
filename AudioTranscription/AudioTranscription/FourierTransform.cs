@@ -7,7 +7,7 @@ namespace AudioTranscription
 {
     class FourierTransform
     {
-        // DFT o
+        // DFT implementation.
         public static Complex[] DFT(double[] x, int n, int h, double[] window, int N, int minFreq, int maxFreq)
         {
             Complex[] dft = new Complex[maxFreq - minFreq + 1];
@@ -43,7 +43,7 @@ namespace AudioTranscription
             }
             return dft;
         }
-
+        //STFT implementation. Uses DFT.
         public static Complex[][] STFT(double[] x, int h, double[] window, int N, int minFreq, int maxFreq)
         {
             Complex[][] stft = new Complex[x.Length / h + 1][];
@@ -61,7 +61,7 @@ namespace AudioTranscription
               });
             return stft;
         }
-
+        //STFT implementation. Uses FFT.
         public static Complex[][] STFT_fft(double[] x, int h, double[] window, int N, int minFreq, int maxFreq)
         {
             Complex[][] stft = new Complex[x.Length / h + 1][];
@@ -83,10 +83,10 @@ namespace AudioTranscription
                 AForge.Math.Complex[] partial_c_data = new AForge.Math.Complex[N];
                 Array.Copy(c_data, n*h, partial_c_data, 0, N);
                 //Apply window
-                //for (int i = 0; i < partial_c_data.Length; i++)
-                //{
-                //    partial_c_data[i] *= window[i];
-                //}
+                for (int i = 0; i < partial_c_data.Length; i++)
+                {
+                    partial_c_data[i] *= window[i];
+                }
 
                 AForge.Math.FourierTransform.FFT(partial_c_data, AForge.Math.FourierTransform.Direction.Forward);
                 stft[n] = new Complex[N];
@@ -99,6 +99,7 @@ namespace AudioTranscription
 
             return stft;
         }
+        //Energy implementation. Uses DFT.
         public static double[] Energy(double[] x, int h, double[] window, int N, int minFreq, int maxFreq)
         {
             if (x == null || x.Length == 0)
@@ -122,7 +123,7 @@ namespace AudioTranscription
             }
             return weightedEnergyMeasure;
         }
-
+        //Energy implementation. Uses FFT.
         public static double[] EnergyFFT(double[] x, int h, double[] window, int N, int minFreq, int maxFreq)
         {
             if (x == null || x.Length == 0)

@@ -33,7 +33,7 @@ namespace AudioTranscription
         {
 
         }
-
+        //Sets parameters before transcription
         public static void Initialize(int windowSize, int hopSize, float thresh, int _BPM, string wavFile, bool bpmAutoDetection, Instrument chosen,valueChanged CompletedThreadsH,bool DFT)
         {
             windowSizeInMs = windowSize;
@@ -47,6 +47,8 @@ namespace AudioTranscription
             CompletedThreadsHandler = CompletedThreadsH;
             isDFT = DFT;
         }
+
+        //Performs the trasncription process
         public static void Transcribe(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
             double[] wavData;
@@ -76,52 +78,58 @@ namespace AudioTranscription
             int minFreq = 0;
             int maxFreq = 500;
 
-            double[] window = new double[N];
-            for (int i = 0; i < N; i++)
-            {
-                window[i] = HammingWindow(i, N);
-            }
+            //Generate window
+
+
+            //Reduction process
+            //energyArray contains the result after claculating Energy.
             double[] energyArray;
             if (isDFT)
             {
-                energyArray = FourierTransform.Energy(wavData, h, window, N, minFreq, maxFreq);
+                double[] window = new double[N];
+                for (int i = 0; i < N; i++)
+                {
+                    window[i] = HammingWindow(i, N);
+                }
+                energyArray = FourierTransform.Energy(wavData, h, window, N, minFreq, maxFreq); //Energy using DFT
             }
             else
             {
                 N = nearestPowOf2(N);
-                //h = nearestPowOf2(h);
-                energyArray = FourierTransform.EnergyFFT(wavData, h, window, N, minFreq, maxFreq);
+                double[] window = new double[N];
+                for (int i = 0; i < N; i++)
+                {
+                    window[i] = HammingWindow(i, N);
+                }
+                energyArray = FourierTransform.EnergyFFT(wavData, h, window, N, minFreq, maxFreq); //Energy using FFT.
 
-                //********//
+                //****   Export detection function to file   ****//
                 //System.IO.File.WriteAllLines(
                 //    @"F:\Dropbox (Personal)\Final project - Music Trascription\Results\" + wavFilePath.Substring(wavFilePath.LastIndexOf('\\') + 1) + "- Energy - " + windowSizeInMs.ToString() + " " + hopSizeInMs.ToString() + ".txt" // <<== Put the file name here
                 //    , energyArray.Select(d => d.ToString()).ToArray());
-                //********//
+                //***********************************************//
             }
 
-            double[] thresholdedEnergyArray = Thresholding.FixedThresholdRelativeNormalize(energyArray, threshold);
-            List<int> windowPeaks = PeakPicking.FindPeaksWithThreshold(thresholdedEnergyArray, (int)((samplesRate) * (double)60/BPM/4 ) / h);
+            double[] thresholdedEnergyArray = Thresholding.FixedThresholdRelativeNormalize(energyArray, threshold); //Fixed thresholding
+            List<int> windowPeaks = PeakPicking.FindPeaksWithThreshold(thresholdedEnergyArray, (int)((samplesRate) * (double)60/BPM/4 ) / h);//Peaks picking
 
             List<int> signalPeaks = new List<int>(windowPeaks.Count);
             for (int i = 0; i < windowPeaks.Count; i++)
             {
-                signalPeaks.Add(windowPeaks[i] * h + N / 2);
+                signalPeaks.Add(windowPeaks[i] * h + N / 2);//Calc the location (in smaples) of peaks. Assumes peak is in the middle of a window.
             }
             double q = 0;
-            double [] signalFrequencies = PitchTracking.PitchDetectionForAllPeaks(wavData, 4096, ref q, samplesRate, signalPeaks);
+            double [] signalFrequencies = PitchTracking.PitchDetectionForAllPeaks(wavData, 4096, ref q, samplesRate, signalPeaks);//Pitch detection for all peaks.
 
             TrasncriptionResult result = new TrasncriptionResult(signalPeaks.Count, BPM);
-           // result[0] = new float[signalPeaks.Count]; //Peak location
-           // result[1] = new float[signalPeaks.Count]; //Peak frequency
-           // result[2] = new float[signalPeaks.Count]; //Peak duration
 
             for (int i=0;i<signalPeaks.Count;i++)
             {
                 result.Notes[i].Position = signalPeaks[i];
                 result.Notes[i].Frequency = (int)Math.Round(signalFrequencies[i], 0);
-                if (i != signalPeaks.Count - 1)
+                if (i != signalPeaks.Count - 1) 
                     result.Notes[i].Duration = SamplesToDurationUsingBPM(signalPeaks[i + 1] - signalPeaks[i], samplesRate);
-                else
+                else //Last note
                     result.Notes[i].Duration = SamplesToDurationUsingBPM(wavData.Length - signalPeaks[i], samplesRate);
             }
 
@@ -134,6 +142,7 @@ namespace AudioTranscription
             return 0.54f - 0.46f * (float)Math.Cos((2 * Math.PI * n) / (N - 1));
         }
 
+        //Convert duration in samples to duration in musical notation. relies on BPM.
         private static float SamplesToDurationUsingBPM(int durationInSamples, int samplesRate)
         {
             List<float> distances = new List<float>(6);
@@ -176,6 +185,7 @@ namespace AudioTranscription
             return 0;
         }
 
+        //Picks the corresponding letter for the duration in MusicMaker.
         public static string DurationLetter(float durationFraq)
         {
             if (durationFraq == (float)1 / 16)
@@ -192,7 +202,7 @@ namespace AudioTranscription
             return "";  //default is quarter;
         }
 
-
+        //Pick the corresponding letter for the octave in MusicMaker
         internal static string OctaveLetter(int octave) // m: default octace, l: lower octave, h: higher octave.
         {
             switch((int)chosenInstrument)
@@ -204,7 +214,7 @@ namespace AudioTranscription
                         return "m";
                     else if (octave == 3)
                         return "h";
-                    else
+                    else //out of 3 octave range (limit of MusicMaker).
                         return (octave - 2).ToString("+#;-#").Trim();
                     break;
                 case (int)Instrument.PIANO:
@@ -216,7 +226,7 @@ namespace AudioTranscription
                     else if (octave == 4)
                         return "h";
                     else
-                        return (octave - 3).ToString("+#;-#").Trim();
+                        return (octave - 3).ToString("+#;-#").Trim();//out of 3 octave range (limit of MusicMaker).
                     break;
                 
                 default:
@@ -225,6 +235,7 @@ namespace AudioTranscription
             return "m";
         }
 
+        //Round up to nearest power of 2
         private static int nearestPowOf2(int num)
         {
             int n = num > 0 ? num - 1 : 0;

@@ -8,18 +8,7 @@ namespace AudioTranscription
 {
     class PeakPicking
     {
-        public static double[] LPF(double []x, double dt,double RC)
-        {
-            double[] y = new double[x.Length];
-            double a = dt / (RC + dt);
-            y[0] = x[0];
-            for(int i=1;i<x.Length;i++)
-            {
-                y[i] = a * x[i] + (1 - a) * y[i - 1];
-            }
-            return y;
-        }
-
+        //Finds peaks using "vertical threshold". Peak is the highest point within the range of threshold, when the peak is in the middle.
         public static List<int> FindPeaksWithThreshold(double[] data, int threshold)
         {
             List<int> maxIndexes = new List<int>();
@@ -45,7 +34,7 @@ namespace AudioTranscription
             }
             return maxIndexes;
         }
-
+        //Peak is the highest point within the range of threshold, when the peak is the left point.
         static List<int> FindPeaksWithThresholdOneSide(double[] data, int threshold)
         {
             List<int> maxIndexes = new List<int>();
