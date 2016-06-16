@@ -123,6 +123,7 @@ namespace AudioTranscription
             isHopValid = true;
             isThresholdValid = true;
             isBPMValid = true;
+            bpmAutoDetectionCheckBox.Checked = false;
     }
 
         private void guitarPictureBox_Click(object sender, EventArgs e)
